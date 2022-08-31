@@ -1,23 +1,21 @@
-import {useEffect, useState} from "react";
-import {MyContext} from "./Config";
-
+import {context} from "./Config";
+import React from "react";
 export default () => {
-    const [a,setA] = useState()
-    useEffect(()=>{
-        const b = document.getElementById('noddle_Config')
-        setA(b)
-    },[])
-    const zh = {
-        name:{
-            young:'顾逸轩'
+    const a = React.useContext(context) as {lan:string}
+    const languages:{[x:string]:any} = {
+        zh: {
+
+                young:'顾逸轩'
+
+        },
+        en: {
+
+                young:'young'
+
         }
     }
-    const en = {
-        name:{
-            young:'young'
-        }
-    }
-    return () => {
-        return a
+    const language = languages[a.lan]
+    return (value: string) => {
+        return language[value]
     }
 }

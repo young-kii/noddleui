@@ -1,12 +1,16 @@
 import useT from "./useT";
-import {useEffect} from "react";
+import React, {ReactNode, useEffect} from "react";
+import {context} from "./Config";
+export default (props: { children: ReactNode|null }) => {
+    const {children} = props
 
-export default () => {
-    const a = useT()
-    console.log(a()?.dataset)
+    const {lan,setLan} = React.useContext(context) as {lan:string,setLan: (en: string)=>void}
+    const t = useT()
     return (
         <div>
-            {a()?.dataset.lan}
+            title:{t('young')}
+            {children}:{lan}
+            <button onClick={()=>setLan('en')}>click</button>
         </div>
     )
 }

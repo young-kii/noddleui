@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect, useRef, useState} from "react";
+import React, {createContext, Fragment, ReactNode, useEffect, useRef, useState} from "react";
 import useT from "./useT";
 let lang = 'en'
 // const a = useRef('en')
@@ -6,15 +6,16 @@ let lang = 'en'
 export const setLang = () => {
     lang = 'sadas'
 }
-export default ({children}:{children:ReactNode}) => {
-    const [lan,setLan] = useState(lang)
-    setTimeout(()=>{
-        setLang()
-    },1000)
+export const context = createContext({})
+export default ({children}:any) => {
+    const {Provider} = context
+    const [lan,setLan] = useState('zh')
     return (
+<Provider value={{lan:lan,setLan:setLan}}>
+    <div id={'noddle_Config'} data-lan={lang}>
+        {children}
+    </div>
+</Provider>
 
-        <div id={'noddle_Config'} data-lan={lang}>
-            {children}
-        </div>
     )
 }
