@@ -1,16 +1,15 @@
-import useT from "./useT";
-import React, {ReactNode, useEffect} from "react";
-import {context} from "./Config";
-export default (props: { children: ReactNode|null }) => {
+import React, {ReactNode, useContext, useEffect} from "react";
+import {useTranslation,globalContext} from "./components/globalConfig/Config";
+import {LocaleConfig} from "@/components/localeConfig/index.d";
+const {LocaleOption} = LocaleConfig
+export default (props: { children?: ReactNode|null }) => {
     const {children} = props
-
-    const {lan,setLan} = React.useContext(context) as {lan:string,setLan: (en: string)=>void}
-    const t = useT()
+    const translate = useTranslation()
     return (
         <div>
-            title:{t('young')}
-            {children}:{lan}
-            <button onClick={()=>setLan('en')}>click</button>
+            <LocaleOption/>
+            title:{translate('person.young.name')}
+
         </div>
     )
 }

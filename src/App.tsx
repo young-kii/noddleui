@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react'
 import reactLogo from './assets/react.svg'
-import './App.css'
-import Config from "./Config";
+import './App.less'
+import {Config} from "@/components/globalConfig/Config";
 import II from "./II";
-
+import {Locales} from "@/locales";
 function App() {
     useEffect(()=>{
         const a = document.getElementById('demo') as HTMLElement
@@ -16,12 +16,11 @@ function App() {
             a.innerHTML = a.innerHTML.replace(item,`<span style="color: red">${item}</span>`)
         }
 
-
     },[])
   return (
     <div className="App">
-        <Config>
-            <II>这是II组件</II>
+        <Config Locales={Locales}>
+            <II></II>
         </Config>
       <div>
           <pre id={'demo'}>
