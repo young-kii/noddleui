@@ -2,17 +2,17 @@ import STYLE from './index.module.less';
 import './index.less';
 import {useEffect, useRef, useState} from "react";
 
-const keywords = new Set(['import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
+const keywords = new Set(['var','import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
 const punctuation = new Set(['(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
-const tags = new Set(['Cascader']);
+const tags = new Set(['Cascader', 'div']);
 const special = ['React']
 
 const code = `import React, { useState } from 'react';
-import { Cascaderss , Cascader } from 'tdesign-react';
+import { Cascader } from 'tdesign-react';
 
-export default Example() {
-  const [value, setValue] = useState([]);
-  const [options] = useState([
+export default function Example() {
+  const [value, setValue] = useState(['1.1']);
+  const options = [
     {
       label: '选项一',
       value: '1',
@@ -32,7 +32,7 @@ export default Example() {
       ],
     },
     {
-      label: '选项二',
+      label: '{选项二}',
       value: '2',
       children: [
         {
@@ -45,50 +45,90 @@ export default Example() {
         },
       ],
     },
-  ]);
-
+  ];
+    function aa () {
+        sda
+    }
   const onChange = (value) => {
     setValue(value);
   };
-
+    var onChange1 = (value) => {
+    setValue(value);
+  };
+     var onChange133 = (value) => {
+    setValue(value);
+  };
+    
   return (
-    <div>
-      <Cascader options={options} onChange={onChange} value={value} size="medium" clearable />
+    <div className="tdesign-demo-block-row">
+      <Cascader options={options} onChange={onChange} value={value} multiple clearable />
     </div>
   );
 }`
 export default () => {
-
     const codeRef = useRef() as any
     let codeArray = code.split('')
     let functionSet = new Set()
-    let parenthesesCount = 0
     const compile = (getResult: boolean) => {
         let currentArray = '', newArray = ''
         let markCount = 0
-        let result = codeArray.reduce((previousValue, currentValue,currentIndex,array) => {
+        let inTag = false
+        let inCurlyBracket = false
+        let result = codeArray.reduce((previousValue, currentValue, currentIndex, array) => {
             if (!getResult) {
                 if (currentValue === '(') {
                     if (currentArray.trim()) functionSet.add(currentArray.trim().split(' ').at(-1))
                 }
+                let reg = /((var|const|let)\s*(?<arrowFun>\S*)\s*=\s*\(.*\))|(function\s*(?<fun>\S*)\s*\(.*\))/g
+                let functions = code.matchAll(reg)
+                for(let fun of functions){
+                    if(fun.groups?.arrowFun)
+                        functionSet.add(fun.groups?.arrowFun)
+                    if(fun.groups?.fun)
+                        functionSet.add(fun.groups.fun)
+                }
+            }
+            if (currentValue === "'" || currentValue === '"') {
+                markCount++
+                if (markCount === 2) {
+                    currentArray += currentValue
+                    newArray = currentArray
+                    currentArray = ''
+                    markCount = 0
+                    return previousValue + `<span class="mark">${newArray}</span>`
+                }
             }
             if (punctuation.has(currentValue)) {
-
-                if(currentValue === '<')
-                {
-                    currentArray += '&lt;'
-                    return previousValue
-                }
-                if(currentValue === '>')
-                {
-                    currentArray += '&gt;'
-
-                    return previousValue
-                }
-                console.log(currentArray)
+                let className = 'punctuation'
                 newArray = currentArray
+                if (currentValue === '<') {
+                    inTag = true
+                    className = 'tags'
+                }
+                if (currentValue === '>') {
+                    if (inTag)
+                        className = 'tags'
+                    inTag = false
+                }
+                if (currentValue === '/') {
+                    className = 'tags'
+                }
+                if (currentValue === ':') {
+                    newArray = `<span class="objectKey">${currentArray}</span>`
+                }
+                if (currentValue === '=') {
+                    if (inTag)
+                        className = 'mark'
+                }
+                if (currentValue === '{') {
+                    inCurlyBracket = true
+                }
+                if (currentValue === '}') {
+                    inCurlyBracket = false
+                }
+
                 currentArray = ''
-                return previousValue + newArray + `<span class="punctuation">${currentValue}</span>`
+                return previousValue + newArray + `<span class="${className}">${currentValue}</span>`
             } else if (currentValue === ',' || currentValue === ';') {
                 newArray = currentArray
                 currentArray = ''
@@ -96,8 +136,7 @@ export default () => {
             } else {
                 currentArray += currentValue
                 if (keywords.has(currentArray)) {
-                    if(currentIndex !== array.length - 1 && array[currentIndex+1] === ' ')
-                    {
+                    if (currentIndex !== array.length - 1 && array[currentIndex + 1] === ' ') {
                         newArray = currentArray
                         currentArray = ''
                         return previousValue + `<span class="keywords">${newArray}</span>`
@@ -105,26 +144,34 @@ export default () => {
                 } else if (tags.has(currentArray)) {
                     newArray = currentArray
                     currentArray = ''
-                    return previousValue + `<span class="tags">${newArray}</span>`
-                } else if (functionSet.has(currentArray)) {
-                    newArray = currentArray
-                    currentArray = ''
-                    return previousValue + `<span class="functions">${newArray}</span>`
-                } else if ( currentArray === '\n' || currentArray === '\t') {
-                    currentArray = ''
-                    return previousValue + currentValue
-                } else if ( currentValue === ' ' || currentArray === ' ') {
-                    newArray = currentArray
-                    currentArray = ''
-                    return previousValue + newArray
-                } else if (currentValue === "'") {
-                    markCount++
-                    if (markCount === 2) {
+                    if (array[currentIndex + 1] === '>') {
+                        if (array[currentIndex - newArray.length] === '<' || array[currentIndex - newArray.length] === ' ' || array[currentIndex - newArray.length] === '/')
+                            return previousValue + `<span class="tags">${newArray}</span>`
+                    } else if (array[currentIndex - newArray.length] === '<') {
+                        if (array[currentIndex + 1] === '>' || array[currentIndex + 1] === ' ')
+                            return previousValue + `<span class="tags">${newArray}</span>`
+                    }
+                    return previousValue + `<span>${newArray}</span>`
+                } else if (functionSet.has(currentArray) && (array[currentIndex + 1] === ' ' || punctuation.has(array[currentIndex + 1]))) {
+                    if(inTag) {
+                        if(inCurlyBracket) {
+                            newArray = currentArray
+                            currentArray = ''
+                            return previousValue + `<span class="functions">${newArray}</span>`
+                        }
+                    }
+                    else {
                         newArray = currentArray
                         currentArray = ''
-                        markCount = 0
-                        return previousValue + `<span class="mark">${newArray}</span>`
+                        return previousValue + `<span class="functions">${newArray}</span>`
                     }
+                } else if (currentArray === '\n' || currentArray === '\t') {
+                    currentArray = ''
+                    return previousValue + `<span>${currentValue}</span>`
+                } else if (currentValue === ' ' || currentArray === ' ') {
+                    newArray = currentArray
+                    currentArray = ''
+                    return previousValue + `<span>${newArray}</span>`
                 }
                 return previousValue
             }
@@ -132,6 +179,7 @@ export default () => {
         if (getResult) return result
     }
     compile(false)
+    console.log(functionSet)
     let result = compile(true)
 
     useEffect(() => {
