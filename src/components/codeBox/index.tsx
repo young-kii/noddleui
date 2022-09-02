@@ -2,7 +2,7 @@ import STYLE from './index.module.less';
 import './index.less';
 import {useEffect, useRef, useState} from "react";
 
-const keywords = new Set(['var','import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
+const keywords = new Set(['var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
 const punctuation = new Set(['(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
 const tags = new Set(['Cascader', 'div']);
 const special = ['React']
@@ -36,7 +36,7 @@ export default function Example() {
       value: '2',
       children: [
         {
-          label: '子选项一',
+          label: '子(),{}\\''选项一',
           value: '2.1',
         },
         {
@@ -56,7 +56,7 @@ export default function Example() {
     setValue(value);
   };
      var onChange133 = (value) => {
-    setValue(value);
+    setValue (value);
   };
     
   return (
@@ -76,15 +76,15 @@ export default () => {
         let inCurlyBracket = false
         let result = codeArray.reduce((previousValue, currentValue, currentIndex, array) => {
             if (!getResult) {
-                if (currentValue === '(') {
-                    if (currentArray.trim()) functionSet.add(currentArray.trim().split(' ').at(-1))
-                }
-                let reg = /((var|const|let)\s*(?<arrowFun>\S*)\s*=\s*\(.*\))|(function\s*(?<fun>\S*)\s*\(.*\))/g
+                // if (currentValue === '(') {
+                //     if (currentArray.trim()) functionSet.add(currentArray.trim().split(' ').at(-1))
+                // }
+                let reg = /((var|const|let)\s*(?<arrowFun>\S*)\s*=\s*\(.*\))|(\s*(?<fun>\w*)\s*\(.*\))/g
                 let functions = code.matchAll(reg)
-                for(let fun of functions){
-                    if(fun.groups?.arrowFun)
+                for (let fun of functions) {
+                    if (fun.groups?.arrowFun)
                         functionSet.add(fun.groups?.arrowFun)
-                    if(fun.groups?.fun)
+                    if (fun.groups?.fun)
                         functionSet.add(fun.groups.fun)
                 }
             }
@@ -97,6 +97,10 @@ export default () => {
                     markCount = 0
                     return previousValue + `<span class="mark">${newArray}</span>`
                 }
+            }
+            if (markCount === 1) {
+                currentArray += currentValue
+                return previousValue
             }
             if (punctuation.has(currentValue)) {
                 let className = 'punctuation'
@@ -114,7 +118,8 @@ export default () => {
                     className = 'tags'
                 }
                 if (currentValue === ':') {
-                    newArray = `<span class="objectKey">${currentArray}</span>`
+                    if (!inTag)
+                        newArray = `<span class="objectKey">${currentArray}</span>`
                 }
                 if (currentValue === '=') {
                     if (inTag)
@@ -153,14 +158,13 @@ export default () => {
                     }
                     return previousValue + `<span>${newArray}</span>`
                 } else if (functionSet.has(currentArray) && (array[currentIndex + 1] === ' ' || punctuation.has(array[currentIndex + 1]))) {
-                    if(inTag) {
-                        if(inCurlyBracket) {
+                    if (inTag) {
+                        if (inCurlyBracket) {
                             newArray = currentArray
                             currentArray = ''
                             return previousValue + `<span class="functions">${newArray}</span>`
                         }
-                    }
-                    else {
+                    } else {
                         newArray = currentArray
                         currentArray = ''
                         return previousValue + `<span class="functions">${newArray}</span>`
