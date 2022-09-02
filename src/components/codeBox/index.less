@@ -1,8 +1,24 @@
-@import "variables";
-.keyword {
-  color: @keywords;
-}
-.no
-.punctuation {
+@codeBox-backgroundColor: #2B2B2BFF;
+@codeBox-baseColor: #BABABAFF;
 
+@keywords: #e1781c;
+@comma: @keywords;
+@punctuation: @codeBox-baseColor;
+@mark: #658a57;
+@tags: #AF1431FF;
+@functions: #002e88;
+
+@codeBoxType: {
+  keywords: @keywords;
+  punctuation: @punctuation;
+  mark: @mark;
+  tags: @tags;
+  functions: @functions;
+  comma: @comma;
 }
+
+each(@codeBoxType, {
+  .@{key} {
+    color: @value;
+  }
+})
