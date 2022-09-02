@@ -2,17 +2,15 @@ import STYLE from './index.module.less';
 import './index.less';
 import {useEffect, useRef, useState} from "react";
 
-
-const keywords = ['import ', 'export ', 'let ', 'default ', 'function ', 'from ', 'const ', 'return '];
-const punctuation = ['(', ')', '{', '}', ';', '<', '>', '=', '[', ']', ':', '/'];
-const tags = ['div', 'Cascader '];
-const functions = ['useState'];
+const keywords = new Set(['import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
+const punctuation = new Set(['(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
+const tags = new Set(['Cascader']);
 const special = ['React']
 
 const code = `import React, { useState } from 'react';
 import { Cascaderss , Cascader } from 'tdesign-react';
 
-export default function Example() {
+export default Example() {
   const [value, setValue] = useState([]);
   const [options] = useState([
     {
@@ -63,46 +61,79 @@ export default () => {
 
     const codeRef = useRef() as any
     let codeArray = code.split('')
-    let currentArray = '', newArray = ''
-    let markCount = 0
-    let result = codeArray.reduce((previousValue, currentValue) => {
-        if (punctuation.indexOf(currentValue) > -1) {
-            newArray = currentArray
-            currentArray = ''
-            return previousValue + newArray + `<span class="punctuation">${currentValue}</span>`
-        } else if (currentValue === ',') {
-            newArray = currentArray
-            currentArray = ''
-            return previousValue + newArray + `<span class="comma">${currentValue}</span>`
-        } else {
-            currentArray += currentValue
-            if (keywords.indexOf(currentArray) > -1) {
-                newArray = currentArray
-                currentArray = ''
-                return previousValue + `<span class="keywords">${newArray}</span>`
-            } else if (tags.indexOf(currentArray) > -1) {
-                newArray = currentArray
-                currentArray = ''
-                return previousValue + `<span class="tags">${newArray}</span>`
-            } else if (functions.indexOf(currentArray) > -1) {
-                newArray = currentArray
-                currentArray = ''
-                return previousValue + `<span class="functions">${newArray}</span>`
-            } else if (currentArray === ' ' || currentArray === '\n' || currentArray === '\t') {
-                currentArray = ''
-                return previousValue + currentValue
-            } else if (currentValue === "'") {
-                markCount++
-                if (markCount === 2) {
-                    newArray = currentArray
-                    currentArray = ''
-                    markCount = 0
-                    return previousValue + `<span class="mark">${newArray}</span>`
+    let functionSet = new Set()
+    let parenthesesCount = 0
+    const compile = (getResult: boolean) => {
+        let currentArray = '', newArray = ''
+        let markCount = 0
+        let result = codeArray.reduce((previousValue, currentValue,currentIndex,array) => {
+            if (!getResult) {
+                if (currentValue === '(') {
+                    if (currentArray.trim()) functionSet.add(currentArray.trim().split(' ').at(-1))
                 }
             }
-            return previousValue
-        }
-    }, '')
+            if (punctuation.has(currentValue)) {
+
+                if(currentValue === '<')
+                {
+                    currentArray += '&lt;'
+                    return previousValue
+                }
+                if(currentValue === '>')
+                {
+                    currentArray += '&gt;'
+
+                    return previousValue
+                }
+                console.log(currentArray)
+                newArray = currentArray
+                currentArray = ''
+                return previousValue + newArray + `<span class="punctuation">${currentValue}</span>`
+            } else if (currentValue === ',' || currentValue === ';') {
+                newArray = currentArray
+                currentArray = ''
+                return previousValue + newArray + `<span class="comma">${currentValue}</span>`
+            } else {
+                currentArray += currentValue
+                if (keywords.has(currentArray)) {
+                    if(currentIndex !== array.length - 1 && array[currentIndex+1] === ' ')
+                    {
+                        newArray = currentArray
+                        currentArray = ''
+                        return previousValue + `<span class="keywords">${newArray}</span>`
+                    }
+                } else if (tags.has(currentArray)) {
+                    newArray = currentArray
+                    currentArray = ''
+                    return previousValue + `<span class="tags">${newArray}</span>`
+                } else if (functionSet.has(currentArray)) {
+                    newArray = currentArray
+                    currentArray = ''
+                    return previousValue + `<span class="functions">${newArray}</span>`
+                } else if ( currentArray === '\n' || currentArray === '\t') {
+                    currentArray = ''
+                    return previousValue + currentValue
+                } else if ( currentValue === ' ' || currentArray === ' ') {
+                    newArray = currentArray
+                    currentArray = ''
+                    return previousValue + newArray
+                } else if (currentValue === "'") {
+                    markCount++
+                    if (markCount === 2) {
+                        newArray = currentArray
+                        currentArray = ''
+                        markCount = 0
+                        return previousValue + `<span class="mark">${newArray}</span>`
+                    }
+                }
+                return previousValue
+            }
+        }, '')
+        if (getResult) return result
+    }
+    compile(false)
+    let result = compile(true)
+
     useEffect(() => {
         codeRef.current.innerHTML = result
     }, [])
@@ -125,7 +156,7 @@ export default () => {
         <div className={STYLE.codeBoxContainer}>
             <pre>
               <code className="language-jsx" ref={codeRef}>
-                  {code}
+                  123
               </code>
           </pre>
         </div>
