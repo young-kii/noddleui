@@ -1,0 +1,44 @@
+.header {
+  font-family: Menlo,sans-serif;
+  font-style: italic;
+  padding: 0 24px;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: .1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--header-box-shadow);
+  z-index: var(--header-z-index);
+  background-color: white;
+  height: 64px;
+  width: 100%;
+  color: #1a25e7;
+  position: relative;
+  transform: translateY(0);
+
+  each(range(6),{
+    span:nth-child(@{value}){
+      animation: 2s infinite blink alternate;
+      animation-delay: .1s * @value;
+    }
+  })
+
+}
+
+@keyframes blink {
+  0% {
+    text-shadow: 0 0 0 #dcdbdb;
+  }
+  90% {
+    color: #1a25e7;
+    text-shadow: 0 0 0 #dcdbdb;
+  }
+  95% {
+    color: #2a88f1;
+    text-shadow: 1px 0 2px #dcdbdb;
+  }
+  100% {
+    color: #02b5f6;
+    text-shadow: 2px 0 1px #dcdbdb;
+  }
+}

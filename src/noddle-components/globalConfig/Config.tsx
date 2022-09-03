@@ -19,6 +19,7 @@ interface configProps {
     Locales?: Locales
 }
 
+
 export const Config = ({children, Locales}: configProps) => {
     const {Provider} = globalContext
     const {defaultLocale, allLocales} = Locales as Locales

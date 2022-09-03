@@ -6,66 +6,12 @@ const keywords = new Set(['var', 'import', 'export', 'let', 'default', 'function
 const punctuation = new Set(['(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
 const tags = new Set(['Cascader', 'div']);
 const special = ['React']
+type props = {
+    code: string
+}
 
-const code = `import React, { useState } from 'react';
-import { Cascader } from 'tdesign-react';
-
-export default function Example() {
-  const [value, setValue] = useState(['1.1']);
-  const options = [
-    {
-      label: '选项一',
-      value: '1',
-      children: [
-        {
-          label: '子选项一',
-          value: '1.1',
-        },
-        {
-          label: '子选项二',
-          value: '1.2',
-        },
-        {
-          label: '子选项三',
-          value: '1.3',
-        },
-      ],
-    },
-    {
-      label: '{选项二}',
-      value: '2',
-      children: [
-        {
-          label: '子(),{}\\''选项一',
-          value: '2.1',
-        },
-        {
-          label: '子选项二',
-          value: '2.2',
-        },
-      ],
-    },
-  ];
-    function aa () {
-        sda
-    }
-  const onChange = (value) => {
-    setValue(value);
-  };
-    var onChange1 = (value) => {
-    setValue(value);
-  };
-     var onChange133 = (value) => {
-    setValue (value);
-  };
-    
-  return (
-    <div className="tdesign-demo-block-row">
-      <Cascader options={options} onChange={onChange} value={value} multiple clearable />
-    </div>
-  );
-}`
-export default () => {
+export default (props: props) => {
+    const code = props?.code || ''
     const codeRef = useRef() as any
     let codeArray = code.split('')
     let functionSet = new Set()
@@ -131,7 +77,6 @@ export default () => {
                 if (currentValue === '}') {
                     inCurlyBracket = false
                 }
-
                 currentArray = ''
                 return previousValue + newArray + `<span class="${className}">${currentValue}</span>`
             } else if (currentValue === ',' || currentValue === ';') {
@@ -182,35 +127,24 @@ export default () => {
         }, '')
         if (getResult) return result
     }
-    compile(false)
-    console.log(functionSet)
-    let result = compile(true)
 
+    compile(false)
+    let result = compile(true)
     useEffect(() => {
         codeRef.current.innerHTML = result
     }, [])
-    // useEffect(() => {
-    //     const a = codeRef.current as unknown as HTMLElement
-    //     let str = a.innerHTML
-    //     const reg = /'(?<url>.*)'/g
-    //     const result = str.match(reg) as string[]
-    //
-    //     for(let keyword of keywords){
-    //         a.innerHTML = a.innerHTML.replace(keyword,`<span class="keyword">${keyword}</span>`)
-    //     }
-    //     for (let item of result) {
-    //         a.innerHTML = a.innerHTML.replace(item, `<span class="nod">${item}</span>`)
-    //     }
-    //     console.log(codeRef.current)
-    // }, [])
 
+    const pre = useRef() as any
+    const show = () => {
+        pre.current.classList.toggle('show')
+    }
     return <>
-        <div className={STYLE.codeBoxContainer}>
+        <button onClick={show}>d</button>
+        <div className={STYLE.codeBoxContainer} ref={pre}>
             <pre>
-              <code className="language-jsx" ref={codeRef}>
-                  123
-              </code>
+              <code className={STYLE.code} ref={codeRef}/>
           </pre>
         </div>
+        hello world
     </>
 }

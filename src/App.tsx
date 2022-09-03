@@ -1,21 +1,13 @@
-import {useEffect, useState} from 'react'
-import reactLogo from './assets/react.svg'
-import './App.less'
-import {Config} from "@/components/globalConfig/Config";
-import II from "./II";
-import {Locales} from "@/locales";
-import CodeBox from "@/components/codeBox";
+import RouteTable from '@/router'
+import {useState} from "react";
 
 function App() {
+    const [a,setA] = useState()
 
     return (
-        <div className="App">
-            <Config Locales={Locales}>
-                <II></II>
-                <CodeBox/>
-            </Config>
-
-        </div>
+        <>
+            <RouteTable />
+        </>
     )
 }
 

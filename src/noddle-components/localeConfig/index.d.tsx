@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {contextType, globalContext} from "@/components/globalConfig/Config";
+import {contextType, globalContext} from "@/noddle-components/globalConfig/Config";
 
 export namespace LocaleConfig {
     export function setLocale(_locale:string) {

@@ -1,0 +1,48 @@
+.nav {
+  padding: 0 0 32px 12px;
+  width: 260px;
+  height: 100vh;
+  overflow: scroll;
+  background-color: white;
+  z-index: var(--nav-z-index);
+  box-shadow:  var(--nav-box-shadow);
+
+  .header {
+    height: 40px;
+    line-height: 40px;
+    margin: 8px 12px;
+    font-size: 18px;
+    color: rgb(102	,102,	102);
+    word-spacing: 3px;
+    transform: skew(-5deg);
+    font-family: "Tsukushi A Round Gothic", serif;
+  }
+
+  .nav_title {
+    font-size: 12px;
+    margin: 8px 0 0;
+    padding:14px 12px 4px;
+    color: #00000066;
+  }
+
+  .nav_item {
+    margin-top: 4px;
+  }
+
+
+}
+
+.nav::-webkit-scrollbar {
+  width: 12px;
+  height: 0;
+  background-color: transparent;
+}
+
+.nav:hover::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  border: 4px solid transparent;
+  background-color: var(--webkit-scrollbar-thumb-background-color);
+  background-clip: content-box;
+}
+
+//.nav::-webkit-scrollbar-track {  }

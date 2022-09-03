@@ -1,0 +1,27 @@
+@nav_link_fontColor: #727272FF;
+@nav_link_hover_color: #282828FF;
+@nav_link_hover_background_color: #F3F3F3FF;
+@nav_link_active_color: white;
+@nav_link_active_background_color: #2151D1FF;
+
+.nav_link {
+  border-radius: 3px;
+  color: @nav_link_fontColor;
+  text-decoration: none;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 12px;
+  font-size: 14px;
+  display: block;
+  transition: .3s ease;
+}
+
+.nav_link:not([class*=nav_link_active]):hover {
+  color: @nav_link_hover_color;
+  background-color: @nav_link_hover_background_color;
+}
+
+.nav_link_active {
+  color: @nav_link_active_color;
+  background-color: @nav_link_active_background_color;
+}
