@@ -1,7 +1,7 @@
 import enUS from '@/locales/en-US'
 import zhCN from "@/locales/zh-CN";
 
-export namespace Locales {
+namespace Locales {
     export const allLocales = {
         en: enUS,
         zh: zhCN
@@ -9,5 +9,7 @@ export namespace Locales {
 
     export const defaultLocale = 'zh'
 }
+
+export default Locales
 
 

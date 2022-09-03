@@ -42,11 +42,11 @@ const RouteTable: SyncRoute.Routes[] = [
                     }
                 ]
             },
-            {
-                path: '*',
-                component: lazy(() => import('@/pages/404'))
-            }
         ]
+    },
+    {
+        path: '*',
+        component: lazy(() => import('@/pages/404'))
     }
 ]
 

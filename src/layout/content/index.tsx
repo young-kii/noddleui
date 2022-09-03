@@ -4,7 +4,7 @@ import STYLE from './index.module.less'
 export default () => {
     return (
         <>
-            <div className={STYLE.content}>
+            <div id={'noddle-content'} className={STYLE.content}>
                 <Outlet/>
             </div>
         </>
