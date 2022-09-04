@@ -1,6 +1,7 @@
 @import "index";
 
 .codeBoxContainer {
+  border-radius: 8px;
   width: 100%;
   color: @codeBox-baseColor;
   background-color: @codeBox-backgroundColor;
@@ -9,6 +10,24 @@
   height: 0;
   transition: .8s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+
+
+.codeBoxContainer::-webkit-scrollbar {
+  z-index: -1;
+  width: 12px!important;
+  height: 0!important;
+  background-color: transparent!important;
+}
+
+.codeBoxContainer:hover::-webkit-scrollbar-thumb {
+  z-index: -1;
+
+  border-radius: 6px!important;
+  border: 4px solid transparent!important;
+  background-color: var(--webkit-scrollbar-thumb-background-color)!important;
+  background-clip: content-box!important;
+}
+
 
 .code {
   font-size: 14px;

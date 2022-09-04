@@ -2,8 +2,8 @@ import STYLE from './index.module.less';
 import './index.less';
 import {useEffect, useRef, useState} from "react";
 
-const keywords = new Set(['var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
-const punctuation = new Set(['(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
+const keywords = new Set(['boolean','type','true','false','new','as','any','if','of','else','var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
+const punctuation = new Set(['.','(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
 const tags = new Set(['Cascader', 'div']);
 const special = ['React']
 type props = {
@@ -22,17 +22,17 @@ export default (props: props) => {
         let inCurlyBracket = false
         let result = codeArray.reduce((previousValue, currentValue, currentIndex, array) => {
             if (!getResult) {
-                // if (currentValue === '(') {
-                //     if (currentArray.trim()) functionSet.add(currentArray.trim().split(' ').at(-1))
-                // }
-                let reg = /((var|const|let)\s*(?<arrowFun>\S*)\s*=\s*\(.*\))|(\s*(?<fun>\w*)\s*\(.*\))/g
-                let functions = code.matchAll(reg)
-                for (let fun of functions) {
-                    if (fun.groups?.arrowFun)
-                        functionSet.add(fun.groups?.arrowFun)
-                    if (fun.groups?.fun)
-                        functionSet.add(fun.groups.fun)
+                if (currentValue === '(') {
+                    if (currentArray.trim()) functionSet.add(currentArray.trim().split(' ').at(-1))
                 }
+                // let reg = /((var|const|let)\s*(?<arrowFun>\S*)\s*=\s*\(.*\))|(\s*(?<fun>\w*)\s*\(.*\))/g
+                // let functions = code.matchAll(reg)
+                // for (let fun of functions) {
+                //     if (fun.groups?.arrowFun)
+                //         functionSet.add(fun.groups?.arrowFun)
+                //     if (fun.groups?.fun)
+                //         functionSet.add(fun.groups.fun)
+                // }
             }
             if (currentValue === "'" || currentValue === '"') {
                 markCount++
@@ -121,6 +121,8 @@ export default (props: props) => {
                     newArray = currentArray
                     currentArray = ''
                     return previousValue + `<span>${newArray}</span>`
+                } else if (currentIndex === array.length - 1) {
+                    return previousValue + currentArray
                 }
                 return previousValue
             }
@@ -128,10 +130,14 @@ export default (props: props) => {
         if (getResult) return result
     }
 
-    compile(false)
-    let result = compile(true)
+
+
     useEffect(() => {
+        compile(false)
+        let result = compile(true)
         codeRef.current.innerHTML = result
+        console.log(functionSet)
+
     }, [])
 
     const pre = useRef() as any
