@@ -15,7 +15,6 @@ export default () => {
                     <span>l</span>
                     <span>e</span>
                 </div>
-                {t('person.young.name')}
                 <div>
                     <LocaleConfig.LocaleOption/>
                 </div>

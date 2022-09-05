@@ -1,7 +1,7 @@
 export default {
     nav: {
         start: 'Start',
-        getting_started: 'Getting-Started',
+        getting_started: 'Getting Started',
         changelog: 'Changelog',
         overview: 'Components Overview',
     },
