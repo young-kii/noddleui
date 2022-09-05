@@ -11,7 +11,7 @@ export default (props: _Input.inputProps) => {
 }
 
 const PureInput = (props: _Input.pureInputProps) => {
-    const {placeholder, initValue, autoWidth, initInputWidth, readonly} = props
+    const {placeholder, initValue, autoWidth, initInputWidth, readonly, value} = props
     const [inputValue, setInputValue] = useState(initValue || '')
     const [inputWidth, setInputWidth] = useState(initInputWidth || 70)
     const input = useRef() as MutableRefObject<HTMLInputElement>

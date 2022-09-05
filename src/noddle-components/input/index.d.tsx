@@ -6,6 +6,7 @@ namespace _Input {
         initValue?: string | number,
         initInputWidth?: number,
         readonly?:boolean,
+        value: string
     }
 
     export interface pureInputProps extends inputProps {

@@ -1,6 +1,7 @@
 @import "src/assets/css/global";
 
 .select_container {
+  position: relative;
   display: flex;
   align-items: center;
   width: max-content;
@@ -10,6 +11,35 @@
   border-radius: @base-border-radius;
   transition: .3s ease border-bottom-color, .3s ease border-top-color, .3s ease border-left-color, .3s ease border-right-color, .2s outline-width;
   border: 1px solid @base-inactive-background-color;
+  .dropDownBox_container {
+    transition: .3s ease;
+    position: absolute;
+    padding: 6px;
+    top: 38px;
+    left: 0;
+    height: max-content;
+    background-color: white;
+    box-shadow: 0 2px 6px 1px rgba(0,0,0,.2);
+    min-width: 100%;
+    border-radius: @base-border-radius;
+    .option {
+      font-weight: 400;
+      font-size: 14px;
+      padding: 3px 8px;
+      border-radius: @base-border-radius;
+      transition: .3s ease background-color;
+    }
+    .option:not(:nth-child(1)) {
+      margin-top: 2px;
+    }
+    .option_selected {
+      background-color: @base-selected-background-color;
+      color: @base-selected-fontColor;
+    }
+    .option:not([class*=option_selected]):hover {
+      background-color: @base-hover-background-color;
+    }
+  }
 }
 
 
@@ -22,6 +52,11 @@
       fill-opacity: 1;
     }
   }
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .focus {

@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState} from "react";
-import Select from "@/noddle-components/select";
+import Select, {Option} from "@/noddle-components/select";
 
 const localStorage_localeKey = 'noddle-locale'
 
@@ -9,11 +9,14 @@ export type contextType = {
     locale: string;
     Locales: _object;
     setLocale?: any;
+    languages: _object
+
 }
 
 interface Locales {
     defaultLocale: string,
-    allLocales: _object
+    allLocales: _object,
+    languages: _object
 }
 
 interface configProps {
@@ -26,11 +29,11 @@ export const Config = ({children, Locales}: configProps) => {
     const {Provider} = globalContext
     if(Locales)
     {
-        const {defaultLocale, allLocales} = Locales as Locales
+        const {defaultLocale, allLocales, languages} = Locales as Locales
         const initLocale: string = localStorage.getItem(localStorage_localeKey) || defaultLocale
         const [locale, setLocale] = useState(initLocale)
         return (
-            <Provider value={{locale: locale, setLocale: setLocale, Locales: allLocales}}>
+            <Provider value={{locale, setLocale, Locales: allLocales, languages}}>
                 {children}
             </Provider>
         )
@@ -77,13 +80,23 @@ export namespace LocaleConfig {
     export function LocaleOption() {
         const context = useContext(globalContext)
         const setLocale = useSetLocale()
-        const {locale} = context as contextType
+        const {locale, languages} = context as contextType
+        const [_value,_setValue] = useState(locale)
+        const localeList = []
+        let index = 0
+        for(let key in languages) {
+            localeList.push({id: index++ , value:key, label: languages[key]})
+        }
         if (!Object.keys(context).includes('locale') || !Object.keys(context).includes('Locales') )
             return (<div>locale not found !</div>)
         return (
             <>
-                <Select autoWidth={true} initValue={locale} readonly>
-                    123
+                <Select autoWidth={true} initValue={locale} value={_value} readonly>
+                    {
+                        localeList.map(item => {
+                            return <Option key={item.id} value={item.value} selected={locale === item.value}  onClick={()=>{setLocale(item.value);_setValue(item.value)}}>{item.label}</Option>
+                        })
+                    }
                 </Select>
             </>
         )
