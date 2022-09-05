@@ -54,14 +54,16 @@ export const useTranslation = () => {
     const language = Locales[locale]
     return (value: string) => {
         if (language) {
-            const keys = value.split('.')
-            const result = keys.reduce((pre: _object, cur: string) => {
-                if (pre && pre.hasOwnProperty(cur)) {
-                    return pre[cur]
-                }
-                return value
-            }, language)
-            return typeof result === 'string' ? result : value
+            if (value) {
+                const keys = value.split('.')
+                const result = keys.reduce((pre: _object, cur: string) => {
+                    if (pre && pre.hasOwnProperty(cur)) {
+                        return pre[cur]
+                    }
+                    return value
+                }, language)
+                return typeof result === 'string' ? result : value
+            }
         }
         return value
     }

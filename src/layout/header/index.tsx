@@ -1,8 +1,9 @@
 import STYLE from './index.module.less'
 import Select from "@/noddle-components/select";
-import { LocaleConfig } from '@/noddle-components/globalConfig/Config';
+import {LocaleConfig, useTranslation} from '@/noddle-components/globalConfig/Config';
 
 export default () => {
+    const t = useTranslation()
     return (
         <>
             <div className={STYLE.header}>
@@ -14,6 +15,7 @@ export default () => {
                     <span>l</span>
                     <span>e</span>
                 </div>
+                {t('person.young.name')}
                 <div>
                     <LocaleConfig.LocaleOption/>
                 </div>

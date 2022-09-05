@@ -1,15 +1,16 @@
 import STYLE from './index.module.less'
 import {Link, NavLink} from "react-router-dom";
 import NoddleLink from "@/components/noddle-link/index";
+import {useTranslation} from "@/noddle-components/globalConfig/Config";
 
 export default () => {
-
+    const translate = useTranslation()
     return (
         <>
             <div className={STYLE.nav}>
                 <h2 className={STYLE.header}>React for Web</h2>
                 {/*start*/}
-                <div className={STYLE.nav_title}>开始</div>
+                <div className={STYLE.nav_title}>{translate('nav.start')}</div>
                 <div className={STYLE.nav_item}>
                     <NoddleLink to={'/getting-started'}>快速开始</NoddleLink>
                 </div>
