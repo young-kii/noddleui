@@ -3,5 +3,6 @@ export default {
         young: {
             name: '顾逸轩'
         }
-    }
+    },
+    guyixuan: '顾逸轩'
 }

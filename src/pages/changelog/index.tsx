@@ -29,15 +29,6 @@ export default () => {
         <div>
             changelog
 
-                <div>
-                    <A/>
-                    <LocaleConfig.LocaleOption/>
-                    <CodeBox code={code}/>
-                </div>
-
-
-
-
         </div>
     )
 }

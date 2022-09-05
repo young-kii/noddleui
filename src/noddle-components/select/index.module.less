@@ -1,0 +1,31 @@
+@import "src/assets/css/global";
+
+.select_container {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 32px;
+  cursor: pointer;
+  padding: 0 8px;
+  border-radius: @base-border-radius;
+  transition: .3s ease border-bottom-color, .3s ease border-top-color, .3s ease border-left-color, .3s ease border-right-color, .2s outline-width;
+  border: 1px solid @base-inactive-background-color;
+}
+
+
+.select_container:hover {
+  border: 1px solid @noddle-main-color;
+  *[class~='noddle-icon'] {
+    path {
+      color: @noddle-main-color;
+      fill: currentColor;
+      fill-opacity: 1;
+    }
+  }
+}
+
+.focus {
+  border: 1px solid @noddle-main-color;
+  outline: 2px solid @base-outline;
+}
+

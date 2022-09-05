@@ -1,0 +1,29 @@
+@import "src/assets/css/global";
+
+@input-min-width: 0px;
+.input_container {
+  * {
+    cursor: inherit;
+  }
+  height: 100%;
+  width: max-content;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  border-radius: @base-border-radius;
+  .input {
+    font-size: 14px;
+    height: 100%;
+    padding: 0;
+    min-width: @input-min-width;
+    appearance: none;
+    outline: none;
+    border: none;
+    background: transparent;
+  }
+  .input_span {
+    white-space: nowrap;
+    visibility: hidden;
+    position: absolute;
+  }
+}

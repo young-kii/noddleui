@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState} from "react";
-import content from "@/layout/content";
+import Select from "@/noddle-components/select";
 
 const localStorage_localeKey = 'noddle-locale'
 
@@ -82,8 +82,9 @@ export namespace LocaleConfig {
             return (<div>locale not found !</div>)
         return (
             <>
-                当前:{locale}
-                <button onClick={() => setLocale('en')}>📚</button>
+                <Select autoWidth={true} initValue={locale} readonly>
+                    123
+                </Select>
             </>
         )
     }

@@ -6,7 +6,6 @@ namespace Locales {
         en: enUS,
         zh: zhCN
     }
-
     export const defaultLocale = 'zh'
 }
 

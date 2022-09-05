@@ -1,18 +1,18 @@
 import STYLE from './index.module.less';
 import './index.less';
-import {useEffect, useRef, useState} from "react";
+import {MutableRefObject, useEffect, useRef} from "react";
+import _CodeBox from "@/noddle-components/codeBox/index.d";
 
 const keywords = new Set(['boolean','type','true','false','new','as','any','if','of','else','var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
 const punctuation = new Set(['.','(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
 const tags = new Set(['Cascader', 'div']);
 const special = ['React']
-type props = {
-    code: string
-}
 
-export default (props: props) => {
+
+export default (props: _CodeBox.codeBoxProps) => {
     const code = props?.code || ''
-    const codeRef = useRef() as any
+    const codeRef = useRef() as MutableRefObject<HTMLElement>
+    const pre = useRef() as any
     let codeArray = code.split('')
     let functionSet = new Set()
     const compile = (getResult: boolean) => {
@@ -128,22 +128,18 @@ export default (props: props) => {
             }
         }, '')
         if (getResult) return result
+        return ''
     }
 
-
-
-    useEffect(() => {
-        compile(false)
-        let result = compile(true)
-        codeRef.current.innerHTML = result
-        console.log(functionSet)
-
-    }, [])
-
-    const pre = useRef() as any
     const show = () => {
         pre.current.classList.toggle('show')
     }
+
+    useEffect(() => {
+        compile(false)
+        codeRef.current.innerHTML = compile(true)
+    }, [])
+
     return <>
         <button onClick={show}>d</button>
         <div className={STYLE.codeBoxContainer} ref={pre}>

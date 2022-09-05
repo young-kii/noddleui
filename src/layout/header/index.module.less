@@ -1,27 +1,32 @@
 .header {
-  font-family: Menlo,sans-serif;
-  font-style: italic;
-  padding: 0 24px;
-  font-weight: 700;
-  font-size: 32px;
-  letter-spacing: .1rem;
   display: flex;
   align-items: center;
-  box-shadow: var(--header-box-shadow);
-  z-index: var(--header-z-index);
-  background-color: white;
+  justify-content: space-between;
   height: 64px;
   width: 100%;
-  color: #1a25e7;
+  padding: 0 24px;
   position: relative;
-  transform: translateY(0);
+  background-color: white;
+  z-index: var(--header-z-index);
+  box-shadow: var(--header-box-shadow);
 
-  each(range(6),{
-    span:nth-child(@{value}){
-      animation: 2s infinite blink alternate;
-      animation-delay: .1s * @value;
-    }
-  })
+  .logo {
+    color: #1a25e7;
+    font-weight: 700;
+    font-size: 32px;
+    font-style: italic;
+    letter-spacing: .1rem;
+    transform: translateY(0);
+    font-family: Menlo, sans-serif;
+
+    each(range(6), {
+      span:nth-child(@{value}) {
+        animation: 2s infinite blink alternate;
+        animation-delay: .1s * @value;
+      }
+    })
+
+  }
 
 }
 

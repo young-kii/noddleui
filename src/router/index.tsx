@@ -39,6 +39,10 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'globalConfig',
                         component: lazy(() => import('@/pages/components/globalConfig'))
+                    },
+                    {
+                        path: 'select',
+                        component: lazy(() => import('@/pages/components/select'))
                     }
                 ]
             },
@@ -66,7 +70,6 @@ const syncRouter = (table: SyncRoute.Routes[]): RouteObject[] => {
     })
     return mRouteTable
 }
-console.log(syncRouter(RouteTable))
 
 // 直接暴露成一个组件调用
 export default () => useRoutes(syncRouter(RouteTable))

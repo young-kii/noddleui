@@ -1,4 +1,6 @@
 import STYLE from './index.module.less'
+import Select from "@/noddle-components/select";
+import { LocaleConfig } from '@/noddle-components/globalConfig/Config';
 
 export default () => {
     return (
@@ -11,6 +13,9 @@ export default () => {
                     <span>d</span>
                     <span>l</span>
                     <span>e</span>
+                </div>
+                <div>
+                    <LocaleConfig.LocaleOption/>
                 </div>
             </div>
         </>

@@ -24,6 +24,11 @@ export default () => {
                 <div className={STYLE.nav_item}>
                     <NoddleLink to={'/components/globalConfig'}>全局特性配置</NoddleLink>
                 </div>
+                {/*input*/}
+                <div className={STYLE.nav_title}>输入</div>
+                <div className={STYLE.nav_item}>
+                    <NoddleLink to={'/components/select'}>Select 选择器</NoddleLink>
+                </div>
 
             </div>
         </>
