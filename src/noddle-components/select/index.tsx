@@ -23,7 +23,8 @@ export default (_props: _Select.selectProps) => {
 const Select = () => {
     const context = useContext(selectContext)
     const {props, setProps} = context as _context
-    const {autoWidth, initValue, placeholder, readonly, children, value, label} = props
+    // const [_props] = useState(props)
+    const {autoWidth, initValue, placeholder, readonly, children, value} = props
     console.log(props)
     const [ifFocus, setFocus] = useState(false)
     const isChildrenOption = () => {
@@ -75,7 +76,7 @@ const Select = () => {
     return (
         <div className={STYLE.select_container + ' ' + (ifFocus ? STYLE.focus : '')}
              onClick={clickContainer}>
-            <Input value={label} readonly={readonly} autoWidth={autoWidth}
+            <Input value={value} readonly={readonly} autoWidth={autoWidth}
                    placeholder={placeholder}/>
             <ArrowDown width={16} height={16} style={{padding: 1, marginLeft: 8}} active={ifFocus}/>
             <DropDownBox focus={ifFocus}>{children}</DropDownBox>
