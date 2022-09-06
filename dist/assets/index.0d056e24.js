@@ -1,0 +1,1 @@
+import{a,S as l,j as e,b as n}from"./index.45ec9218.js";const d=()=>a("div",{children:["getting-started",a(l,{initValue:"12344",value:"",onChange:i=>console.log(i),children:[e(n,{value:1234,children:"456"}),e("div",{children:"123"}),"asdasd",e(n,{value:123,children:"1321"})]})]});export{d as default};

@@ -56,8 +56,9 @@ const Select = () => {
     }
     useEffect(() => {
         const [flag, selectedValue, _map] = isChildrenOption()
-        if (flag) setProps({...props, value: selectedValue, _map})
-        else setProps({...props, value: selectedValue, _map, children: <NoddleLink to={'questions'} >Something Wrong ...</NoddleLink>})
+        setProps({...props, value: selectedValue, _map})
+        // if (flag) setProps({...props, value: selectedValue, _map})
+        // else setProps({...props, value: selectedValue, _map, children: <NoddleLink to={'questions'} >Something Wrong ...</NoddleLink>})
     }, [])
     useEffect(() => {
         const {_map, value} = props
