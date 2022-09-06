@@ -1,15 +1,22 @@
 import _Input from "@/noddle-components/input/index.d";
+import {_object} from "@/noddle-components/globalConfig/index.d";
 
 namespace _Select {
 
-    export interface selectProps extends _Input.inputProps{
-        children?: any
-        initValue: string
-        value: string
+    export interface selectContext {
+        props: selectProps
+        setProps: (value: any) => void
     }
+
+    export interface selectProps extends _Input.baseInputProps{
+        children?: any
+        initValue: string | number
+        value: string,
+        _map?: _object,
+        onChange?: (value: {value: any, label: string | boolean}) => void
+    }
+
     export interface optionProps {
-        onClick: () => void,
-        selected: boolean,
         children?: any
         value: string | number
     }

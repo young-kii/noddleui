@@ -1,12 +1,12 @@
 import _Select from "@/noddle-components/select/index.d";
 import selectProps = _Select.selectProps;
+import _Input from "@/noddle-components/input/index.d";
+import inputProps = _Input.inputProps;
 
 type _object = { [key: string]: any }
 type _function = { [key: string]: (p: any) => void }
-type _context = {
-    props: selectProps,
-    setProps: (value: any) => void
-}
+
+type __function = (p: any) => void
 
 
 type contextType = {
@@ -28,4 +28,4 @@ interface configProps {
     Locales?: Locales
 }
 
-export type {_context, _object, _function, Locales, configProps, contextType}
+export type {_object, _function, __function, Locales, configProps, contextType}

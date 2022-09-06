@@ -1,11 +1,11 @@
 import STYLE from './index.module.less'
 import _Select from "@/noddle-components/select/index.d";
-import Input, {inputContext} from "@/noddle-components/input";
-import {createContext, MutableRefObject, useContext, useEffect, useRef, useState} from "react";
+import Input from "@/noddle-components/input";
+import {createContext, useContext, useEffect, useState} from "react";
 import ArrowDown from "@/noddle-components/icons/arrow-down";
-import {_context} from "@/noddle-components/globalConfig/index.d";
-import react from "@vitejs/plugin-react";
-import {LocaleConfig} from "@/noddle-components/globalConfig/Config";
+import {NavLink} from "react-router-dom";
+import NoddleLink from "@/components/noddle-link/index";
+
 
 export const selectContext = createContext({})
 
@@ -22,44 +22,55 @@ export default (_props: _Select.selectProps) => {
 
 const Select = () => {
     const context = useContext(selectContext)
-    const {props, setProps} = context as _context
-    // const [_props] = useState(props)
-    const {autoWidth, initValue, placeholder, readonly, children, value} = props
-    console.log(props)
+    const {props, setProps} = context as _Select.selectContext
+    const {initValue, children, onChange, value} = props
     const [ifFocus, setFocus] = useState(false)
+    const [label, setLabel] = useState('')
     const isChildrenOption = () => {
-        let flag = true, selectedValue = null, selectedLabel = null, filterChildren = <></>
+        let flag = true, selectedValue = null, _map = {} as { [key: string]: any }
         if (children)
             if (children[0]) {
                 for (let child of children) {
-                    if (child.type.name !== 'Option') flag = false
-                    else {
-                        filterChildren = <>{filterChildren}{child}</>
-                        if (child.props.value === initValue)
+                    if (child.props)
+                        if (child.props.value)
                         {
-                            selectedValue = child.props.value
-                            selectedLabel = child.props.children
+                            _map[child.props.value] = child.props.children
+                            if (child.type.name !== 'Option') flag = false
+                            else {
+                                if (child.props.value === initValue) {
+                                    selectedValue = child.props.value
+                                    setLabel(child.props.children)
+                                }
+                            }
                         }
-                    }
+                    else flag = false
                 }
             } else if (children.type.name !== 'Option') flag = false
             else {
+                _map[children.props.value] = children.props.children
                 selectedValue = children.props.value
-                selectedLabel = children.props.children
-                filterChildren = children
+                setLabel(children.props.children)
             }
-        return [flag, selectedValue, selectedLabel, filterChildren]
+        return [flag, selectedValue, _map]
+
     }
-
     useEffect(() => {
-        const [flag, selectedValue, selectedLabel, filterChildren] = isChildrenOption()
-        if (flag) setProps({...props, value: selectedValue,label:selectedLabel, children: filterChildren, })
-        else setProps({...props, value: selectedValue,label:selectedLabel, children: <>夹杂了奇怪的东西</>})
+        const [flag, selectedValue, _map] = isChildrenOption()
+        if (flag) setProps({...props, value: selectedValue, _map})
+        else setProps({...props, value: selectedValue, _map, children: <NoddleLink to={'questions'} >Something Wrong ...</NoddleLink>})
     }, [])
-    useEffect(()=>{
-        console.log(11,props)
-    },[props])
-
+    useEffect(() => {
+        const {_map, value} = props
+        if (_map)
+            setLabel(_map[value])
+    }, [props])
+    useEffect(() => {
+        if (value)
+            if (onChange) onChange({
+                value: value,
+                label: label
+            })
+    }, [label])
     const clickContainer = () => {
         if (!ifFocus) {
             setFocus(true)
@@ -76,8 +87,7 @@ const Select = () => {
     return (
         <div className={STYLE.select_container + ' ' + (ifFocus ? STYLE.focus : '')}
              onClick={clickContainer}>
-            <Input value={value} readonly={readonly} autoWidth={autoWidth}
-                   placeholder={placeholder}/>
+            <Input {...{...props, value: label, onChange: () => null}}/>
             <ArrowDown width={16} height={16} style={{padding: 1, marginLeft: 8}} active={ifFocus}/>
             <DropDownBox focus={ifFocus}>{children}</DropDownBox>
         </div>
@@ -96,24 +106,20 @@ const DropDownBox = (props: _Select.dropDownBoxProps) => {
     )
 }
 
-export const Option = ({value,children}) => {
-    console.log(value,children)
-    const context = useContext(selectContext) as _context
+export const Option = (_props: _Select.optionProps) => {
+    const {value, children} = _props
+    const context = useContext(selectContext) as _Select.selectContext
     const {props, setProps} = context
-    const [selected,setSelected] = useState(value === props.value)
+    const [selected, setSelected] = useState(value === props.value)
     const click = () => {
         setProps({...props, value})
     }
-    // useEffect(()=>{
-    //     setProps({...props, value})
-    // },[])
-    useEffect(()=>{
-        // console.log(selected)
+    useEffect(() => {
         setSelected(value === props.value)
-    },[props])
+    }, [props])
     return (
         <>
-            <div onClick={click} className={STYLE.option + ' ' + (selected  ? STYLE.option_selected : '')}>
+            <div onClick={click} className={STYLE.option + ' ' + (selected ? STYLE.option_selected : '')}>
                 <span>{children}</span>
             </div>
         </>

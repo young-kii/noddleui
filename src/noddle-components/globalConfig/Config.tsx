@@ -1,5 +1,5 @@
 import {createContext, useContext, useState} from "react";
-import Select, {Option, selectContext} from "@/noddle-components/select";
+import Select, {Option} from "@/noddle-components/select";
 import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/index.d";
 
 const localStorage_localeKey = 'noddle-locale'
@@ -8,8 +8,7 @@ export const globalContext = createContext({})
 
 export const Config = ({children, Locales}: configProps) => {
     const {Provider} = globalContext
-    if(Locales)
-    {
+    if (Locales) {
         const {defaultLocale, allLocales, languages} = Locales as Locales
         const initLocale: string = localStorage.getItem(localStorage_localeKey) || defaultLocale
         const [locale, setLocale] = useState(initLocale)
@@ -18,15 +17,14 @@ export const Config = ({children, Locales}: configProps) => {
                 {children}
             </Provider>
         )
-    }
-    else return (<Provider  value={{}}>
+    } else return (<Provider value={{}}>
         {children}
     </Provider>)
 }
 
 export const useTranslation = () => {
     const context = useContext(globalContext)
-    if (!Object.keys(context).includes('locale') || !Object.keys(context).includes('Locales') )
+    if (!Object.keys(context).includes('locale') || !Object.keys(context).includes('Locales'))
         return () => {
             return 'locale not found !'
         }
@@ -54,7 +52,7 @@ export namespace LocaleConfig {
         const context = useContext(globalContext)
         const {setLocale} = context as contextType
         return (_locale: string) => {
-            localStorage.setItem(localStorage_localeKey,_locale)
+            localStorage.setItem(localStorage_localeKey, _locale)
             setLocale(_locale)
         }
     }
@@ -62,17 +60,21 @@ export namespace LocaleConfig {
     export function LocaleOption() {
         const context = useContext(globalContext)
         const {locale, languages} = context as contextType
-        const [_value,_setValue] = useState(locale)
+        const setLocale = LocaleConfig.useSetLocale()
         const localeList = []
         let index = 0
-        for(let key in languages) {
-            localeList.push({id: index++ , value:key, label: languages[key]})
+        for (let key in languages) {
+            localeList.push({id: index++, value: key, label: languages[key]})
         }
-        if (!Object.keys(context).includes('locale') || !Object.keys(context).includes('Locales') )
+        if (!Object.keys(context).includes('locale') || !Object.keys(context).includes('Locales'))
             return (<div>locale not found !</div>)
+        const handleChange = () => {
+
+        }
         return (
             <>
-                <Select autoWidth={true} initValue={locale} value={_value} readonly>
+                <Select autoWidth initValue={locale} value={locale} readonly
+                        onChange={(value) => setLocale(value.value)}>
                     {
                         localeList.map(item => {
                             return <Option key={item.id} value={item.value}>{item.label}</Option>

@@ -1,12 +1,21 @@
+
 namespace _Input {
 
-    export interface inputProps {
+    export interface inputContext {
+        props: inputProps
+        setProps: (value: any) => void
+    }
+
+    export interface baseInputProps {
         placeholder?: string,
         autoWidth?: boolean,
         initValue?: string | number,
-        initInputWidth?: number,
+        initWidth?: number,
         readonly?:boolean,
-        value: string
+        value: string,
+    }
+    export interface inputProps extends baseInputProps{
+        onChange: (value: string | number) => void
     }
 
     export interface pureInputProps extends inputProps {
