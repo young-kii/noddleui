@@ -1,0 +1,1 @@
+import{a as r,j as n}from"./index.dfc4c725.js";const a="_container_d8g6y_47",c={container:a},d=e=>{const{render:t,value:o}=e;let s=o.length;return r("div",{children:["render:",t(s)]})},l=()=>n("div",{className:c.container,children:r("pre",{children:["4 0 4   Not   Found",n(d,{render:e=>e>3?"yes":"no",value:["1","2","4","7"]})]})});export{l as default};
