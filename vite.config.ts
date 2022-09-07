@@ -9,9 +9,6 @@ export default defineConfig({
       "@": resolve(__dirname, 'src')
     }
   },
-  build: {
-    cssTarget: 'chrome61',
-  },
   css: {
     preprocessorOptions: {
       less: {

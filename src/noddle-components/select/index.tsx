@@ -11,7 +11,36 @@ export const selectContext = createContext({})
 
 export default (_props: _Select.selectProps) => {
     const {Provider} = selectContext
-    const [props, setProps] = useState(_props)
+    const {children, value} = _props
+    const isChildrenOption = () => {
+        let flag = true, selectedValue = null, _map = {} as { [key: string]: any }
+        if (children)
+            if (children[0]) {
+                for (let child of children) {
+                    if (child.props)
+                        if (child.props.value) {
+                            _map[child.props.value] = child.props.children
+                            if (child.type.name !== 'Option') flag = false
+                            else {
+                                if (child.props.value === value) {
+                                    selectedValue = child.props.value
+                                }
+                            }
+                        } else flag = false
+                }
+            } else if (children.type.name !== 'Option') flag = false
+            else {
+                _map[children.props.value] = children.props.children
+                selectedValue = children.props.value
+            }
+        return [flag, _map]
+    }
+    const [flag, _map] = isChildrenOption()
+    let newProps
+    newProps = {..._props,_map}
+    // else newProps = ({..._props, value: '', _map, children: <NoddleLink to={'questions'} >Something Wrong ...</NoddleLink>})
+    const [props, setProps] = useState(newProps)
+    // console.log(props)
     return (
         <Provider value={{props, setProps}}>
             <Select/>
@@ -22,56 +51,20 @@ export default (_props: _Select.selectProps) => {
 
 const Select = () => {
     const context = useContext(selectContext)
-    const {props, setProps} = context as _Select.selectContext
-    const {initValue, children, onChange, value} = props
+    const {props} = context as _Select.selectContext
+    const {children, onChange, value, _map} = props
     const [ifFocus, setFocus] = useState(false)
-    const [label, setLabel] = useState('')
-    const isChildrenOption = () => {
-        let flag = true, selectedValue = null, _map = {} as { [key: string]: any }
-        if (children)
-            if (children[0]) {
-                for (let child of children) {
-                    if (child.props)
-                        if (child.props.value)
-                        {
-                            _map[child.props.value] = child.props.children
-                            if (child.type.name !== 'Option') flag = false
-                            else {
-                                if (child.props.value === initValue) {
-                                    selectedValue = child.props.value
-                                    setLabel(child.props.children)
-                                }
-                            }
-                        }
-                    else flag = false
-                }
-            } else if (children.type.name !== 'Option') flag = false
-            else {
-                _map[children.props.value] = children.props.children
-                selectedValue = children.props.value
-                setLabel(children.props.children)
-            }
-        return [flag, selectedValue, _map]
 
-    }
-    useEffect(() => {
-        const [flag, selectedValue, _map] = isChildrenOption()
-        setProps({...props, value: selectedValue, _map})
-        // if (flag) setProps({...props, value: selectedValue, _map})
-        // else setProps({...props, value: selectedValue, _map, children: <NoddleLink to={'questions'} >Something Wrong ...</NoddleLink>})
-    }, [])
-    useEffect(() => {
-        const {_map, value} = props
-        if (_map)
-            setLabel(_map[value])
-    }, [props])
     useEffect(() => {
         if (value)
-            if (onChange) onChange({
-                value: value,
-                label: label
-            })
-    }, [label])
+            if (onChange) {
+                onChange({
+                    value: value,
+                    label: _map ? _map[value] : ''
+                })
+            }
+    }, [props])
+
     const clickContainer = () => {
         if (!ifFocus) {
             setFocus(true)
@@ -88,7 +81,7 @@ const Select = () => {
     return (
         <div className={STYLE.select_container + ' ' + (ifFocus ? STYLE.focus : '')}
              onClick={clickContainer}>
-            <Input {...{...props, value: label, onChange: () => null}}/>
+            <Input {...{...props, value: _map ? _map[value] : '', onChange: () => null}}/>
             <ArrowDown width={16} height={16} style={{padding: 1, marginLeft: 8}} active={ifFocus}/>
             <DropDownBox focus={ifFocus}>{children}</DropDownBox>
         </div>

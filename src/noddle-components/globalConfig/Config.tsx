@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import Select, {Option} from "@/noddle-components/select";
 import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/index.d";
 
@@ -74,7 +74,9 @@ export namespace LocaleConfig {
         return (
             <>
                 <Select autoWidth initValue={locale} value={locale} readonly
-                        onChange={(value) => setLocale(value.value)}>
+                        onChange={(value) => {
+                            setLocale(value.value)
+                        }}>
                     {
                         localeList.map(item => {
                             return <Option key={item.id} value={item.value}>{item.label}</Option>

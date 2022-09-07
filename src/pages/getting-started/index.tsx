@@ -6,10 +6,9 @@ export default () => {
     return (
         <div>
             getting-started
-            <Select initValue={'12344'} value={''} onChange={(value)=>console.log(value)} >
-                <Option value={1234}>456</Option>
-                <div>123</div>asdasd
-                <Option value={123}>1321</Option>
+            <Select value={'123'} onChange={(value)=>console.log('数字选项onchange',value)} >
+                <Option value={'1234'}>456</Option>
+                <Option value={'123'}>1321</Option>
             </Select>
         </div>
     )
