@@ -14,8 +14,11 @@ export default () => {
                 setHideInfo(true)
                 if (content.scrollTop > 162) {
                     setDocHeaderFixed(true)
-                } else setDocHeaderFixed(false)
-            } else setHideInfo(false)
+                }
+            } else {
+                setHideInfo(false)
+                setDocHeaderFixed(false)
+            }
         }
     }, [])
     const tabs = [
@@ -33,12 +36,13 @@ export default () => {
                     </div>
                 </div>
             </div>
-            <div className={STYLE.imageContainer + ' ' + (hideInfo ? STYLE.hide_display : '')}>
-                <img className={STYLE.image}
-                     src={"https://iconfont.alicdn.com/p/illus_3d/file/NdzEShoF8VBW/a0e793fe-25c7-4307-9603-90b3dc4212ce.png"}
-                     alt=''/>
-            </div>
+
             <div className={STYLE.doc_header}>
+                <div className={STYLE.imageContainer + ' ' + (hideInfo ? STYLE.hide_display : '')}>
+                    <img className={STYLE.image}
+                         src={"https://iconfont.alicdn.com/p/illus_3d/file/NdzEShoF8VBW/a0e793fe-25c7-4307-9603-90b3dc4212ce.png"}
+                         alt=''/>
+                </div>
                 <h1 className={STYLE.info_title + ' ' + (docHeaderFixed ? 'STYLE.hide' : STYLE.hide)}>快速开始</h1>
                 <Segment className={STYLE.segment} tabs={tabs} selected={0} />
             </div>

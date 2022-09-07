@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-
+  z-index: 3;
   .top {
     overflow: visible;
     position: relative;
@@ -43,9 +43,9 @@
   transition: .5s opacity ease;
   position: absolute;
   box-shadow: inset 0 0 40px 40px white;
-  height: 250px;
+  height: 249px;
   right: 24px;
-  top: 1px;
+  bottom: 1px;
   .image {
     position: relative;
     z-index: -1;
@@ -54,6 +54,8 @@
 }
 
 .doc_header {
+  background: white;
+  z-index: 2;
   padding-left: 48px;
   padding-top: 16px;
   height: 88px;
