@@ -1,5 +1,6 @@
 import STYLE from './index.module.less'
 import {useEffect, useState} from "react";
+import Segment from "@/noddle-components/segment";
 
 export default () => {
     const [hideInfo, setHideInfo] = useState(false)
@@ -9,17 +10,19 @@ export default () => {
         const content = document.getElementById('noddle-content') as HTMLDivElement
 
         content.onscroll = (ev) => {
-            console.log(ev)
-            console.log(content.scrollTop)
             if (content.scrollTop > 130) {
                 setHideInfo(true)
                 if (content.scrollTop > 162) {
-                    console.log('ok')
                     setDocHeaderFixed(true)
                 } else setDocHeaderFixed(false)
             } else setHideInfo(false)
         }
     }, [])
+    const tabs = [
+        {id:0,tab:'demo',label:'示例'},
+        {id:1,tab:'api',label:'API'},
+        {id:2,tab:'design',label:'指南'},
+    ]
     return (
         <>
             <div className={STYLE.container}>
@@ -36,7 +39,8 @@ export default () => {
                      alt=''/>
             </div>
             <div className={STYLE.doc_header}>
-                <div className={STYLE.segment}>111</div>
+                <h1 className={STYLE.info_title + ' ' + (docHeaderFixed ? 'STYLE.hide' : STYLE.hide)}>快速开始</h1>
+                <Segment className={STYLE.segment} tabs={tabs} selected={0} />
             </div>
         </>
     )

@@ -1,0 +1,41 @@
+@import "src/assets/css/global";
+
+@segment-border-radius: 6px;
+@segment-option-border-radius: 3px;
+@segment-inactive-fontColor: #5F5F5FFF;
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 3px 2px;
+  width: 200px;
+  outline: 1px solid @base-box-shadow-color;
+  border-radius: @segment-border-radius;
+  background: @base-segment-background-color;
+  height: 48px;
+  color: @segment-inactive-fontColor;
+}
+
+.segmentOption {
+  z-index: 1;
+  flex: 1;
+  margin: 0 2px;
+  cursor: pointer;
+  display: flex;
+  //padding: 0 20px;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected {
+  width: 65.34px;
+  z-index: 0;
+  height: calc(100% - 6px);
+  position: absolute;
+  left: 2px;
+  transition: .3s ease ;
+  background: white;
+  border-radius: @segment-option-border-radius;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+}

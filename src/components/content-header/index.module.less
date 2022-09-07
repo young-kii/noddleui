@@ -6,16 +6,17 @@
   position: relative;
 
   .top {
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     height: 162px;
-    padding: 1px 24px 1px 48px;
+    width: calc(100% - 298px);
+    padding: 1px 0 1px 48px;
     display: flex;
     justify-content: space-between;
 
     .info {
       transition: .5s opacity ease;
-      height:206px;
+      height:244px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -23,6 +24,7 @@
 
       .title {
         margin: 10px 0;
+        white-space: nowrap;
         font-size: @content-header-info-title-fontSize;
         height: 56px;
         line-height: 56px;
@@ -52,18 +54,23 @@
 }
 
 .doc_header {
+  padding-left: 48px;
+  padding-top: 16px;
   height: 88px;
   width: 100%;
   position: sticky;
   top: 0;
   box-shadow: var(--content-header-box-shadow);
-
+  .info_title {
+    transition: 0.5s opacity ease;
+    margin: 0;
+    font-size: 24px;
+    height: 32px;
+    line-height: 32px;
+  }
   .segment {
     position: absolute;
-    background: @base-segment-background-color;
-    height: 80px;
-    bottom: -40px;
-    width: 266px;
+    bottom: -24px;
     left: 48px;
   }
 }
