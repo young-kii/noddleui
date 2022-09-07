@@ -1,17 +1,21 @@
 export default {
     nav: {
-        start: '开始',
+        '': '开始',
         getting_started: '快速开始',
         changelog: '更新日志',
         overview: '组件概览',
     },
     config: {
-        config: '全局配置',
+        '': '全局配置',
         globalConfig: '全局特性配置',
     },
     dataEntry: {
-        dataEntry: '输入',
+        '': '输入',
         select: 'Select 选择器'
+    },
+    feedback: {
+        '': '反馈',
+        loading: 'Loading 加载中'
     }
 }
 

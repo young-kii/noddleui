@@ -1,0 +1,38 @@
+@import "src/assets/css/global";
+.loading_container {
+  display: flex;
+  min-height: 40px;
+  width: max-content;
+  align-items: center;
+  .icon_container {
+    display: flex;
+    align-items: center;
+    height: max-content;
+    width: max-content;
+    padding: 0 5px;
+  }
+  .text {
+    display: flex;
+    font-size: 12px;
+    white-space: nowrap;
+    color: @noddle-main-color;
+    animation: 1s ease shining infinite alternate;
+    each(range(6), {
+      span:nth-child(@{value}) {
+        animation: .5s infinite bounce alternate;
+        animation-delay: .2s * @value;
+      }
+    })
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}

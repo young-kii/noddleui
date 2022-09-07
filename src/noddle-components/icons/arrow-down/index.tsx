@@ -1,14 +1,6 @@
-import {CSSProperties} from "react";
+import _Icon from "@/noddle-components/icons/index.d";
 
-interface arrowDownProps {
-    width: number,
-    height: number,
-    color?: string,
-    style?: CSSProperties,
-    active?: boolean
-}
-
-export default (props: arrowDownProps) => {
+export default (props: _Icon.arrowDownProps) => {
     const {width, height, style, color, active} = props
     return (
         <>

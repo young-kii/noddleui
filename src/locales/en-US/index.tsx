@@ -1,19 +1,23 @@
 export default {
     nav: {
-        start: 'Start',
+        '': 'Start',
         getting_started: 'Getting Started',
         changelog: 'Changelog',
         overview: 'Components Overview',
     },
     config: {
-        config: 'Config',
+        '': 'Config',
         globalConfig: 'Global Property Configuration',
 
     },
 
     dataEntry: {
-        dataEntry: 'Data Entry',
+        '': 'Data Entry',
         select: 'Select'
+    },
+    feedback: {
+        '': 'feedback',
+        loading: 'Loading'
     }
 }
 

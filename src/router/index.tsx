@@ -1,6 +1,7 @@
 import React, {lazy, Suspense} from "react";
 import {Navigate, RouteObject, useRoutes} from "react-router-dom";
 import defaultPath = SyncRoute.defaultPath;
+import Loading from "@/noddle-components/loading";
 
 namespace SyncRoute {
     export type Routes = {
@@ -43,6 +44,10 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'select',
                         component: lazy(() => import('@/pages/components/select'))
+                    },
+                    {
+                        path: 'loading',
+                        component: lazy(() => import('@/pages/components/loading'))
                     }
                 ]
             },
@@ -60,7 +65,7 @@ const syncRouter = (table: SyncRoute.Routes[]): RouteObject[] => {
         mRouteTable.push({
             path: route.path,
             element: (
-                <Suspense fallback={<div>路由加载ing...</div>}>
+                <Suspense fallback={<Loading/>}>
                     <route.component/>
                 </Suspense>
             ),
