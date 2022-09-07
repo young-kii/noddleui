@@ -4,7 +4,7 @@ import {useEffect} from "react";
 
 export default () => {
     return (
-        <div>
+        <>
             <ContentHeader/>
             <div className={STYLE.blocks}></div>
             <div className={STYLE.blocks}></div>
@@ -12,6 +12,6 @@ export default () => {
             <div className={STYLE.blocks}></div>
             <div className={STYLE.blocks}></div>
             <div className={STYLE.blocks}></div>
-        </div>
+        </>
     )
 }

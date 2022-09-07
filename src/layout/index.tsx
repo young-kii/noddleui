@@ -6,7 +6,7 @@ export default () => {
 
     return (
         <>
-            <div className={STYLE.layout}>
+            <div className={STYLE.layout} id={'layout'}>
                 <Header/>
                 <Nav/>
                 <Content/>

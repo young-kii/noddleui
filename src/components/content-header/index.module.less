@@ -1,40 +1,85 @@
 @import "src/assets/css/global";
-.container {
-  position: relative;
-  height: 250px;
-  padding: 1px 24px 1px 48px;
-  box-shadow: var(--content-header-box-shadow);
-  display: flex;
-  justify-content: space-between;
-  .info {
-    transition: .5s opacity ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-bottom: 48px;
-    .title {
-      margin: 10px 0;
-      font-size: @content-header-info-title-fontSize;
-      height: 56px;
-      line-height: 56px;
-    }
-    .description {
-      color: @base-fontColor;
-      font-size: @base-fontSize;
-    }
-  }
-  .imageContainer {
 
-    box-shadow: inset 0 0 40px 40px white;
-    height: 100%;
-    .image {
-      position: relative;
-      z-index: -1;
-      height: 100%;
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .top {
+    overflow: hidden;
+    position: relative;
+    height: 162px;
+    padding: 1px 24px 1px 48px;
+    display: flex;
+    justify-content: space-between;
+
+    .info {
+      transition: .5s opacity ease;
+      height:206px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 48px;
+
+      .title {
+        margin: 10px 0;
+        font-size: @content-header-info-title-fontSize;
+        height: 56px;
+        line-height: 56px;
+      }
+
+      .description {
+        color: @base-fontColor;
+        font-size: @base-fontSize;
+      }
     }
   }
 }
+
+.imageContainer {
+  opacity: 1;
+  transition: .5s opacity ease;
+  position: absolute;
+  box-shadow: inset 0 0 40px 40px white;
+  height: 250px;
+  right: 24px;
+  top: 1px;
+  .image {
+    position: relative;
+    z-index: -1;
+    height: 100%;
+  }
+}
+
+.doc_header {
+  height: 88px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  box-shadow: var(--content-header-box-shadow);
+
+  .segment {
+    position: absolute;
+    background: @base-segment-background-color;
+    height: 80px;
+    bottom: -40px;
+    width: 266px;
+    left: 48px;
+  }
+}
+
 .hide {
   opacity: 0;
+}
+
+.hide_display {
+  display: none;
+}
+
+.fixed {
+  height: 88px;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(1, 1, 1, 0);
+  top: -44px;
 }
