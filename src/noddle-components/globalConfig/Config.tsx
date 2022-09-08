@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useState} from "react";
 import Select, {Option} from "@/noddle-components/select";
 import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/index.d";
 
@@ -75,9 +75,6 @@ export namespace LocaleConfig {
         }
         if (!Object.keys(context).includes('locale') || !Object.keys(context).includes('Locales'))
             return (<div>locale not found !</div>)
-        const handleChange = () => {
-
-        }
         return (
             <>
                 <Select autoWidth initValue={locale} value={locale} readonly
@@ -92,5 +89,22 @@ export namespace LocaleConfig {
                 </Select>
             </>
         )
+    }
+}
+
+export namespace ClassNameConfig {
+    export function classNames(props: any) {
+        let result = ''
+        for(let key in props){
+            result += (' ' + ( props[key] ? key : '' ))
+        }
+        return result
+    }
+    export function mClassNames(this: CSSModuleClasses, props: _object) {
+            let result = ''
+            for(let key in props){
+                result += (' ' + ( props[key] ? this[key] : '' ))
+            }
+            return result
     }
 }

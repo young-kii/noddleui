@@ -1,7 +1,3 @@
-import _Select from "@/noddle-components/select/index.d";
-import selectProps = _Select.selectProps;
-import _Input from "@/noddle-components/input/index.d";
-import inputProps = _Input.inputProps;
 
 type _object = { [key: string]: any }
 type _function = { [key: string]: (p: any) => void }

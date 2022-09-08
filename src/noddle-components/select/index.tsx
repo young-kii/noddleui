@@ -3,6 +3,7 @@ import _Select from "@/noddle-components/select/index.d";
 import Input from "@/noddle-components/input";
 import {createContext, useContext, useEffect, useState} from "react";
 import ArrowDown from "@/noddle-components/icons/arrow-down";
+import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 
 
 export const selectContext = createContext({})
@@ -38,7 +39,6 @@ export default (_props: _Select.selectProps) => {
     newProps = {..._props,_map}
     // else newProps = ({..._props, value: '', _map, children: <NoddleLink to={'questions'} >Something Wrong ...</NoddleLink>})
     const [props, setProps] = useState(newProps)
-    // console.log(props)
     return (
         <Provider value={{props, setProps}}>
             <Select/>
@@ -75,12 +75,16 @@ const Select = () => {
         setFocus(false)
         window.removeEventListener('click', clickWindow)
     }
+    const arrayDownStyle = {
+        padding: 1,
+        marginLeft: 8
+    }
 
     return (
         <div className={STYLE.select_container + ' ' + (ifFocus ? STYLE.focus : '')}
              onClick={clickContainer}>
             <Input {...{...props, value: _map ? _map[value] : '', onChange: () => null}}/>
-            <ArrowDown width={16} height={16} style={{padding: 1, marginLeft: 8}} active={ifFocus}/>
+            <ArrowDown width={16} height={16} style={arrayDownStyle} active={ifFocus}/>
             <DropDownBox focus={ifFocus}>{children}</DropDownBox>
         </div>
     )
@@ -88,9 +92,14 @@ const Select = () => {
 
 const DropDownBox = (props: _Select.dropDownBoxProps) => {
     const {children, focus} = props
+    const styles = ClassNameConfig.mClassNames.bind(STYLE)
+    const dropDownBox_Container = styles({
+        dropDownBox_container: true,
+        hide: !focus
+    })
     return (
         <>
-            <div className={STYLE.dropDownBox_container + ' ' + (focus ? '' : STYLE.hide)}>
+            <div className={dropDownBox_Container}>
                 {children}
             </div>
         </>
@@ -103,6 +112,11 @@ export const Option = (_props: _Select.optionProps) => {
     const context = useContext(selectContext) as _Select.selectContext
     const {props, setProps} = context
     const [selected, setSelected] = useState(value === props.value)
+    const styles = ClassNameConfig.mClassNames.bind(STYLE)
+    const option = styles({
+        option: true,
+        option_selected: selected
+    })
     const click = () => {
         setProps({...props, value})
     }
@@ -111,7 +125,7 @@ export const Option = (_props: _Select.optionProps) => {
     }, [props])
     return (
         <>
-            <div onClick={click} className={STYLE.option + ' ' + (selected ? STYLE.option_selected : '')}>
+            <div onClick={click} className={option}>
                 <span>{children}</span>
             </div>
         </>
