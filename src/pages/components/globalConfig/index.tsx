@@ -18,8 +18,6 @@ export default () => {
 
                 <div className={STYLE.card}>123</div>
                 <button onClick={go}>go</button>
-
-
                 <div>globalConfig</div>
                 <div>globalConfig</div>
                 <div>globalConfig</div>

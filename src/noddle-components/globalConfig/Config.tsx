@@ -36,8 +36,10 @@ export const useTranslation = () => {
                 let lan = language
                 const keys = value.split('.')
                 const result = keys.reduce((pre: _object, cur: string, currentIndex, array) => {
-                    if( currentIndex === array.length - 1 ) {
-                        if( lan[cur][''] ) return lan[cur]['']
+                    if (currentIndex === array.length - 1) {
+                        if (lan[cur])
+                            if (lan[cur][''])
+                                return lan[cur]['']
                     }
                     if (pre && pre.hasOwnProperty(cur)) {
                         lan = language[cur]

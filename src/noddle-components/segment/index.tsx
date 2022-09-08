@@ -3,6 +3,7 @@ import _Segment from "@/noddle-components/segment/index.d";
 import {MutableRefObject, useEffect, useRef, useState} from "react";
 import {__function} from "@/noddle-components/globalConfig/index.d";
 import Loading from "@/noddle-components/loading";
+import {useNavigate} from "react-router-dom";
 
 export default (props: _Segment.segmentProps) => {
     let newSelected: number | string | undefined = 0
@@ -34,7 +35,9 @@ export default (props: _Segment.segmentProps) => {
 }
 
 const SegmentOption = (props: _Segment.segmentOptionProps) => {
+    const nav = useNavigate()
     const selectSpan = useRef() as MutableRefObject<any>
+    const highlight = useRef() as MutableRefObject<any>
     const {tabs, selected, optionWidth, onChange, options} = props
     const [selectedId, setSelectedId] = useState(selected) as [number, __function]
     const [selectedTab, setSelectedTab] = useState('') as [string, __function]
@@ -61,17 +64,26 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
         }
         setTranslateX(tranX)
         if (selectedTab)
+        {
             onChange?.({tab: selectedTab})
+            nav('?tab='+selectedTab)
+        }
         if(options.length !== 0)
         {
             setSelectedOption(options[selectedId])
             options[selectedId].classList.add(STYLE.selected_change_font)
+            highlight.current.classList.remove(STYLE.highlight)
+            setTimeout(()=>{
+                highlight.current.classList.add(STYLE.highlight)
+            },10)
         }
     }, [optionWidth, selectedId])
     return (
         <>
             <span ref={selectSpan} className={STYLE.selected}
-                  style={{width: selectedWidth, transform: `translateX(${translateX}px)`}}></span>
+                  style={{width: selectedWidth, transform: `translateX(${translateX}px)`}}>
+                <div ref={highlight} className={STYLE.highlight}></div>
+            </span>
             {
                 tabs.map((item: _Segment.tab) => {
                     return <div key={item.id} className={STYLE.segmentOption} data-id={item.id} data-tab={item.tab}
@@ -81,7 +93,6 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
                     </div>
                 })
             }
-
         </>
     )
 

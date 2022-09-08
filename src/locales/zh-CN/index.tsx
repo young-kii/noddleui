@@ -9,6 +9,10 @@ export default {
         '': '全局配置',
         globalConfig: '全局特性配置',
     },
+    general: {
+        '': '基础',
+        button: '按钮'
+    },
     dataEntry: {
         '': '输入',
         select: 'Select 选择器'

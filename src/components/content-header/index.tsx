@@ -2,8 +2,10 @@ import STYLE from './index.module.less'
 import {useEffect, useState} from "react";
 import Segment from "@/noddle-components/segment";
 import _Segment from "@/noddle-components/segment/index.d";
+import {contentHeaderProps} from "@/components/content-header/index.d";
 
-export default () => {
+export default (props: contentHeaderProps) => {
+    const {img, title, description, tabsConfig} = props
     const [hideInfo, setHideInfo] = useState(false)
     const [docHeaderFixed, setDocHeaderFixed] = useState(false)
     useEffect(() => {
@@ -22,33 +24,30 @@ export default () => {
             }
         }
     }, [])
-    const tabs:_Segment.tab[] = [
-        {tab:'demo',label:'示例'},
-        {tab:'api',label:'API'},
-        {tab:'design',label:'指南'},
-    ]
-    const handleChange = (value: any) => {
-        console.log(value)
-    }
+
     return (
         <>
             <div className={STYLE.container}>
                 <div className={STYLE.top}>
                     <div className={STYLE.info + ' ' + (hideInfo ? STYLE.hide : '')}>
-                        <h1 className={STYLE.title}>React for Web</h1>
-                        <div className={STYLE.description}>Design 适配桌面端的组件库，适合在 React 技术栈项目中使用。</div>
+                        <h1 className={STYLE.title}>{title}</h1>
+                        <div className={STYLE.description}>{description}</div>
                     </div>
                 </div>
             </div>
 
-            <div className={STYLE.doc_header}>
+            <div className={STYLE.doc_header} style={{ paddingTop: tabsConfig ? 16 : 28 }}>
                 <div className={STYLE.imageContainer + ' ' + (hideInfo ? STYLE.hide_display : '')}>
                     <img className={STYLE.image}
-                         src={"https://iconfont.alicdn.com/p/illus_3d/file/NdzEShoF8VBW/a0e793fe-25c7-4307-9603-90b3dc4212ce.png"}
+                         src={img}
                          alt=''/>
                 </div>
-                <h1 className={STYLE.info_title + ' ' + (docHeaderFixed ? 'STYLE.hide' : STYLE.hide)}>快速开始</h1>
-                <Segment className={STYLE.segment} tabs={tabs} selected={'design'} onChange={handleChange} />
+                <h1 className={STYLE.info_title + ' ' + (docHeaderFixed ? 'STYLE.hide' : STYLE.hide)}>{title}</h1>
+                {
+                    tabsConfig ?
+                        <Segment className={STYLE.segment} tabs={tabsConfig.tabs} selected={tabsConfig.selected} onChange={tabsConfig.onChange}/>
+                        : ''
+                }
             </div>
         </>
     )

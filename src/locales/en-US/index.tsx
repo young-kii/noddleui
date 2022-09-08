@@ -10,7 +10,10 @@ export default {
         globalConfig: 'Global Property Configuration',
 
     },
-
+    general: {
+        '': 'General',
+        button: 'Button'
+    },
     dataEntry: {
         '': 'Data Entry',
         select: 'Select'

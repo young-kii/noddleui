@@ -4,6 +4,7 @@
 @segment-option-border-radius: 3px;
 @segment-inactive-fontColor: #5F5F5FFF;
 @segment-active-fontColor: #363636;
+@segment-inactive-background-color: #ffffff;
 
 .container {
   position: relative;
@@ -13,7 +14,7 @@
   width: max-content;
   outline: 1px solid @base-box-shadow-color;
   border-radius: @segment-border-radius;
-  background: @base-segment-background-color;
+  background: @segment-inactive-background-color;
   height: 48px;
   color: @segment-inactive-fontColor;
 }
@@ -31,15 +32,35 @@
 }
 
 .selected {
+  overflow: hidden;
   width: max-content;
   z-index: 0;
   height: calc(100% - 6px);
   position: absolute;
   left: 2px;
   transition: .3s ease ;
-  background: white;
+  background: #efefef;
   border-radius: @segment-option-border-radius;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+  outline: 1px solid @base-box-shadow-color;
+  .highlight {
+    width: 10%;
+    background-color: #ffffff;
+    height: 100%;
+    animation: 1s ease highlight forwards;
+    box-shadow: 1px 1px 30px #ffffff;
+  }
+}
+
+@keyframes highlight {
+  0% {
+    transform: translateX(-300%) skew(-20deg);
+  }
+  30% {
+    transform: translateX(-300%) skew(-20deg);
+  }
+  100% {
+    transform: translateX(1500%) skew(-20deg);
+  }
 }
 
 .segmentOption:hover {

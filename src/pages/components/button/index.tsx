@@ -1,16 +1,25 @@
 import STYLE from './index.module.less'
 import ContentHeader from "@/components/content-header";
-import _Segment from "@/noddle-components/segment/index.d";
-import {__function} from "@/noddle-components/globalConfig/index.d";
-
 
 export default () => {
-
+    const handleChange = (value: any) => {
+        console.log(value)
+    }
+    const tabsConfig = {
+        tabs: [
+            {tab: 'demo', label: '示例'},
+            {tab: 'api', label: 'API'},
+            {tab: 'design', label: '指南'}
+        ],
+        selected: 'demo',
+        onChange:handleChange
+    }
     return (
-        <>
+        <div>
             <ContentHeader
-                title={'React for Web'}
-                description={'Design 适配桌面端的组件库，适合在 React 技术栈项目中使用。'}
+                tabsConfig={tabsConfig}
+                title={'Button 按钮'}
+                description={'按钮用于开启一个闭环的操作任务，如“删除”对象、“购买”商品等。'}
                 img={"https://iconfont.alicdn.com/p/illus_3d/file/NdzEShoF8VBW/a0e793fe-25c7-4307-9603-90b3dc4212ce.png"}/>
             <div className={STYLE.blocks}></div>
             <div className={STYLE.blocks}></div>
@@ -18,6 +27,8 @@ export default () => {
             <div className={STYLE.blocks}></div>
             <div className={STYLE.blocks}></div>
             <div className={STYLE.blocks}></div>
-        </>
+        </div>
     )
 }
+
+
