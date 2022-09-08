@@ -81,7 +81,7 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
         <>
             <span ref={selectSpan} className={STYLE.selected}
                   style={{width: selectedWidth, transform: `translateX(${translateX}px)`}}>
-                <div ref={highlight} className={STYLE.highlight}></div>
+                <div ref={highlight} className={STYLE.highlight}/>
             </span>
             {
                 tabs.map((item: _Segment.tab) => {
