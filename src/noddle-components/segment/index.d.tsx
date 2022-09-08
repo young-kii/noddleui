@@ -9,12 +9,13 @@ namespace _Segment {
 
     export interface segmentProps {
         className?: string | undefined,
-        tabs: any,
+        tabs: tab[],
         selected: number | string,
         onChange?: __function
     }
 
     export interface segmentOptionProps extends segmentProps {
+        options: HTMLDivElement[]
         optionWidth: []
     }
 }

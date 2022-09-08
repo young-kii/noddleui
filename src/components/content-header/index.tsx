@@ -1,6 +1,7 @@
 import STYLE from './index.module.less'
 import {useEffect, useState} from "react";
 import Segment from "@/noddle-components/segment";
+import _Segment from "@/noddle-components/segment/index.d";
 
 export default () => {
     const [hideInfo, setHideInfo] = useState(false)
@@ -21,12 +22,12 @@ export default () => {
             }
         }
     }, [])
-    const tabs = [
+    const tabs:_Segment.tab[] = [
         {tab:'demo',label:'示例'},
         {tab:'api',label:'API'},
         {tab:'design',label:'指南'},
     ]
-    const handleChange = (value) => {
+    const handleChange = (value: any) => {
         console.log(value)
     }
     return (

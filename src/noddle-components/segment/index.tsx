@@ -5,26 +5,29 @@ import {__function} from "@/noddle-components/globalConfig/index.d";
 import Loading from "@/noddle-components/loading";
 
 export default (props: _Segment.segmentProps) => {
+    let newSelected: number | string | undefined = 0
     const {className, tabs, selected, onChange} = props
     const [optionWidth, setOptionWidth] = useState([]) as [[], __function]
     const segmentOption = useRef() as MutableRefObject<any>
-    let newSelected: number | string | undefined = 0
+    const [options, setOptions] = useState([]) as [[], __function]
     const newTabs = tabs.map((tab: _Segment.tab, index: number) => {
-        if(tab.tab === selected) newSelected = index
+        if (tab.tab === selected) newSelected = index
         return {...tab, id: index}
     })
     useEffect(() => {
-        const options = segmentOption.current.getElementsByClassName(STYLE.segmentOption) as HTMLDivElement[]
+        const _options = segmentOption.current.getElementsByClassName(STYLE.segmentOption) as HTMLDivElement[]
         const optionWidthArray = []
-        for (let option of options) {
+        for (let option of _options) {
             optionWidthArray.push(option.offsetWidth)
         }
         setOptionWidth(optionWidthArray)
+        setOptions(_options)
     }, [])
     return (
         <>
-            <div ref={segmentOption} className={'aaa' + ' ' + STYLE.container + ' ' + className}>
-                <SegmentOption tabs={newTabs} selected={newSelected} optionWidth={optionWidth} onChange={onChange}/>
+            <div ref={segmentOption} className={STYLE.container + ' ' + className}>
+                <SegmentOption tabs={newTabs} selected={newSelected} optionWidth={optionWidth} onChange={onChange}
+                               options={options}/>
             </div>
         </>
     )
@@ -32,15 +35,24 @@ export default (props: _Segment.segmentProps) => {
 
 const SegmentOption = (props: _Segment.segmentOptionProps) => {
     const selectSpan = useRef() as MutableRefObject<any>
-    const {tabs, selected, optionWidth, onChange} = props
-    const [selectedId, setSelectedId] = useState(selected) as [number,__function]
-    const [selectedTab,setSelectedTab] = useState('') as [string,__function]
+    const {tabs, selected, optionWidth, onChange, options} = props
+    const [selectedId, setSelectedId] = useState(selected) as [number, __function]
+    const [selectedTab, setSelectedTab] = useState('') as [string, __function]
     const [selectedWidth, setSelectedWidth] = useState(0)
+    const [selectedOption, setSelectedOption] = useState() as [HTMLDivElement, __function]
     const [translateX, setTranslateX] = useState(2)
     const handleClick = (e: any) => {
         setSelectedId(e.target.dataset.id)
         setSelectedTab(e.target.dataset.tab)
+        setSelectedOption(e.target)
+        if (selectedOption) {
+            selectedOption.classList.remove(STYLE.selected_change_font)
+        }
+        e.target.classList.add(STYLE.selected_change_font)
     }
+    useEffect(() => {
+        setSelectedTab(tabs[Number(selected)].tab)
+    }, [])
     useEffect(() => {
         setSelectedWidth(optionWidth[selectedId])
         let tranX = 2
@@ -48,15 +60,22 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
             tranX += optionWidth[index] + 4
         }
         setTranslateX(tranX)
-        onChange?.(selectedTab)
+        if (selectedTab)
+            onChange?.({tab: selectedTab})
+        if(options.length !== 0)
+        {
+            setSelectedOption(options[selectedId])
+            options[selectedId].classList.add(STYLE.selected_change_font)
+        }
     }, [optionWidth, selectedId])
-    if (optionWidth) return (
+    return (
         <>
             <span ref={selectSpan} className={STYLE.selected}
                   style={{width: selectedWidth, transform: `translateX(${translateX}px)`}}></span>
             {
                 tabs.map((item: _Segment.tab) => {
-                    return <div key={item.id} className={STYLE.segmentOption} data-tab={item.tab} data-id={item.id}
+                    return <div key={item.id} className={STYLE.segmentOption} data-id={item.id} data-tab={item.tab}
+                                data-label={item.label}
                                 onClick={handleClick}>
                         {item.label}
                     </div>
@@ -65,5 +84,5 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
 
         </>
     )
-    else return <Loading/>
+
 }

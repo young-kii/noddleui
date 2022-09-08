@@ -3,8 +3,10 @@
 @segment-border-radius: 6px;
 @segment-option-border-radius: 3px;
 @segment-inactive-fontColor: #5F5F5FFF;
+@segment-active-fontColor: #363636;
 
 .container {
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   padding: 3px 2px;
@@ -17,6 +19,7 @@
 }
 
 .segmentOption {
+  transition: 1s ease;
   z-index: 1;
   margin: 0 2px;
   cursor: pointer;
@@ -37,4 +40,20 @@
   background: white;
   border-radius: @segment-option-border-radius;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+}
+
+.segmentOption:hover {
+  color: @segment-active-fontColor;
+}
+
+.selected_change_font {
+  animation: 0.8s option_selected forwards;
+  color: @segment-active-fontColor;
+}
+
+@keyframes option_selected {
+  0% { transform: scale(1) }
+  30% { transform: scale(1) }
+  60% { transform: scale(1.2) }
+  100% { transform: scale(1.05) }
 }
