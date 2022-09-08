@@ -3,8 +3,6 @@ import _Select from "@/noddle-components/select/index.d";
 import Input from "@/noddle-components/input";
 import {createContext, useContext, useEffect, useState} from "react";
 import ArrowDown from "@/noddle-components/icons/arrow-down";
-import {NavLink} from "react-router-dom";
-import NoddleLink from "@/components/noddle-link/index";
 
 
 export const selectContext = createContext({})

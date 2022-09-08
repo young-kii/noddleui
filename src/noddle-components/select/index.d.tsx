@@ -5,7 +5,8 @@ namespace _Select {
 
     export interface selectContext {
         props: selectProps
-        setProps: (value: any) => void
+        setProps: (value: any) => void,
+
     }
 
     export interface selectProps extends _Input.baseInputProps{
