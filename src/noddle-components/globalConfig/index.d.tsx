@@ -6,7 +6,7 @@ import inputProps = _Input.inputProps;
 type _object = { [key: string]: any }
 type _function = { [key: string]: (p: any) => void }
 
-type __function = (p: any) => void
+type __function = (value: any) => void
 
 
 type contextType = {

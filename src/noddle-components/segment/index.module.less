@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-evenly;
   padding: 3px 2px;
-  width: 200px;
+  width: max-content;
   outline: 1px solid @base-box-shadow-color;
   border-radius: @segment-border-radius;
   background: @base-segment-background-color;
@@ -18,18 +18,17 @@
 
 .segmentOption {
   z-index: 1;
-  flex: 1;
   margin: 0 2px;
   cursor: pointer;
   display: flex;
-  //padding: 0 20px;
+  padding: 0 20px;
   white-space: nowrap;
   align-items: center;
   justify-content: center;
 }
 
 .selected {
-  width: 65.34px;
+  width: max-content;
   z-index: 0;
   height: calc(100% - 6px);
   position: absolute;

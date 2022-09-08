@@ -22,10 +22,13 @@ export default () => {
         }
     }, [])
     const tabs = [
-        {id:0,tab:'demo',label:'示例'},
-        {id:1,tab:'api',label:'API'},
-        {id:2,tab:'design',label:'指南'},
+        {tab:'demo',label:'示例'},
+        {tab:'api',label:'API'},
+        {tab:'design',label:'指南'},
     ]
+    const handleChange = (value) => {
+        console.log(value)
+    }
     return (
         <>
             <div className={STYLE.container}>
@@ -44,7 +47,7 @@ export default () => {
                          alt=''/>
                 </div>
                 <h1 className={STYLE.info_title + ' ' + (docHeaderFixed ? 'STYLE.hide' : STYLE.hide)}>快速开始</h1>
-                <Segment className={STYLE.segment} tabs={tabs} selected={0} />
+                <Segment className={STYLE.segment} tabs={tabs} selected={'design'} onChange={handleChange} />
             </div>
         </>
     )
