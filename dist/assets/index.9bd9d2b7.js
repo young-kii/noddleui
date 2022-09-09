@@ -1,0 +1,1 @@
+import{j as n}from"./index.92920d2a.js";const t="_content_1g8qb_31",c="_main_1g8qb_59",e="_i_1g8qb_63",i={content:t,main:c,i:e},r=()=>n("div",{children:n(o,{})}),o=()=>n("div",{className:i.container,children:"\u9009\u62E9\u5668"});export{r as default};
