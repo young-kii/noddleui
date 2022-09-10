@@ -9,19 +9,21 @@ interface contentContentProps {
 interface contentItem {
     id: string
     label: string,
-    top: number
+    top: number,
+    index: number
 }
 
 export default (props: contentContentProps) => {
     const {children} = props
     const [contentItems, setItems] = useState([]) as any
     const [selectedItem, setSelectedItem] = useState('')
+    const [itemIndex, setItemIndex] = useState(0)
     let _items: contentItem[] = []
     useEffect(() => {
         const items = document.querySelectorAll('[id*=noddle-contentItem]') as any
-        let newItems = []
+        let newItems = [],index = 0
         for (let item of items) {
-            newItems.push({id: item?.id, label: item?.dataset?.label, top: item.offsetTop})
+            newItems.push({id: item?.id, label: item?.dataset?.label, top: item.offsetTop, index: index++})
         }
         setItems(newItems)
         setSelectedItem(items[0].id)
@@ -31,6 +33,7 @@ export default (props: contentContentProps) => {
             for (let _item of _items) {
                 if (e.target.scrollTop >= _item.top + 64) {
                     setSelectedItem(_item.id)
+                    setItemIndex(_item.index)
                 }
             }
         }
@@ -54,6 +57,8 @@ export default (props: contentContentProps) => {
             <div className={STYLE.container}>
                 <div className={STYLE.left}>{children}</div>
                 <div className={STYLE.right}>
+                    <div className={STYLE.active}
+                         style={{transform:`translateY(${itemIndex * 24}px)`,position:"absolute",transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",fontSize:'24px',lineHeight:'24px'}}>·</div>
                     {
                         contentItems.map((item: contentItem) => {
                             return <div key={item.id}

@@ -24,35 +24,14 @@
       align-items: center;
       line-height: 24px;
       transition: .3s ease;
-      &::before {
-        content: '·';
-        opacity: 0;
-        font-size: 24px;
-        width: 18px;
-        transition: .3s ease;
-      }
-      &[data-selected=true]::before {
-        animation: .3s show ease forwards alternate;
-      }
-      @keyframes show {
-        0% {
-          opacity: 0;
-          transform: translateY(-20px) scale(0);
-        }
-        70% {
-          opacity: 1;
-          transform: translateY(5px) scale(1);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0px) scale(1);
-        }
-      }
+      margin-left: 18px;
     }
   }
 }
 
 .active {
+  transform-origin: left;
+  transform: scale(1.1);
   color: @noddle-main-color;
 }
 
