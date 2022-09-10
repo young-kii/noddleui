@@ -1,0 +1,58 @@
+@import "src/assets/css/global";
+.container {
+  display: flex;
+  position: relative;
+  .left {
+    padding: 0 24px 0 48px;
+
+  }
+  .right {
+    font-size: 12px;
+    color: @base-fontColor;
+    position: sticky;
+    top: 162px;
+    width: max-content;
+    padding-right: 24px;
+    height: 100%;
+    .nav {
+      &:not([data-selected=true]):hover {
+        color: @base-hover-fontColor;
+      }
+      cursor: pointer;
+      display: flex;
+      white-space: nowrap;
+      align-items: center;
+      line-height: 24px;
+      transition: .3s ease;
+      &::before {
+        content: '·';
+        opacity: 0;
+        font-size: 24px;
+        width: 18px;
+        transition: .3s ease;
+      }
+      &[data-selected=true]::before {
+        animation: .3s show ease forwards alternate;
+      }
+      @keyframes show {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px) scale(0);
+        }
+        70% {
+          opacity: 1;
+          transform: translateY(5px) scale(1);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0px) scale(1);
+        }
+      }
+    }
+  }
+}
+
+.active {
+  color: @noddle-main-color;
+}
+
