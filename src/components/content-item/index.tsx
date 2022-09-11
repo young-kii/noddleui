@@ -1,7 +1,7 @@
 import STYLE from './index.module.less'
 import {ReactNode} from "react";
 interface contentItemProps {
-    id?: string
+    id: string
     children?: ReactNode
     label: string
 

@@ -1,18 +1,28 @@
 import STYLE from './index.module.less';
 import './index.less';
-import {MutableRefObject, useEffect, useRef} from "react";
+import {MutableRefObject, useEffect, useRef, useState} from "react";
 import _CodeBox from "@/noddle-components/codeBox/index.d";
+import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
+import CopyIcon from "@/noddle-components/icons/copy-icon";
 
-const keywords = new Set(['boolean','type','true','false','new','as','any','if','of','else','var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
-const punctuation = new Set(['.','(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
-const tags = new Set(['Cascader', 'div']);
+
+const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
+const punctuation = new Set(['.', '(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
+const tags = new Set(['Cascader', 'div' , 'Button']);
 const special = ['React']
-
 
 export default (props: _CodeBox.codeBoxProps) => {
     const code = props?.code || ''
     const codeRef = useRef() as MutableRefObject<HTMLElement>
     const pre = useRef() as any
+    const [showCode, setShowCode] = useState(false)
+    const styles = ClassNameConfig.mClassNames.bind(STYLE)
+
+    const style_pre = styles({
+        hide: !showCode,
+        codeContainer: true
+    })
+
     let codeArray = code.split('')
     let functionSet = new Set()
     const compile = (getResult: boolean) => {
@@ -92,16 +102,20 @@ export default (props: _CodeBox.codeBoxProps) => {
                         return previousValue + `<span class="keywords">${newArray}</span>`
                     }
                 } else if (tags.has(currentArray)) {
-                    newArray = currentArray
-                    currentArray = ''
-                    if (array[currentIndex + 1] === '>') {
-                        if (array[currentIndex - newArray.length] === '<' || array[currentIndex - newArray.length] === ' ' || array[currentIndex - newArray.length] === '/')
-                            return previousValue + `<span class="tags">${newArray}</span>`
-                    } else if (array[currentIndex - newArray.length] === '<') {
-                        if (array[currentIndex + 1] === '>' || array[currentIndex + 1] === ' ')
-                            return previousValue + `<span class="tags">${newArray}</span>`
+                    if(inTag)
+                    {
+                        newArray = currentArray
+                        currentArray = ''
+                        if (array[currentIndex + 1] === '>') {
+                            if (array[currentIndex - newArray.length] === '<' || array[currentIndex - newArray.length] === ' ' || array[currentIndex - newArray.length] === '/')
+                                return previousValue + `<span class="tags">${newArray}</span>`
+                        } else if (array[currentIndex - newArray.length] === '<') {
+                            if (array[currentIndex + 1] === '>' || array[currentIndex + 1] === ' ')
+                                return previousValue + `<span class="tags">${newArray}</span>`
+                        }
+                        return previousValue + `<span>${newArray}</span>`
                     }
-                    return previousValue + `<span>${newArray}</span>`
+                    return previousValue
                 } else if (functionSet.has(currentArray) && (array[currentIndex + 1] === ' ' || punctuation.has(array[currentIndex + 1]))) {
                     if (inTag) {
                         if (inCurlyBracket) {
@@ -132,21 +146,30 @@ export default (props: _CodeBox.codeBoxProps) => {
     }
 
     const show = () => {
-        pre.current.classList.toggle('show')
+        setShowCode(!showCode)
     }
 
+    const copy = () => {
+        console.log('copy')
+    }
     useEffect(() => {
         compile(false)
         codeRef.current.innerHTML = compile(true)
     }, [])
 
     return <>
-        <button onClick={show}>d</button>
-        <div className={STYLE.codeBoxContainer} ref={pre}>
-            <pre>
+        <div className={STYLE.codeBoxContainer}>
+            <button onClick={show}>d</button>
+            <div className={STYLE.code_area}>
+                <div className={style_pre} ref={pre}>
+                    <div className={STYLE.copy} onClick={copy}>
+                        <CopyIcon width={24} height={24}/>
+                    </div>
+                    <pre>
               <code className={STYLE.code} ref={codeRef}/>
           </pre>
+                </div>
+            </div>
         </div>
-        hello world
     </>
 }
