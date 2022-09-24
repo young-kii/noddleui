@@ -6,6 +6,8 @@ import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
 import CodeBox from "@/noddle-components/codeBox";
 import {MutableRefObject, useEffect, useRef} from "react";
+import Button from "@/noddle-components/button";
+import Space from "@/noddle-components/space";
 
 let code = `import React from 'react';
 import { Button, Space } from 'tdesign-react';
@@ -85,8 +87,7 @@ export default () => {
             {tab: 'demo', label: '示例'},
             {tab: 'api', label: 'API'},
             {tab: 'preview', label: '预览'},
-        ],
-        selected: 'demo'
+        ]
     }
     const ref = useRef() as MutableRefObject<any>
     return (
@@ -111,7 +112,13 @@ export default () => {
                         <p>直接使用文字作为按钮。是视觉吸引力最弱的一个按钮，通常出现在表格操作栏、标题和字段旁。</p>
                     </>
                 </ContentItem>
-                <CodeBox code={code}/>
+                <CodeBox code={code} position={'center'}>
+                    <Space gap={20} direction={'vertical'}>
+                        <Button onClick={() => console.log('click')}>按</Button>
+                        <Button>按钮</Button>
+                        <Button>按钮</Button>
+                    </Space>
+                </CodeBox>
                 <div className={STYLE.blocks}></div>
                 <div className={STYLE.blocks}></div>
                 <div className={STYLE.blocks}></div>

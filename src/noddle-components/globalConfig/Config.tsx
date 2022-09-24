@@ -1,7 +1,6 @@
 import {createContext, useContext, useState} from "react";
 import Select, {Option} from "@/noddle-components/select";
-import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/index.d";
-
+import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/types";
 const localStorage_localeKey = 'noddle-locale'
 
 export const globalContext = createContext({})
@@ -55,6 +54,7 @@ export const useTranslation = () => {
 }
 
 export namespace LocaleConfig {
+
     export function useSetLocale() {
         const context = useContext(globalContext)
         const {setLocale} = context as contextType

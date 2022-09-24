@@ -55,7 +55,9 @@ export default (props: contentContentProps) => {
     return (
         <>
             <div className={STYLE.container}>
-                <div className={STYLE.left}>{children}</div>
+                <div className={STYLE.left}>
+                    {children}
+                </div>
                 <div className={STYLE.right}>
                     <div className={STYLE.active}
                          style={{transform:`translateY(${itemIndex * 24}px)`,position:"absolute",transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",fontSize:'24px',lineHeight:'24px'}}>·</div>

@@ -1,6 +1,6 @@
 import STYLE from './index.module.less'
 import React, {createContext, MutableRefObject, useContext, useEffect, useRef, useState} from "react";
-import _Input from "@/noddle-components/input/index.d";
+import _Input from "@/noddle-components/input/types";
 
 
 export const inputContext = createContext({})

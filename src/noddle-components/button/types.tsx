@@ -1,8 +1,9 @@
 interface buttonProps {
-
+    children: any;
+    onClick?: () => any
 }
 
-interface baseButtonProps {
+interface baseButtonProps extends buttonProps{
 
 }
 

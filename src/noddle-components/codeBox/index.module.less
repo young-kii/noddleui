@@ -10,13 +10,12 @@
   .code_area {
     position: relative;
     .codeContainer {
-      width: 100%;
       color: @codeBox-baseColor;
       background-color: @codeBox-backgroundColor;
       box-shadow: 0 -1px 1px @base-box-shadow-color;
       overflow: scroll;
       padding: 0 6px;
-      transition: .3s ease;
+      transition: .5s ease;
       height: 540px;
       display: flex;
       flex-direction: column;
@@ -28,7 +27,7 @@
         opacity: 0;
         cursor: pointer;
         position: absolute;
-        right: 6px;
+        right: 14px;
         top: 6px;
       }
     }
@@ -37,26 +36,37 @@
   .codeContainer::-webkit-scrollbar {
     display: none;
   }
-  //.codeContainer::-webkit-scrollbar {
-  //  z-index: -1;
-  //  width: 12px!important;
-  //  height: 0!important;
-  //  background-color: transparent!important;
-  //}
-  //
-  //.codeContainer:hover::-webkit-scrollbar-thumb {
-  //  z-index: -1;
-  //
-  //  border-radius: 6px!important;
-  //  border: 4px solid transparent!important;
-  //  background-color: var(--webkit-scrollbar-thumb-background-color)!important;
-  //  background-clip: content-box!important;
-  //}
 
   .code {
-    line-height: 26px;
-    font-size: 14px;
-    font-family: 'Menlo', serif;
+    line-height: 24px;
+    font-size: 15px;
+  }
+
+  .view {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    min-height: 204px;
+  }
+
+  .option_buttons {
+    display: flex;
+    padding: 6px 8px;
+    align-items: center;
+    justify-content: flex-end;
+    color: @base-hover-fontColor;
+    .option_button {
+      cursor: pointer;
+      padding: 8px;
+      border-radius: @base-border-radius;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .3s;
+    }
+    .option_button:hover {
+      background-color: @base-hover-background-color;
+    }
   }
 
 }

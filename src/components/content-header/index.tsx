@@ -1,16 +1,16 @@
 import STYLE from './index.module.less'
 import {useEffect, useState} from "react";
 import Segment from "@/noddle-components/segment";
-import _Segment from "@/noddle-components/segment/index.d";
+import _Segment from "@/noddle-components/segment/types";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import {__function} from "@/noddle-components/globalConfig/index.d";
+import {__function} from "@/noddle-components/globalConfig/types";
 
 interface contentHeaderProps {
     title: string,
     description: string,
     tabsConfig?: {
         tabs: _Segment.tab[],
-        selected: string,
+        selected?: string,
         onChange?: __function
     }
 }
@@ -66,8 +66,7 @@ export default (props: contentHeaderProps) => {
                 <h1 className={style_info_title}>{title}</h1>
                 {
                     tabsConfig ?
-                        <Segment className={STYLE.segment} tabs={tabsConfig.tabs} selected={tabsConfig.selected}
-                                 onChange={tabsConfig.onChange}/>
+                        <Segment className={STYLE.segment} tabs={tabsConfig.tabs} onChange={tabsConfig.onChange}/>
                         : ''
                 }
             </div>

@@ -1,0 +1,33 @@
+@import "src/assets/css/global";
+.container {
+  cursor: pointer;
+  color: white;
+  padding: 0 16px;
+  font-size: @base-fontSize;
+  background-color: @noddle-main-color;
+  min-width: 60px;
+  text-align: center;
+  height: 32px;
+  line-height: 32px;
+  width: max-content;
+  transition: .5s linear;
+  border-radius: @base-border-radius;
+  user-select: none;
+}
+
+.container:hover {
+  filter: @hover-filter;
+}
+
+.click {
+  animation: .8s ease buttonClicked;
+}
+
+@keyframes buttonClicked {
+  0% {
+    outline: 0 solid rgb(1, 80, 255);
+  }
+  100% {
+    outline: 5px solid rgba(12, 82, 235, 0);
+  }
+}

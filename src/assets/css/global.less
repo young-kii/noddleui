@@ -1,5 +1,6 @@
 @noddle-main-color: #0252D9FF;
 
+@hover-filter: brightness(1.2);
 @base-fontSize: 14px;
 @content-header-info-title-fontSize: 48px;
 @base-box-shadow-color: #e7e7e7;
@@ -15,6 +16,8 @@
 @base-selected-background-color: #E0ECFFFF;
 @base-selected-fontColor: #2664DEFF;
 @base-active-background-color: @noddle-main-color;
+@cover-background-color: rgba(0,0,0,.2);
+@media-screen-width: 1188px;
 
 body {
   background-color: #e0e0e0;
@@ -41,7 +44,7 @@ a {
   --content-header-box-shadow: var(--header-box-shadow);
   --header-z-index: 100;
   --nav-z-index: 99;
-  --content-z-index: 99;
+  --content-z-index: 98;
   --webkit-scrollbar-thumb-background-color: #DBDBDBFF;
   --webkit-scrollbar-background-color: white;
   --nav-box-shadow: inset -1px 0 0 @base-box-shadow-color;
@@ -62,24 +65,4 @@ body::-webkit-scrollbar {
   border: 4px solid transparent!important;
   background-color: var(--webkit-scrollbar-thumb-background-color)!important;
   background-clip: content-box!important;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }

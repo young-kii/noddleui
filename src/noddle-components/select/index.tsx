@@ -1,5 +1,5 @@
 import STYLE from './index.module.less'
-import _Select from "@/noddle-components/select/index.d";
+import _Select from "@/noddle-components/select/types";
 import Input from "@/noddle-components/input";
 import {createContext, useContext, useEffect, useState} from "react";
 import ArrowDown from "@/noddle-components/icons/arrow-down";

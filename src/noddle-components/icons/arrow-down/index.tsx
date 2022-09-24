@@ -1,4 +1,4 @@
-import _Icon from "@/noddle-components/icons/index.d";
+import _Icon from "@/noddle-components/icons/types";
 
 export default (props: _Icon.arrowDownProps) => {
     const {width, height, style, color, active} = props

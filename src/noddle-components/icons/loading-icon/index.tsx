@@ -1,4 +1,4 @@
-import _Icon from "@/noddle-components/icons/index.d";
+import _Icon from "@/noddle-components/icons/types";
 import STYLE from './index.module.less'
 
 export default (props: _Icon.baseIconProps) => {

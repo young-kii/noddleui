@@ -1,5 +1,6 @@
+@import "src/assets/css/global";
 .content {
-  @media screen and (max-width: 875px) {
+  @media screen and (max-width: @media-screen-width) {
     width: 100%;
   }
   height: 100vh;
@@ -9,6 +10,7 @@
   z-index: var(--content-z-index);
   word-break: break-all;
   position: relative;
+
 }
 
 .content::-webkit-scrollbar {

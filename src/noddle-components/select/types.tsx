@@ -1,12 +1,11 @@
-import _Input from "@/noddle-components/input/index.d";
-import {_object} from "@/noddle-components/globalConfig/index.d";
+import _Input from "@/noddle-components/input/types";
+import {_object} from "@/noddle-components/globalConfig/types";
 
 namespace _Select {
 
     export interface selectContext {
         props: selectProps
         setProps: (value: any) => void,
-
     }
 
     export interface selectProps extends _Input.baseInputProps{

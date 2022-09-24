@@ -1,7 +1,7 @@
 import STYLE from './index.module.less'
-import _Segment from "@/noddle-components/segment/index.d";
+import _Segment from "@/noddle-components/segment/types";
 import {MutableRefObject, useEffect, useRef, useState} from "react";
-import {__function} from "@/noddle-components/globalConfig/index.d";
+import {__function} from "@/noddle-components/globalConfig/types";
 import {useNavigate} from "react-router-dom";
 
 export default (props: _Segment.segmentProps) => {
