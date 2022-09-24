@@ -46,9 +46,9 @@ export default (props: contentContentProps) => {
         const id = e.target?.dataset?.id
         const scroll = document.getElementById('noddle-content') as HTMLDivElement
         const target = document.getElementById(id) as any
-        let scrollToTop = target.offsetTop === 0 ? 5 : target.offsetTop
+        let scrollToTop = target.offsetTop
         scroll.scrollTo({
-            top: scrollToTop + 64,
+            top: scrollToTop + 70,
             behavior: "smooth"
         })
     }

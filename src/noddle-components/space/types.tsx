@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 
 interface spaceProps {
-    children: ReactNode[]
+    children: ReactNode[] | ReactNode
     direction?: 'horizontal' | 'vertical'
     gap?: number
 }

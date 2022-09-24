@@ -1,7 +1,11 @@
 @import "src/assets/css/global";
+
+@button-types: default, danger, success, primary, warning;
+@button-borderTypes: dashed, solid;
+
 .container {
   cursor: pointer;
-  color: white;
+  color: black;
   padding: 0 16px;
   font-size: @base-fontSize;
   background-color: @noddle-main-color;
@@ -19,15 +23,92 @@
   filter: @hover-filter;
 }
 
-.click {
-  animation: .8s ease buttonClicked;
+@default: @color-default;
+@danger: @color-danger;
+@success: @color-success;
+@primary: @noddle-main-color;
+@warning: @color-warning;
+
+@text: transparent;
+
+
+each(@button-types, {
+  .container[data-buttontype=@{value}] {
+    background-color: transparent;
+    border-color: @@value;
+    color: @@value;
+  }
+  .container[data-buttontype=@{value}][data-borderType=default] {
+    background-color: @@value;
+    border-color: @@value;
+    color: white;
+  }
+})
+
+each(@button-types, {
+  .click[data-buttontype=@{value}][data-borderType=solid], .click[data-buttontype=@{value}][data-borderType=default] {
+    animation: .8s ease @value;
+  }
+})
+
+.container[data-buttontype=default]:hover {
+  filter: brightness(1.05);
 }
 
-@keyframes buttonClicked {
+.container[data-buttontype=default] {
+  color: black !important;
+}
+
+each(@button-borderTypes, {
+  .container[data-bordertype=@{value}] {
+    background-color: transparent !important;
+    border-width: 1px;
+    border-style: @value;
+  }
+})
+
+
+@keyframes primary {
   0% {
-    outline: 0 solid rgb(1, 80, 255);
+    outline: 0 solid @primary;
   }
   100% {
-    outline: 5px solid rgba(12, 82, 235, 0);
+    outline: 5px solid transparent;
+  }
+}
+
+@keyframes danger {
+  0% {
+    outline: 0 solid @danger;
+  }
+  100% {
+    outline: 5px solid transparent;
+  }
+}
+
+@keyframes warning {
+  0% {
+    outline: 0 solid @warning;
+  }
+  100% {
+    outline: 5px solid transparent;
+  }
+}
+
+@keyframes default {
+  0% {
+    outline: 0 solid rgba(0, 0, 0, .1);
+  }
+  100% {
+    outline: 5px solid transparent;
+  }
+}
+
+@keyframes success {
+  0% {
+    outline: 0 solid @success;
+  }
+  100% {
+    outline: 5px solid transparent;
   }
 }

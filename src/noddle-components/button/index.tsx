@@ -15,7 +15,7 @@ export default (props: buttonProps) => {
 }
 
 const Button = (props: baseButtonProps) => {
-    const {children, onClick} = props
+    const {children, onClick, type, border} = props
     const [click, setClick] = useState(false)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
     const style_container = styles({
@@ -25,13 +25,14 @@ const Button = (props: baseButtonProps) => {
     const handleClick = () => {
         onClick?.()
         setClick(false)
-        setTimeout(()=>{
+        setTimeout(() => {
             setClick(true)
-        },10)
+        }, 10)
 
     }
     return (
-        <div className={style_container} onClick={handleClick}>
+        <div className={style_container} onClick={handleClick} data-buttontype={type || 'default'}
+             data-bordertype={border || 'default'}>
             {children}
         </div>
     )

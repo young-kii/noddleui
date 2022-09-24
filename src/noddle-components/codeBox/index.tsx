@@ -7,6 +7,7 @@ import CopyIcon from "@/noddle-components/icons/copy-icon";
 import Button from "@/noddle-components/button";
 import CodeIcon from "@/noddle-components/icons/code-icon";
 import Space from "@/noddle-components/space";
+import BugIcon from "@/noddle-components/icons/bug-icon";
 
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
@@ -172,9 +173,14 @@ export default (props: _CodeBox.codeBoxProps) => {
                 {children}
             </div>
             <div className={STYLE.option_buttons}>
-                <div className={STYLE.option_button} onClick={show}>
-                    <CodeIcon/>
-                </div>
+                <Space>
+                    <div className={STYLE.option_button}>
+                        <BugIcon/>
+                    </div>
+                    <div className={STYLE.option_button} onClick={show}>
+                        <CodeIcon/>
+                    </div>
+                </Space>
             </div>
             <div className={STYLE.code_area}>
                 <div className={style_pre} ref={pre}>
