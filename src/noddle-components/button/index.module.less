@@ -14,7 +14,7 @@
   height: 32px;
   line-height: 32px;
   width: max-content;
-  transition: .5s linear;
+  transition: .3s linear;
   border-radius: @base-border-radius;
   user-select: none;
 }
@@ -35,10 +35,10 @@
 each(@button-types, {
   .container[data-buttontype=@{value}] {
     background-color: transparent;
-    border-color: @@value;
     color: @@value;
+    border-color: @@value;
   }
-  .container[data-buttontype=@{value}][data-borderType=default] {
+  .container[data-buttontype=@{value}][data-bordertype=default] {
     background-color: @@value;
     border-color: @@value;
     color: white;
@@ -46,8 +46,8 @@ each(@button-types, {
 })
 
 each(@button-types, {
-  .click[data-buttontype=@{value}][data-borderType=solid], .click[data-buttontype=@{value}][data-borderType=default] {
-    animation: .8s ease @value;
+  .click[data-buttontype=@{value}][data-bordertype=solid], .click[data-buttontype=@{value}][data-bordertype=default] {
+    animation: .6s ease @value;
   }
 })
 
@@ -57,6 +57,11 @@ each(@button-types, {
 
 .container[data-buttontype=default] {
   color: black !important;
+}
+
+.container[data-bordertype=solid][data-buttontype=default]:hover, .container[data-bordertype=dashed][data-buttontype=default]:hover{
+  color: @noddle-main-color!important;
+  border-color: currentColor;
 }
 
 each(@button-borderTypes, {

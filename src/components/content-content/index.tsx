@@ -1,6 +1,5 @@
 import STYLE from './index.module.less'
 import React, {ReactNode, useEffect, useState} from "react";
-import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 
 interface contentContentProps {
     children?: ReactNode

@@ -7,7 +7,7 @@ export default (props: spaceProps) => {
 
     const {children, direction, gap} = props
     const newDirection = direction || 'horizontal'
-    const newGap = gap ? gap/2 : 4
+    const newGap = gap ? gap/2 : 10
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
     const container = styles({
         container: true,
