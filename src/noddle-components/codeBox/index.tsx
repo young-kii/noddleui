@@ -8,6 +8,7 @@ import Button from "@/noddle-components/button";
 import CodeIcon from "@/noddle-components/icons/code-icon";
 import Space from "@/noddle-components/space";
 import BugIcon from "@/noddle-components/icons/bug-icon";
+import header from "@/layout/header";
 
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
@@ -16,6 +17,7 @@ const tags = new Set(['Cascader', 'div', 'Button', 'Space']);
 const special = ['React']
 
 export default (props: _CodeBox.codeBoxProps) => {
+    const {children, height, width} = props
     const code = props?.code || ''
     const position = props?.position || 'left'
     const positionMap = {
@@ -23,7 +25,6 @@ export default (props: _CodeBox.codeBoxProps) => {
         right: 'flex-end',
         center: 'center'
     }
-    const {children} = props
     const codeRef = useRef() as MutableRefObject<HTMLElement>
     const pre = useRef() as any
     const [showCode, setShowCode] = useState(false)
@@ -168,7 +169,7 @@ export default (props: _CodeBox.codeBoxProps) => {
     }, [])
 
     return <>
-        <div className={STYLE.codeBoxContainer}>
+        <div className={STYLE.codeBoxContainer} style={{ width: width || '100%' }}>
             <div className={STYLE.view} style={{justifyContent: positionMap[position]}}>
                 {children}
             </div>
@@ -183,7 +184,7 @@ export default (props: _CodeBox.codeBoxProps) => {
                 </Space>
             </div>
             <div className={STYLE.code_area}>
-                <div className={style_pre} ref={pre}>
+                <div className={style_pre} style={{height}} ref={pre}>
                     <div className={STYLE.copy} onClick={copy}>
                         <CopyIcon width={24} height={24}/>
                     </div>

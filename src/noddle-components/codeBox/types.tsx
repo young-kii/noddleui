@@ -5,6 +5,8 @@ namespace _CodeBox {
         code: string;
         position?: 'left' | 'right' | 'center';
         children: ReactNode[] | ReactNode
+        height?: number
+        width?: number | string | 'max-content'
     }
 }
 

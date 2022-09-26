@@ -1,89 +1,91 @@
 import STYLE from './index.module.less'
-import ContentHeader from "@/components/content-header";
-import Select, {Option} from "@/noddle-components/select";
-import Content from "@/layout/content";
-import ContentContent from "@/components/content-content";
-import ContentItem from "@/components/content-item";
-import CodeBox from "@/noddle-components/codeBox";
-import {MutableRefObject, useEffect, useRef} from "react";
+import Table, {ColumnsType} from "@/noddle-components/table";
+import React from "react";
 import Button from "@/noddle-components/button";
+import CodeBox from "@/noddle-components/codeBox";
 import Space from "@/noddle-components/space";
-import Table from "@/noddle-components/table";
 
 export default () => {
-
-    const tabsConfig = {
-        tabs: [
-            {tab: 'demo', label: '示例'},
-            {tab: 'api', label: 'API'},
-            {tab: 'preview', label: '预览'},
-        ]
+    interface DataType {
+        key: React.Key
+        name?: string
+        age?: number
+        address?: string
+        operation?: string
     }
+
+    const columns: ColumnsType<DataType> = [
+        {
+            title: '名字',
+            dataIndex: 'name',
+        },
+        {
+            title: '年龄',
+            dataIndex: 'age'
+        },
+        {
+            title: '地址',
+            dataIndex: 'address'
+        },
+        {
+            title: '操作',
+            dataIndex: 'operation',
+            render: (value, records) => (
+                <>
+                    <Space>
+                        <Button type={"primary"}>{value}</Button>
+                        <Button type={"primary"}>{value}</Button>
+                    </Space>
+                </>
+            )
+        }
+    ]
+    const data: DataType[] = [
+        {
+            key: 1,
+            name: '顾逸轩',
+            age: 19,
+            address: '恒通国际创新Width:0ng:0}}{minWidth:0,padding:0}}',
+            operation: '删除'
+        },
+        {
+            key: 2,
+            name: '顾逸轩2',
+            age: 19,
+            address: '恒通国际创新园'
+        },
+        {
+            key: 3,
+            name: '顾逸轩',
+            age: 19,
+            address: '恒通国际创新园'
+        },
+        {
+            key: 4,
+            name: '顾逸轩2',
+            age: 19,
+            address: '恒通国际创新园'
+        },
+        {
+            key: 5,
+            name: '顾逸轩',
+            age: 19,
+            address: '恒通国际创新园'
+        },
+        {
+            key: 6,
+            address: '恒通国际创新园',
+            name: '顾逸轩222222',
+            age: 123
+        },
+
+    ]
+
     return (
-        <div>
-            <ContentHeader
-                tabsConfig={tabsConfig}
-                title={'Table 表格'}
-                description={'表格啊啊啊啊啊'}
-            />
-            <ContentContent>
-                <ContentItem id={'demo22'} label={'ok'} paddingTop={64}>
-                    <Table/>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                </ContentItem>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <div>sasdsa</div>
-                <ContentItem id={'demo233'} label={'ok1'} paddingTop={64}>
-                    <Table/>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                    <div>12312</div>
-                </ContentItem>
-            </ContentContent>
-
-
+        <div style={{padding: 16}}>
+            <CodeBox code={'nothing'}>
+                <Table columns={columns} dataSource={data}/>
+            </CodeBox>
         </div>
     )
 }
