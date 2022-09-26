@@ -36,6 +36,14 @@ const itemList: item[] = [
     },
     {
         id: 5,
+        title: 'dataDisplay',
+        extra: 'components',
+        children: [
+            {id: 1, title: 'table'},
+        ]
+    },
+    {
+        id: 6,
         title: 'feedback',
         extra: 'components',
         children: [

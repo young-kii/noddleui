@@ -81,8 +81,10 @@ export default (props: contentContentProps) => {
                 </div>
             </div>
             <div className={STYLE.bottom}>
-                <DrinkIcon style={{marginRight: 24}}/>
-                <strong>noddle ui</strong>
+                <div className={STYLE.header}>
+                    <DrinkIcon style={{marginRight: 24}}/>
+                    <strong>noddle ui</strong>
+                </div>
             </div>
         </>
     )

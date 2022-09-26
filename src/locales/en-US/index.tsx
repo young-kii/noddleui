@@ -18,6 +18,10 @@ export default {
         '': 'Data Entry',
         select: 'Select'
     },
+    dataDisplay: {
+        '': 'Data Display',
+        table: 'Table'
+    },
     feedback: {
         '': 'feedback',
         loading: 'Loading'

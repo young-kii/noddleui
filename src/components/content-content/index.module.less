@@ -32,12 +32,17 @@
 }
 
 .bottom {
-  display: flex;
-  align-items: center;
-  min-height: 64px;
-  margin-top: 64px;
-  padding: 0 0 0 48px;
+  min-height: 240px;
   background-color: @base-inactive-background-color;
+  .header {
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+    margin-top: 64px;
+    padding: 0 0 0 48px;
+    background-color: @base-inactive-background-color;
+  }
+
 }
 
 .active {

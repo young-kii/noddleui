@@ -17,6 +17,10 @@ export default {
         '': '输入',
         select: 'Select 选择器'
     },
+    dataDisplay: {
+        '': '数据展示',
+        table: 'Table 表格'
+    },
     feedback: {
         '': '反馈',
         loading: 'Loading 加载中'
