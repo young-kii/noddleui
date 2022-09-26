@@ -9,76 +9,18 @@ import {MutableRefObject, useEffect, useRef} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 
-let code = `import React from 'react';
-import { Button, Space } from 'tdesign-react';
-
-export default function ButtonExample() {
-    const a = {
-        name: {
-            age: 18
-        }
-    }
-  return 
-    <Space direction="vertical">
-      <Space>
-        <Button variant="outline" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="dashed" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="text" ghost>
-          幽灵按钮
-        </Button>
-      </Space>
-      <Space>
-        <Button variant="outline" theme="primary" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="dashed" theme="primary" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="text" theme="primary" ghost>
-          幽灵按钮
-        </Button>
-      </Space>
-      <Space>
-        <Button variant="outline" theme="success" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="dashed" theme="success" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="text" theme="success" ghost>
-          幽灵按钮
-        </Button>
-      </Space>
-      <Space>
-        <Button variant="outline" theme="warning" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="dashed" theme="warning" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="text" theme="warning" ghost>
-          幽灵按钮
-        </Button>
-      </Space>
-      <Space>
-        <Button variant="outline" theme="danger" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="dashed" theme="danger" ghost>
-          幽灵按钮
-        </Button>
-        <Button variant="text" theme="danger" ghost>
-          幽灵按钮
-        </Button>
-      </Space>
-    </Space>
-  );
-}
-`
+let code = `<Space direction={"vertical"}>
+ <Space>
+   <Button >填充按钮</Button>
+   <Button border={"solid"}>描边按钮</Button>
+   <Button border={"dashed"}>虚框按钮</Button>
+ </Space>
+ <Space>
+  <Button border={"text"} >文字按钮</Button>
+  <Button border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+  <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
+ </Space>
+</Space>`
 
 export default () => {
 
@@ -112,11 +54,17 @@ export default () => {
                     </>
                 </ContentItem>
                 <CodeBox code={code}>
-                    <Space>
-                        <Button>填充按钮</Button>
-                        <Button border={"solid"}>描边按钮</Button>
-                        <Button border={"dashed"}>虚框按钮</Button>
-                        <Button border={"text"}>文字按钮</Button>
+                    <Space direction={"vertical"}>
+                        <Space>
+                            <Button >填充按钮</Button>
+                            <Button border={"solid"}>描边按钮</Button>
+                            <Button border={"dashed"}>虚框按钮</Button>
+                        </Space>
+                        <Space>
+                            <Button border={"text"} >文字按钮</Button>
+                            <Button border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
+                        </Space>
                     </Space>
                 </CodeBox>
                 <ContentItem id={'basic-button2'} label={'图标按钮'} paddingTop={64}>
@@ -146,38 +94,44 @@ export default () => {
                             <Button border={"solid"}>描边按钮</Button>
                             <Button border={"dashed"}>虚框按钮</Button>
                             <Button border={"text"}>文字按钮</Button>
+                            <Button border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
                             <Button type={"success"}>填充按钮</Button>
                             <Button type={"success"} border={"solid"}>描边按钮</Button>
                             <Button type={"success"} border={"dashed"}>虚框按钮</Button>
                             <Button type={"success"} border={"text"}>文字按钮</Button>
+                            <Button type={"success"} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button type={"success"} border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
                             <Button type={"danger"}>填充按钮</Button>
                             <Button type={"danger"} border={"solid"}>描边按钮</Button>
                             <Button type={"danger"} border={"dashed"}>虚框按钮</Button>
                             <Button type={"danger"} border={"text"}>文字按钮</Button>
+                            <Button type={"danger"} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button type={"danger"} border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
                             <Button type={"warning"}>填充按钮</Button>
                             <Button type={"warning"} border={"solid"}>描边按钮</Button>
                             <Button type={"warning"} border={"dashed"}>虚框按钮</Button>
                             <Button type={"warning"} border={"text"}>文字按钮</Button>
+                            <Button type={"warning"} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button type={"warning"} border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
                             <Button type={"primary"}>填充按钮</Button>
                             <Button type={"primary"} border={"solid"}>描边按钮</Button>
                             <Button type={"primary"} border={"dashed"}>虚框按钮</Button>
                             <Button type={"primary"} border={"text"}>文字按钮</Button>
+                            <Button type={"primary"} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button type={"primary"} border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
 
                     </Space>
                 </CodeBox>
-                <div className={STYLE.blocks}></div>
-                <div className={STYLE.blocks}></div>
-                <div className={STYLE.blocks}></div>
-                <div className={STYLE.blocks}></div>
             </ContentContent>
 
         </div>

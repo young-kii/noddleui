@@ -3,6 +3,8 @@ interface buttonProps {
     onClick?: () => any
     type?: 'default' | 'danger' | 'success' | 'primary' | 'warning',
     border?: 'default' | 'solid' | 'dashed' | 'text'
+    disabled?: boolean
+    backgroundStyle?: 'default' | 'none' | 'border'
 }
 
 interface baseButtonProps extends buttonProps{

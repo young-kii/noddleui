@@ -1,5 +1,6 @@
 import STYLE from './index.module.less'
 import React, {ReactNode, useEffect, useState} from "react";
+import DrinkIcon from "@/noddle-components/icons/drink-icon";
 
 interface contentContentProps {
     children?: ReactNode
@@ -20,7 +21,7 @@ export default (props: contentContentProps) => {
     let _items: contentItem[] = []
     useEffect(() => {
         const items = document.querySelectorAll('[id*=noddle-contentItem]') as any
-        let newItems = [],index = 0
+        let newItems = [], index = 0
         for (let item of items) {
             newItems.push({id: item?.id, label: item?.dataset?.label, top: item.offsetTop, index: index++})
         }
@@ -59,7 +60,14 @@ export default (props: contentContentProps) => {
                 </div>
                 <div className={STYLE.right}>
                     <div className={STYLE.active}
-                         style={{transform:`translateY(${itemIndex * 24}px)`,position:"absolute",transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",fontSize:'24px',lineHeight:'24px'}}>·</div>
+                         style={{
+                             transform: `translateY(${itemIndex * 24}px)`,
+                             position: "absolute",
+                             transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",
+                             fontSize: '24px',
+                             lineHeight: '24px'
+                         }}>·
+                    </div>
                     {
                         contentItems.map((item: contentItem) => {
                             return <div key={item.id}
@@ -71,6 +79,10 @@ export default (props: contentContentProps) => {
                         })
                     }
                 </div>
+            </div>
+            <div className={STYLE.bottom}>
+                <DrinkIcon style={{marginRight: 24}}/>
+                <strong>noddle ui</strong>
             </div>
         </>
     )

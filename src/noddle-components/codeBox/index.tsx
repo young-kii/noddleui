@@ -12,7 +12,7 @@ import BugIcon from "@/noddle-components/icons/bug-icon";
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
 const punctuation = new Set(['.', '(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
-const tags = new Set(['Cascader', 'div', 'Button']);
+const tags = new Set(['Cascader', 'div', 'Button', 'Space']);
 const special = ['React']
 
 export default (props: _CodeBox.codeBoxProps) => {
