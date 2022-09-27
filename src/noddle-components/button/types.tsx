@@ -10,6 +10,7 @@ interface buttonProps {
     backgroundStyle?: 'default' | 'none' | 'border'
     noPadding?: boolean
     textWidth?: boolean
+    block?: boolean
 }
 
 interface baseButtonProps extends buttonProps{

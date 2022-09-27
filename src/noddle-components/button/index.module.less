@@ -52,7 +52,7 @@ each(@button-types, {
 })
 
 each(@button-types, {
-  .click[data-buttontype=@{value}][data-bordertype=solid], .click[data-buttontype=@{value}][data-bordertype=default] {
+  .click[data-buttontype=@{value}][data-bordertype=solid], .click[data-buttontype=@{value}][data-bordertype=default], .click[data-buttontype=@{value}][data-bordertype=dashed] {
     animation: .6s ease @value;
   }
 })
@@ -68,6 +68,10 @@ each(@button-types, {
 .container[data-bordertype=solid][data-buttontype=default]:not(.disabled):hover, .container[data-bordertype=dashed][data-buttontype=default]:not(.disabled):hover{
   color: @noddle-main-color!important;
   border-color: currentColor;
+}
+
+.container[data-bordertype=solid], .container[data-bordertype=dashed], .container[data-backgroundstyle=none], .container[data-backgroundstyle=border] {
+  padding: 15px!important;
 }
 
 each(@button-borderTypes, {

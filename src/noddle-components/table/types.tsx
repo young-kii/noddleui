@@ -8,6 +8,7 @@ namespace _Table {
         autoWidth?: boolean
         bordered?: boolean
         cellPadding?:number
+        fontSize?: number
     }
 }
 

@@ -8,8 +8,9 @@ export default (props: _Text.textProps) => {
     const {children} = props
 
     return (
+        children ?
         <span className={STYLE.container}>
             {children}
-        </span>
+        </span> : <></>
     )
 }

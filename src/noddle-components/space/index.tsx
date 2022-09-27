@@ -1,4 +1,4 @@
-import {spaceProps} from "@/noddle-components/space/types";
+import {spaceProps} from "@/types";
 import STYLE from './index.module.less'
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {CSSProperties} from "react";

@@ -15,7 +15,7 @@ export default (props: buttonProps) => {
 }
 
 const Button = (props: baseButtonProps) => {
-    const {children, onClick, type, border, disabled, backgroundStyle, noPadding, textWidth} = props
+    const {children, onClick, type, border, disabled, backgroundStyle, noPadding, textWidth, block} = props
     const [click, setClick] = useState(false)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
     const style_container = styles({
@@ -25,7 +25,8 @@ const Button = (props: baseButtonProps) => {
     })
     const _style = {
         padding: noPadding ? 0 : 16,
-        minWidth: textWidth ? 0 : 60
+        minWidth: textWidth ? 0 : 60,
+        width: block ? '100%' : ''
     }
     const handleClick = () => {
         if (disabled)

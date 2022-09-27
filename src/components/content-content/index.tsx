@@ -5,6 +5,7 @@ import DrinkIcon from "@/noddle-components/icons/drink-icon";
 interface contentContentProps {
     children?: ReactNode
     onScroll?: (scrollTop: number) => any
+    width?: number | string
 }
 
 interface contentItem {
@@ -15,7 +16,7 @@ interface contentItem {
 }
 
 export default (props: contentContentProps) => {
-    const {children, onScroll} = props
+    const {children, width, onScroll} = props
     const [contentItems, setItems] = useState([]) as any
     const [selectedItem, setSelectedItem] = useState('')
     const [itemIndex, setItemIndex] = useState(0)
@@ -57,7 +58,7 @@ export default (props: contentContentProps) => {
     return (
         <>
             <div className={STYLE.container}>
-                <div className={STYLE.left}>
+                <div className={STYLE.left} style={{width}}>
                     {children}
                 </div>
                 <div className={STYLE.right}>
