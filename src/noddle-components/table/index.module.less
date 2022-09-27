@@ -20,9 +20,9 @@
     border-right: 1px solid @base-inactive-background-color;
   }
 
-  td:nth-last-child(1) {
-    padding-right: 11px;
-  }
+  //td:nth-last-child(1) {
+  //  padding-right: 11px;
+  //}
 
   th:nth-child(1), td:nth-child(1) {
     border-left: 1px solid @base-inactive-background-color;
@@ -79,4 +79,10 @@
 
 .nowrap {
   white-space: nowrap;
+}
+
+td:not(.bordered),th:not(.bordered) {
+  border-left: none!important;
+  border-right: none!important;
+  border-radius: 0!important;
 }

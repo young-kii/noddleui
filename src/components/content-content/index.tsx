@@ -4,6 +4,7 @@ import DrinkIcon from "@/noddle-components/icons/drink-icon";
 
 interface contentContentProps {
     children?: ReactNode
+    onScroll?: (scrollTop: number) => any
 }
 
 interface contentItem {
@@ -14,7 +15,7 @@ interface contentItem {
 }
 
 export default (props: contentContentProps) => {
-    const {children} = props
+    const {children, onScroll} = props
     const [contentItems, setItems] = useState([]) as any
     const [selectedItem, setSelectedItem] = useState('')
     const [itemIndex, setItemIndex] = useState(0)
@@ -30,6 +31,7 @@ export default (props: contentContentProps) => {
         _items = newItems
         const scroll = document.getElementById('noddle-content') as HTMLDivElement
         const handleScroll = (e: any) => {
+            onScroll?.(e.target.scrollTop)
             for (let _item of _items) {
                 if (e.target.scrollTop >= _item.top + 64) {
                     setSelectedItem(_item.id)

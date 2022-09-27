@@ -64,7 +64,7 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
         setTranslateX(tranX)
         if (selectedTab)
         {
-            onChange?.({tab: selectedTab})
+            onChange?.({tab: selectedTab,label: tabs[selectedId].label})
             nav('?tab='+selectedTab)
         }
         if(options.length !== 0)

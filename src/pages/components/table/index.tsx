@@ -4,6 +4,7 @@ import React from "react";
 import Button from "@/noddle-components/button";
 import CodeBox from "@/noddle-components/codeBox";
 import Space from "@/noddle-components/space";
+import Text from "@/noddle-components/text";
 
 export default () => {
     interface DataType {
@@ -25,7 +26,10 @@ export default () => {
         },
         {
             title: '地址',
-            dataIndex: 'address'
+            dataIndex: 'address',
+            render: value => (
+                <Text>{value}</Text>
+            )
         },
         {
             title: '操作',
@@ -33,8 +37,8 @@ export default () => {
             render: (value, records) => (
                 <>
                     <Space>
-                        <Button type={"primary"}>{value}</Button>
-                        <Button type={"primary"}>{value}</Button>
+                        <Button type={"primary"} border={"text"} backgroundStyle={"none"} noPadding textWidth>{value}</Button>
+                        <Button type={"danger"}>{value}</Button>
                     </Space>
                 </>
             )
@@ -84,7 +88,7 @@ export default () => {
     return (
         <div style={{padding: 16}}>
             <CodeBox code={'nothing'}>
-                <Table columns={columns} dataSource={data}/>
+                <Table columns={columns} dataSource={data} bordered/>
             </CodeBox>
         </div>
     )

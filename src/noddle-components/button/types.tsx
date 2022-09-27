@@ -1,13 +1,15 @@
 import {CSSProperties} from "react";
+import {commonColors} from "@/noddle-components/commonTypes";
 
 interface buttonProps {
     children: any;
-    style?: CSSProperties;
     onClick?: () => any
-    type?: 'default' | 'danger' | 'success' | 'primary' | 'warning',
+    type?: commonColors,
     border?: 'default' | 'solid' | 'dashed' | 'text'
     disabled?: boolean
     backgroundStyle?: 'default' | 'none' | 'border'
+    noPadding?: boolean
+    textWidth?: boolean
 }
 
 interface baseButtonProps extends buttonProps{

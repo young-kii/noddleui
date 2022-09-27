@@ -5,14 +5,16 @@ import _Segment from "@/noddle-components/segment/types";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {__function} from "@/noddle-components/globalConfig/types";
 
+export interface tabsConfig {
+    tabs: _Segment.tab[],
+    selected?: string,
+    onChange?: (value: {tab: string, label: string}) => any
+}
+
 interface contentHeaderProps {
     title: string,
     description: string,
-    tabsConfig?: {
-        tabs: _Segment.tab[],
-        selected?: string,
-        onChange?: __function
-    }
+    tabsConfig?: tabsConfig
 }
 
 export default (props: contentHeaderProps) => {

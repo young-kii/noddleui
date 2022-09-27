@@ -5,7 +5,9 @@ namespace _Table {
         titleAlign?: 'left' | 'right' | 'center'
         cellAlign?: 'left' | 'right' | 'center'
         wrap?: 'nowrap' | 'wrap'
-        width?: 'max-content' | string | number
+        autoWidth?: boolean
+        bordered?: boolean
+        cellPadding?:number
     }
 }
 
