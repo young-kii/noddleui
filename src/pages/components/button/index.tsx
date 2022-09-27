@@ -38,7 +38,6 @@ export default () => {
         ],
         onChange: (value) => {
             setTab(value.tab)
-            console.log(value)
             noddle_content?.scrollTo({
                 top: scrollHistory[value.tab],
                 behavior: "smooth"
@@ -47,7 +46,7 @@ export default () => {
     } as tabsConfig
     const handleScroll = (scrollTop: number) => {
         setScrollHistory({...scrollHistory,[tab]:scrollTop})
-        console.log(tab,scrollTop)
+        // console.log(tab,scrollTop)
     }
     const map = {
         demo: <Demo onScroll={handleScroll}/>,

@@ -16,6 +16,18 @@
     width: max-content;
     padding-right: 5%;
     height: 100%;
+    animation: .8s ease show forwards;
+    min-width: 115px;
+    @keyframes show {
+      from {
+        opacity: 0;
+        transform: translateX(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
     .nav {
       &:not([data-selected=true]):hover {
         color: @base-hover-fontColor;
