@@ -88,7 +88,7 @@ export default () => {
     return (
         <div style={{padding: 16}}>
             <CodeBox code={'nothing'}>
-                <Table columns={columns} dataSource={data} bordered/>
+                <Table columns={columns} dataSource={data} bordered={true} />
             </CodeBox>
         </div>
     )

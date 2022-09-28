@@ -260,7 +260,7 @@ const Api = (props: tabItemsProps) => {
                 <ContentItem id={'button-props'} label={'Button Props'} paddingTop={64}>
                     <>
                         <h3>Button Props</h3>
-                        <Table columns={columns} titleAlign={"left"} cellAlign={"left"} dataSource={data}/>
+                        <Table columns={columns} dataSource={data} bordered/>
                     </>
                 </ContentItem>
             </ContentContent>

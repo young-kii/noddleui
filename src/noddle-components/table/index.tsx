@@ -10,20 +10,26 @@ import BeachIcon from "@/noddle-components/icons/beach-icon";
 
 export type ColumnsType<T> = {
     title: string,
-    style?: CSSProperties,
+    headerStyle?: CSSProperties,
+    cellStyle?: CSSProperties,
     dataIndex: keyof T,
     render?: (value: any, records: T) => any
 }[]
 
 export default (props: _Table.tableProps) => {
-    const {dataSource, columns, titleAlign, cellAlign, wrap, autoWidth, bordered, cellPadding, fontSize} = props
+    const {dataSource, columns, titleAlign, cellAlign, wrap, autoWidth, bordered, cellPadding, fontSize, outline, crossing} = props
 
     const newColumns = columns ? (columns.length === 0 ? [] : columns) : [] as ColumnsType<any>
 
     const newData = dataSource ? (dataSource.length === 0 ? [] : dataSource) : [] as typeof dataSource
-    const newTitleAlign = titleAlign || 'center'
-    const newCellAlign = cellAlign || 'center'
+    const newTitleAlign = titleAlign || 'left'
+    const newCellAlign = cellAlign || 'left'
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
+    const STYLE_container = styles({
+        container: true,
+        outline: outline || bordered,
+        crossing
+    })
     const style_container = {
         width: autoWidth ? 'max-content' : '100%',
         fontSize: fontSize || 14
@@ -43,18 +49,17 @@ export default (props: _Table.tableProps) => {
         bordered
     })
     return (
-        <div className={STYLE.container} style={style_container}>
-            <table cellPadding={cellPadding === 0 ? 0 : cellPadding ? cellPadding : 12} cellSpacing={0}>
+        <div className={STYLE_container} style={style_container}>
+            <table cellPadding={cellPadding === 0 ? 0 : cellPadding ? cellPadding : 16} cellSpacing={0}>
                 <thead className={STYLE.header}>
                 <tr>
                     {
                         newColumns.map(item => {
-                            return <th className={style_th} style={item.style} key={item.dataIndex}>{item.title}</th>
+                            return <th className={style_th} style={item.headerStyle} key={item.dataIndex}>{item.title}</th>
                         })
                     }
                 </tr>
                 </thead>
-
                         <tbody>
                         {
                             newData.map((item) => {
@@ -64,16 +69,15 @@ export default (props: _Table.tableProps) => {
                                             let content: JSX.Element = <td className={style_td} key={column.dataIndex}/>
                                             Object.keys(item).map((key, index) => {
                                                 if (key === column.dataIndex) {
-                                                    console.log(item,column)
                                                     if (column.render && typeof column.render === "function")
                                                     {
-                                                        content = <td className={style_td} style={column.style} key={index}>
+                                                        content = <td className={style_td} style={column.cellStyle} key={index}>
                                                             {
                                                                 column.render(item[key], item)
                                                             }
                                                         </td>
                                                     }
-                                                    else content = <td className={style_td} style={column.style} key={index}>{item[key]}</td>
+                                                    else content = <td className={style_td} style={column.cellStyle} key={index}>{item[key]}</td>
                                                 }
                                                 return false
                                             })

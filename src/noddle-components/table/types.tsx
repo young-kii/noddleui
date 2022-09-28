@@ -9,6 +9,8 @@ namespace _Table {
         bordered?: boolean
         cellPadding?:number
         fontSize?: number
+        outline?: boolean
+        crossing?: boolean
     }
 }
 
