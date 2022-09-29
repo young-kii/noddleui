@@ -174,7 +174,7 @@ export default (props: _CodeBox.codeBoxProps) => {
                 {children}
             </div>
             <div className={STYLE.option_buttons}>
-                <Space>
+                <Space gap={4}>
                     <div className={STYLE.option_button}>
                         <BugIcon/>
                     </div>

@@ -53,7 +53,13 @@ each(@button-types, {
 
 each(@button-types, {
   .click[data-buttontype=@{value}][data-bordertype=solid], .click[data-buttontype=@{value}][data-bordertype=default], .click[data-buttontype=@{value}][data-bordertype=dashed] {
-    animation: .6s ease @value;
+    animation: .8s ease default;
+  }
+})
+
+each(@button-types, {
+  .click[data-buttontype=@{value}][data-bordertype=solid][data-clickeffect=currentColor], .click[data-buttontype=@{value}][data-bordertype=default][data-clickeffect=currentColor], .click[data-buttontype=@{value}][data-bordertype=dashed][data-clickeffect=currentColor] {
+    animation: .8s ease @value;
   }
 })
 
@@ -96,7 +102,7 @@ each(@button-borderTypes, {
 }
 
 .click[data-bordertype=text]:not([data-backgroundstyle=none]) {
-  animation: .6s ease default;
+  animation: .8s ease default;
 }
 
 
@@ -129,7 +135,7 @@ each(@button-borderTypes, {
 
 @keyframes default {
   0% {
-    outline: 0 solid rgba(0, 0, 0, .1);
+    outline: 0 solid rgba(0, 0, 0, .15);
   }
   100% {
     outline: 5px solid transparent;

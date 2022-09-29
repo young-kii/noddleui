@@ -2,13 +2,17 @@ import _Table from "@/noddle-components/table/types";
 import STYLE from './index.module.less'
 import React, {CSSProperties} from "react";
 import {item} from "@/layout/nav/nav-items/index.d";
+import ReactGridLayout from "react-grid-layout";
+
 import table from "@/pages/components/table";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import Space from "@/noddle-components/space";
 import BeachIcon from "@/noddle-components/icons/beach-icon";
+import Draggable from "react-draggable";
 
 
 export type ColumnsType<T> = {
+    position?: 'left' | 'center' | 'right'
     title: string,
     headerStyle?: CSSProperties,
     cellStyle?: CSSProperties,
@@ -17,7 +21,20 @@ export type ColumnsType<T> = {
 }[]
 
 export default (props: _Table.tableProps) => {
-    const {dataSource, columns, titleAlign, cellAlign, wrap, autoWidth, bordered, cellPadding, fontSize, outline, crossing} = props
+    const {
+        dataSource,
+        columns,
+        titleAlign,
+        cellAlign,
+        wrap,
+        autoWidth,
+        bordered,
+        cellPadding,
+        fontSize,
+        outline,
+        crossing,
+        rowKey
+    } = props
 
     const newColumns = columns ? (columns.length === 0 ? [] : columns) : [] as ColumnsType<any>
 
@@ -55,39 +72,41 @@ export default (props: _Table.tableProps) => {
                 <tr>
                     {
                         newColumns.map(item => {
-                            return <th className={style_th} style={item.headerStyle} key={item.dataIndex}>{item.title}</th>
+                            return <th className={style_th} style={{...item.headerStyle, textAlign: item.position}}
+                                       key={item.dataIndex}>{item.title}</th>
                         })
                     }
                 </tr>
                 </thead>
-                        <tbody>
-                        {
-                            newData.map((item) => {
-                                return <tr key={item.key}>
-                                    {
-                                        columns.map(column => {
-                                            let content: JSX.Element = <td className={style_td} key={column.dataIndex}/>
-                                            Object.keys(item).map((key, index) => {
-                                                if (key === column.dataIndex) {
-                                                    if (column.render && typeof column.render === "function")
+                <tbody>
+                {
+                    newData.map((item) => {
+                        return <tr key={rowKey ? item[rowKey] : item.key}>
+                            {
+                                newColumns.map(column => {
+                                    let content: JSX.Element = <td className={style_td} key={column.dataIndex}/>
+                                    Object.keys(item).map((key, index) => {
+                                        if (key === column.dataIndex) {
+                                            if (column.render && typeof column.render === "function") {
+                                                content = <td className={style_td}
+                                                              style={{...column.cellStyle, textAlign: column.position}}
+                                                              key={index}>
                                                     {
-                                                        content = <td className={style_td} style={column.cellStyle} key={index}>
-                                                            {
-                                                                column.render(item[key], item)
-                                                            }
-                                                        </td>
+                                                        column.render(item[key], item)
                                                     }
-                                                    else content = <td className={style_td} style={column.cellStyle} key={index}>{item[key]}</td>
-                                                }
-                                                return false
-                                            })
-                                            return content
-                                        })
-                                    }
-                                </tr>
-                            })
-                        }
-                        </tbody>
+                                                </td>
+                                            } else content = <td className={style_td} style={{...column.cellStyle,textAlign: column.position}}
+                                                                 key={index}>{item[key]}</td>
+                                        }
+                                        return false
+                                    })
+                                    return content
+                                })
+                            }
+                        </tr>
+                    })
+                }
+                </tbody>
             </table>
             {
                 newData.length === 0 ? <Empty/> : ''

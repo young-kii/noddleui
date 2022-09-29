@@ -10,6 +10,8 @@ import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Table, {ColumnsType} from "@/noddle-components/table";
 import Text from "@/noddle-components/text";
+import {apiTableColumns, DataType} from "@/types";
+import TableApi from "@/components/table-api";
 
 let code = `<Space direction={"vertical"}>
  <Space>
@@ -124,7 +126,7 @@ const Demo = (props: tabItemsProps) => {
                 <ContentItem id={'block-button'} label={'block按钮'} paddingTop={64}>
                     <>
                         <h3>Block按钮</h3>
-                        <p>Block按钮在宽度上充满其所在的父容器（无 padding 和 margin 值）。该按钮常见于移动端和一些表单场景中。</p>
+                        <p><Text type={"default"}>Block</Text>属性将使其宽度适合其父元素宽度。</p>
                     </>
                 </ContentItem>
                 <CodeBox code={'block button'}>
@@ -194,76 +196,47 @@ const Demo = (props: tabItemsProps) => {
 const Api = (props: tabItemsProps) => {
     const {onScroll} = props
 
-    interface DataType {
-        key: React.Key
-        property: string
-        description?: string | ReactNode
-        type: string
-        defaultValue: string
-        required: 'yes' | 'no'
-    }
-
-    const columns: ColumnsType<DataType> = [
-        {
-            title: '参数',
-            dataIndex: 'property',
-            style: {
-                whiteSpace: 'nowrap'
-            },
-            render: value => <strong>{value}</strong>
-        },
-        {
-            title: '说明',
-            dataIndex: 'description'
-        },
-        {
-            title: '类型',
-            dataIndex: 'type',
-            style: {
-              wordBreak: 'break-word'
-            },
-            render: value => <Text>{value}</Text>
-        },
-        {
-            title: '默认值',
-            dataIndex: 'defaultValue'
-        },
-        {
-            title: '必传',
-            dataIndex: 'required'
-        }
-    ]
     const data: DataType[] = [
         {
-            key: 1,
             property: 'children',
-            description: <pre>{`import react from 'as';
-            console.log(213)
-            `}</pre>,
-            type: 'string',
-            required: 'yes',
+            type: "string",
+            description: '按钮显示的文本',
+            required: 'YES',
             defaultValue: '-'
         },
         {
-            key: 2,
             property: 'onClick',
-            description: '点击按钮时的回调点击按钮时的回调点击按钮时的回调点击按钮时的回调点击按钮时的回调点击按钮时的回调',
-            type: '( event ) => void',
-            required: 'no',
+            description: '点击按钮时的回调',
+            type: '( Event ) => void',
+            required: 'NO',
             defaultValue: '-'
+        },
+        {
+            property: 'type',
+            description: <>按钮类型，改变的是按钮的<Text bolder pure type={"danger"}>颜色</Text></>,
+            type: 'default | danger | success | primary | warning',
+            required: 'NO',
+            defaultValue: 'default'
+        },
+        {
+            property: 'border',
+            description: '按钮边框的样式',
+            type:'default | solid | dashed | text',
+            required: 'NO',
+            defaultValue: 'default'
+        },
+        {
+            property: 'disabled',
+            description: '按钮是否禁用',
+            type: <Text pure bolder type={"warning"}>boolean</Text>,
+            required: 'NO',
+            defaultValue: 'default'
         }
     ]
 
     return (
         <>
-            <ContentContent onScroll={onScroll} width={'100%'}>
-                <ContentItem id={'button-props'} label={'Button Props'} paddingTop={64}>
-                    <>
-                        <h3>Button Props</h3>
-                        <Table columns={columns} dataSource={data} bordered/>
-                    </>
-                </ContentItem>
-            </ContentContent>
+            <TableApi data={data} onScroll={onScroll} label={'Button Props'}/>
         </>
     )
 }

@@ -1,15 +1,23 @@
 @import "src/assets/css/global";
 
 @textColor-danger: #cd4646;
-@textBackgroundColor-danger: #f8e2e2;
+@textBackgroundColor-danger: #f8e8e8;
+
+@textColor-success: #0d8a02;
+@textBackgroundColor-success: #e8f4e4;
+
+@textColor-primary: #3285f2;
+@textBackgroundColor-primary: #eaeef1;
+
+@textColor-warning: #e09404;
+@textBackgroundColor-warning: #f5efe3;
 
 @textColor-default: #555555;
 @textBackgroundColor-default: #edecec;
 
-
-
 .container {
-  padding: 2px 8px;
+  padding: 0 6px;
+  margin: 0 4px;
   border-radius: @base-border-radius;
   background-color: @textBackgroundColor-default;
   color: @textColor-default;
@@ -18,4 +26,61 @@
 .danger {
   background-color: @textBackgroundColor-danger;
   color: @textColor-danger;
+}
+
+.primary {
+  background-color: @textBackgroundColor-primary;
+  color: @textColor-primary;
+}
+
+.warning {
+  background-color: @textBackgroundColor-warning;
+  color: @textColor-warning;
+}
+
+.success {
+  background-color: @textBackgroundColor-success;
+  color: @textColor-success;
+}
+
+.pure {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.bolder {
+  font-weight: 700;
+}
+
+@line-types: solid, dashed, dotted;
+
+each(@line-types, {
+  .underline[class*=@{value}] {
+    text-decoration: 1px @value currentColor underline;
+  }
+
+  .underline[class*=bolder][class*=@{value}] {
+    text-decoration: 2px @value currentColor underline;
+  }
+
+  .@{value} {
+    opacity: 1;
+  }
+})
+
+.through {
+  text-decoration: 1px solid currentColor line-through;
+}
+
+.overline {
+  text-decoration: 1px solid currentColor overline;
+}
+
+.overline[class*=bolder] {
+  text-decoration: 2px solid currentColor overline;
+}
+
+.isButton {
+  cursor: pointer;
 }

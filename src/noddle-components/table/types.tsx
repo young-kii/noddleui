@@ -1,3 +1,5 @@
+import React from "react";
+
 namespace _Table {
     export interface tableProps {
         dataSource: any[]
@@ -11,6 +13,7 @@ namespace _Table {
         fontSize?: number
         outline?: boolean
         crossing?: boolean
+        rowKey?: React.Key
     }
 }
 
