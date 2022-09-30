@@ -1,6 +1,5 @@
 import React, {lazy, Suspense} from "react";
 import {Navigate, RouteObject, useRoutes} from "react-router-dom";
-import defaultPath = SyncRoute.defaultPath;
 import Loading from "@/noddle-components/loading";
 
 namespace SyncRoute {
@@ -18,7 +17,7 @@ const RouteTable: SyncRoute.Routes[] = [
         component: lazy(() => import('@/layout')),
         children: [
             {
-                path: '/',
+                path: '',
                 component: () => <Navigate to={SyncRoute.defaultPath}/>
             },
             {
@@ -38,6 +37,10 @@ const RouteTable: SyncRoute.Routes[] = [
                 component: lazy(() => import('@/pages/components')),
                 children: [
                     {
+                        path: '',
+                        component: () => <Navigate to={'globalConfig'}/>
+                    },
+                    {
                         path: 'globalConfig',
                         component: lazy(() => import('@/pages/components/globalConfig'))
                     },
@@ -56,6 +59,14 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'table',
                         component: lazy(() => import('@/pages/components/table'))
+                    },
+                    {
+                        path: 'divider',
+                        component: lazy(() => import('@/pages/components/divider'))
+                    },
+                    {
+                        path: 'space',
+                        component: lazy(() => import('@/pages/components/space'))
                     }
                 ]
             },

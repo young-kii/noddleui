@@ -41,7 +41,9 @@ const PureInput = () => {
 
     return (
         <div className={STYLE.input_container}>
-            <input readOnly={readonly} ref={input} style={{width: inputWidth, minWidth: initWidth || autoWidth ? (value ? 0 : 70) : 70}} placeholder={placeholder || 'input...'}
+            <input readOnly={readonly} ref={input}
+                   style={{width: inputWidth, minWidth: initWidth || autoWidth ? (value ? 0 : 70) : 70}}
+                   placeholder={placeholder || 'input...'}
                    className={STYLE.input} value={value || ''}
                    onChange={(event) => handleChange(event)}/>
             <span ref={input_span} className={STYLE.input_span}>{value || ''}</span>

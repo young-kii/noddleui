@@ -1,14 +1,9 @@
 import _Table from "@/noddle-components/table/types";
 import STYLE from './index.module.less'
 import React, {CSSProperties} from "react";
-import {item} from "@/layout/nav/nav-items/index.d";
-import ReactGridLayout from "react-grid-layout";
-
 import table from "@/pages/components/table";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import Space from "@/noddle-components/space";
 import BeachIcon from "@/noddle-components/icons/beach-icon";
-import Draggable from "react-draggable";
 
 
 export type ColumnsType<T> = {

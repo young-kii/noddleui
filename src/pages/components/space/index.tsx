@@ -86,8 +86,12 @@ const Demo = (props: tabItemsProps) => {
                     <>
                         <h3>基础按钮</h3>
                         <p>基础按钮包括填充按钮、描边按钮、虚框按钮和文字按钮。</p>
-                        <h4>填充按钮</h4>
-                        <p>一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作。</p>
+                        <h4>Fill button</h4>
+                        <p>Generally used for the main button, it is the operation that users need to pay attention to
+                            in the whole page with the highest priority, guiding them to pay attention and operate.
+                            Generally used for the main button, it is the operation that users need to pay attention to
+                            in the whole page with the highest priority, directing users to pay attention and
+                            operate.</p>
                         <h4>描边按钮</h4>
                         <p>描边按钮常见白底加文字的形式，在视觉强调程度上弱于填充按钮，通常与填充按钮搭配成组使用。</p>
                         <h4>虚框按钮</h4>
@@ -156,7 +160,7 @@ const Demo = (props: tabItemsProps) => {
                             <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
-                            <Button type={"success"} >填充按钮</Button>
+                            <Button type={"success"}>填充按钮</Button>
                             <Button type={"success"} border={"solid"}>描边按钮</Button>
                             <Button type={"success"} border={"dashed"}>虚框按钮</Button>
                             <Button type={"success"} border={"text"}>文字按钮</Button>
@@ -222,7 +226,7 @@ const Api = (props: tabItemsProps) => {
         {
             property: 'border',
             description: '按钮边框的样式',
-            type:'default | solid | dashed | text',
+            type: 'default | solid | dashed | text',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },
@@ -236,7 +240,7 @@ const Api = (props: tabItemsProps) => {
         {
             property: 'backgroundStyle',
             description: '按钮是否填充/背景色是否透明',
-            type:'default | none | border',
+            type: 'default | none | border',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },

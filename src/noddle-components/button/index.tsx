@@ -15,6 +15,7 @@ export default (props: buttonProps) => {
 }
 
 const Button = (props: baseButtonProps) => {
+
     const {children, onClick, type, border, disabled, backgroundStyle, noPadding, textWidth, block, clickEffect} = props
     const [click, setClick] = useState(false)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
@@ -23,11 +24,13 @@ const Button = (props: baseButtonProps) => {
         click,
         disabled
     })
+
     const _style = {
+        width: block ? '100%' : '',
         padding: noPadding ? 0 : 16,
-        minWidth: textWidth ? 0 : 60,
-        width: block ? '100%' : ''
+        minWidth: textWidth ? 0 : 60
     }
+
     const handleClick = () => {
         if (disabled)
             return null
@@ -37,12 +40,13 @@ const Button = (props: baseButtonProps) => {
             setClick(true)
         }, 10)
     }
+
     return (
         <div className={style_container} style={_style} onClick={handleClick}
              data-buttontype={type || 'default'}
-             data-backgroundstyle={backgroundStyle || 'default'}
              data-bordertype={border || 'default'}
              data-clickeffect={clickEffect || 'default'}
+             data-backgroundstyle={backgroundStyle || 'default'}
         >
             {children}
         </div>

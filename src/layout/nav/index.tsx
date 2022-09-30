@@ -1,8 +1,8 @@
 import STYLE from './index.module.less'
 import NavItems from "@/layout/nav/nav-items";
 import itemList from "@/layout/nav/nav-items/config";
-import TextGrammerArrowRight from "@/noddle-components/icons/text-grammer-arrow-right";
-import TextGrammerArrowLeft from "@/noddle-components/icons/text-grammer-arrow-left";
+import TextGrammarArrowRight from "@/noddle-components/icons/text-grammar-arrow-right";
+import TextGrammarArrowLeft from "@/noddle-components/icons/text-grammar-arrow-left";
 import {useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 
@@ -30,9 +30,9 @@ export default () => {
                 <div className={STYLE.open_button} onClick={handleClick}>
                     {
                         open ?
-                            <TextGrammerArrowLeft width={28} height={28}/>
+                            <TextGrammarArrowLeft width={28} height={28}/>
                             :
-                            <TextGrammerArrowRight width={28} height={28}/>
+                            <TextGrammarArrowRight width={28} height={28}/>
                     }
                 </div>
                 <div className={cover} onClick={handleClick}/>

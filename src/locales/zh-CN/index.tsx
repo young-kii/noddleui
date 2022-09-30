@@ -13,6 +13,11 @@ export default {
         '': '基础',
         button: '按钮'
     },
+    layout: {
+        '': '布局',
+        space: 'Space 间距',
+        divider: 'Divider 分割线'
+    },
     dataEntry: {
         '': '输入',
         select: 'Select 选择器'

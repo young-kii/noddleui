@@ -1,10 +1,11 @@
 @import "src/assets/css/global";
 
 .container {
+
   position: relative;
   @media screen and (max-width: @media-screen-width) {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: -260px;
     z-index: 100;
     transition: .3s ease;
@@ -15,7 +16,7 @@
   .nav {
     position: relative;
     transform: translateX(0);
-    transition: 0.8s ease;
+    transition: 0.8s ease ;
     padding: 0 0 32px 12px;
     width: 260px;
     height: 100vh;

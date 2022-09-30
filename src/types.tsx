@@ -32,12 +32,16 @@ const apiTableColumns: ColumnsType<DataType> = [
     },
     {
         title: '说明',
-        dataIndex: 'description'
+        dataIndex: 'description',
+        cellStyle: {
+            minWidth: 200
+        }
     },
     {
         title: '类型',
         dataIndex: 'type',
         cellStyle: {
+            minWidth: 100,
             wordBreak: "break-word"
         },
         render: value => typeof value === 'string' ? <Text type={"danger"} bolder pure>{value}</Text> : value
@@ -63,6 +67,7 @@ const apiTableColumns: ColumnsType<DataType> = [
         cellStyle: {
             whiteSpace: "nowrap"
         },
+        render: value => <Text fontSize={12} color={'black'} pure>{value}</Text>
     }
 ]
 

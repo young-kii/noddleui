@@ -1,9 +1,11 @@
 import STYLE from './index.module.less'
-import Select from "@/noddle-components/select";
-import {LocaleConfig, useTranslation} from '@/noddle-components/globalConfig/Config';
+import {LocaleConfig} from '@/noddle-components/globalConfig/Config';
+import Divider from "@/noddle-components/divider";
+import Text from "@/noddle-components/text";
+import BeachIcon from "@/noddle-components/icons/beach-icon";
 
 export default () => {
-    const t = useTranslation()
+
     return (
         <>
             <div className={STYLE.header}>

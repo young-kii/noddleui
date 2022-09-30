@@ -12,7 +12,7 @@ type tableApiProps = {
 export default (props: tableApiProps) => {
     const {onScroll, data, label} = props
     const sort = (data: any[]) => {
-        return  data.sort((a,b)=>{
+        return data.sort((a, b) => {
             return a.property.localeCompare(b.property)
         })
     }

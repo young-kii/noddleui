@@ -79,6 +79,7 @@ export namespace LocaleConfig {
             <>
                 <Select autoWidth initValue={locale} value={locale} readonly
                         onChange={(value) => {
+                            console.log(value)
                             setLocale(value.value)
                         }}>
                     {

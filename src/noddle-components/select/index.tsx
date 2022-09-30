@@ -52,7 +52,11 @@ const Select = () => {
     const {props} = context as _Select.selectContext
     const {children, onChange, value, _map} = props
     const [ifFocus, setFocus] = useState(false)
-
+    const styles = ClassNameConfig.mClassNames.bind(STYLE)
+    const style_container = styles({
+        select_container: true,
+        focus: ifFocus
+    })
     useEffect(() => {
         if (value)
             if (onChange) {
@@ -81,7 +85,7 @@ const Select = () => {
     }
 
     return (
-        <div className={STYLE.select_container + ' ' + (ifFocus ? STYLE.focus : '')}
+        <div className={style_container}
              onClick={clickContainer}>
             <Input {...{...props, value: _map ? _map[value] : '', onChange: () => null}}/>
             <ArrowDown width={16} height={16} style={arrayDownStyle} active={ifFocus}/>

@@ -1,5 +1,6 @@
 import {commonColors} from "@/noddle-components/commonTypes";
-import {MouseEventHandler} from "react";
+import {CSSProperties, MouseEventHandler} from "react";
+import {DataType} from "@/types";
 
 namespace _Text {
     export interface textProps {
@@ -11,6 +12,8 @@ namespace _Text {
         lineType?: 'solid' | 'dashed' | 'dotted'
         isButton?: boolean
         onClick?: MouseEventHandler<HTMLSpanElement>
+        fontSize?: number
+        color?: string
     }
 }
 

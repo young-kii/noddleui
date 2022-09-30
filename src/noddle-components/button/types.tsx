@@ -11,7 +11,7 @@ interface buttonProps {
     noPadding?: boolean
     textWidth?: boolean
     block?: boolean
-    clickEffect?: 'currentColor' | 'default'
+    clickEffect?: 'currentColor' | 'default' | 'none'
 }
 
 interface baseButtonProps extends buttonProps{

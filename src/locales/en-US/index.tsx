@@ -14,6 +14,11 @@ export default {
         '': 'General',
         button: 'Button'
     },
+    layout: {
+        '': 'Layout',
+        space: 'Space',
+        divider: 'Divider'
+    },
     dataEntry: {
         '': 'Data Entry',
         select: 'Select'

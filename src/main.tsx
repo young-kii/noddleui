@@ -15,6 +15,7 @@ import {Config} from "@/noddle-components/globalConfig/Config";
 //     root.style.transform = `scale(${rate})`
 //     console.log(init,e.target.innerWidth,root.offsetWidth)
 // }
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     // <React.StrictMode>
         <BrowserRouter>

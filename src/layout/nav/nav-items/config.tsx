@@ -28,6 +28,15 @@ const itemList: item[] = [
     },
     {
         id: 4,
+        title: 'layout',
+        extra: 'components',
+        children: [
+            {id: 1, title: 'space'},
+            {id: 2, title: 'divider'},
+        ]
+    },
+    {
+        id: 5,
         title: 'dataEntry',
         extra: 'components',
         children: [
@@ -35,7 +44,7 @@ const itemList: item[] = [
         ]
     },
     {
-        id: 5,
+        id: 6,
         title: 'dataDisplay',
         extra: 'components',
         children: [
@@ -43,7 +52,7 @@ const itemList: item[] = [
         ]
     },
     {
-        id: 6,
+        id: 7,
         title: 'feedback',
         extra: 'components',
         children: [
