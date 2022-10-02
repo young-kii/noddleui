@@ -1,7 +1,5 @@
 import STYLE from './index.module.less'
 import ContentHeader, {tabsConfig} from "@/components/content-header";
-import Select, {Option} from "@/noddle-components/select";
-import Content from "@/layout/content";
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
 import CodeBox from "@/noddle-components/codeBox";
@@ -228,27 +226,33 @@ const Api = (props: tabItemsProps) => {
         },
         {
             property: 'disabled',
-            description: '按钮是否禁用',
+            description: '是否处于禁用状态',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
             required: 'NO',
             defaultValue: <Text bolder type={"warning"}>false</Text>
         },
         {
             property: 'backgroundStyle',
-            description: '按钮是否填充/背景色是否透明',
+            description: '是否填充/背景色是否透明',
             type:'default | none | border',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },
         {
             property: 'noPadding',
-            description: '按钮是否具有padding',
+            description: '是否具有padding',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
             required: 'NO',
-            defaultValue: <Text bolder type={"warning"}>false</Text>
-        }
+            defaultValue: <Text bolder type={"warning"}>true</Text>
+        },
+        
     ]
-
+    const a = () => {
+        console.log('Jason and I gonna do something awesome tomorrow')
+    }
+    (function (){
+        return a()
+    })()
     return (
         <>
             <TableApi data={data} onScroll={onScroll} label={'Button Props'}/>

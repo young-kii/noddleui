@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import {BrowserRouter} from "react-router-dom";
 import Locales from "@/locales";
-import {Config} from "@/noddle-components/globalConfig/Config";
+import Config from "@/noddle-components/globalConfig/Config";
 // const root = document.getElementById('root')
 // const init = root.offsetWidth
 //

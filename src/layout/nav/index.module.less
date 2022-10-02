@@ -3,20 +3,24 @@
 .container {
 
   position: relative;
+
   @media screen and (max-width: @media-screen-width) {
     position: fixed;
     top: 0;
     left: -260px;
     z-index: 100;
     transition: .3s ease;
+
     .open_button {
-      display: flex!important;
+      display: flex !important;
     }
+
   }
+
   .nav {
     position: relative;
     transform: translateX(0);
-    transition: 0.8s ease ;
+    transition: 0.8s ease;
     padding: 0 0 32px 12px;
     width: 260px;
     height: 100vh;
@@ -72,11 +76,12 @@
     border-radius: 0 @base-border-radius @base-border-radius 0;
     padding: 8px;
     background-color: white;
-    box-shadow: 0 0 10px 2px rgba(0,0,0,.2);
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, .2);
     right: -44px;
     top: 240px;
     position: absolute;
   }
+
   .cover {
     transition: 0.3s;
     visibility: hidden;
@@ -86,19 +91,18 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
   }
 }
 
 .open {
-  left: 0!important;
+  left: 0 !important;
 }
 
 .cover_open {
   cursor: pointer;
-  visibility: visible!important;
-  background-color: @cover-background-color!important;
+  visibility: visible !important;
+  background-color: @cover-background-color !important;
 }
-
 
 //.nav::-webkit-scrollbar-track {  }

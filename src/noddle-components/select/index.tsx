@@ -8,7 +8,7 @@ import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 
 export const selectContext = createContext({})
 
-export default (_props: _Select.selectProps) => {
+const Select = (_props: _Select.selectProps) => {
     const {Provider} = selectContext
     const {children, value} = _props
     const isChildrenOption = () => {
@@ -41,13 +41,12 @@ export default (_props: _Select.selectProps) => {
     const [props, setProps] = useState(newProps)
     return (
         <Provider value={{props, setProps}}>
-            <Select/>
+            <Select_/>
         </Provider>
     )
 }
 
-
-const Select = () => {
+const Select_ = () => {
     const context = useContext(selectContext)
     const {props} = context as _Select.selectContext
     const {children, onChange, value, _map} = props
@@ -111,7 +110,7 @@ const DropDownBox = (props: _Select.dropDownBoxProps) => {
     )
 }
 
-export const Option = (_props: _Select.optionProps) => {
+const Option = (_props: _Select.optionProps) => {
     const {value, children} = _props
     const context = useContext(selectContext) as _Select.selectContext
     const {props, setProps} = context
@@ -135,3 +134,8 @@ export const Option = (_props: _Select.optionProps) => {
         </>
     )
 }
+
+Select.Option = Option
+
+export default Select
+

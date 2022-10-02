@@ -12,7 +12,8 @@ export default {
     },
     general: {
         '': 'General',
-        button: 'Button'
+        button: 'Button',
+        text: 'Text'
     },
     layout: {
         '': 'Layout',
@@ -21,7 +22,8 @@ export default {
     },
     dataEntry: {
         '': 'Data Entry',
-        select: 'Select'
+        select: 'Select',
+        form: 'Form'
     },
     dataDisplay: {
         '': 'Data Display',

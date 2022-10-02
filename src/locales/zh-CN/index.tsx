@@ -11,7 +11,8 @@ export default {
     },
     general: {
         '': '基础',
-        button: '按钮'
+        button: 'Button 按钮',
+        text: 'Text 文本'
     },
     layout: {
         '': '布局',
@@ -20,7 +21,8 @@ export default {
     },
     dataEntry: {
         '': '输入',
-        select: 'Select 选择器'
+        select: 'Select 选择器',
+        form: 'Form 表单'
     },
     dataDisplay: {
         '': '数据展示',

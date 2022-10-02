@@ -1,4 +1,4 @@
-import {item} from "@/layout/nav/nav-items/index.d";
+import {item} from "@/layout/nav/nav-items/types";
 
 const itemList: item[] = [
     {
@@ -24,6 +24,7 @@ const itemList: item[] = [
         extra: 'components',
         children: [
             {id: 1, title: 'button'},
+            {id: 2, title: 'text'},
         ]
     },
     {
@@ -41,6 +42,7 @@ const itemList: item[] = [
         extra: 'components',
         children: [
             {id: 1, title: 'select'},
+            {id: 2, title: 'form'},
         ]
     },
     {

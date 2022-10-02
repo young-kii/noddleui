@@ -1,11 +1,11 @@
 import {createContext, useContext, useState} from "react";
-import Select, {Option} from "@/noddle-components/select";
+import Select from "@/noddle-components/select";
 import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/types";
 const localStorage_localeKey = 'noddle-locale'
-
 export const globalContext = createContext({})
 
-export const Config = ({children, Locales}: configProps) => {
+const Config = ({children, Locales}: configProps) => {
+
     const {Provider} = globalContext
     if (Locales) {
         const {defaultLocale, allLocales, languages} = Locales as Locales
@@ -20,6 +20,17 @@ export const Config = ({children, Locales}: configProps) => {
         {children}
     </Provider>)
 }
+
+export default Config
+
+/**
+ * @see useTranslation
+ * @description 翻译功能的hooks
+ * @returns {function}
+ * @example
+ * const translate = useTranslation()
+ * const text = translate('person.name')
+ */
 
 export const useTranslation = () => {
     const context = useContext(globalContext)
@@ -84,7 +95,7 @@ export namespace LocaleConfig {
                         }}>
                     {
                         localeList.map(item => {
-                            return <Option key={item.id} value={item.value}>{item.label}</Option>
+                            return <Select.Option key={item.id} value={item.value}>{item.label}</Select.Option>
                         })
                     }
                 </Select>
@@ -94,6 +105,11 @@ export namespace LocaleConfig {
 }
 
 export namespace ClassNameConfig {
+
+    /**
+     * @function classNames
+     * @param props
+     */
     export function classNames(props: any) {
         let result = ''
         for(let key in props){
@@ -101,6 +117,7 @@ export namespace ClassNameConfig {
         }
         return result
     }
+
     export function mClassNames(this: CSSModuleClasses, props: _object) {
             let result = ''
             for(let key in props){

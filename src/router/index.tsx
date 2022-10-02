@@ -67,6 +67,14 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'space',
                         component: lazy(() => import('@/pages/components/space'))
+                    },
+                    {
+                        path: 'text',
+                        component: lazy(() => import('@/pages/components/text'))
+                    },
+                    {
+                        path: 'form',
+                        component: lazy(() => import('@/pages/components/form'))
                     }
                 ]
             },
