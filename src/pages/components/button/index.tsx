@@ -11,6 +11,9 @@ import Text from "@/noddle-components/text";
 import {apiTableColumns, DataType} from "@/types";
 import TableApi from "@/components/table-api";
 import Divider from "@/noddle-components/divider";
+import Steps from "@/noddle-components/steps";
+import {step, stepsProps} from "@/noddle-components/steps/types";
+import ChangelogStep from "@/components/changelog-step";
 
 let code = `<Space direction={"vertical"}>
  <Space>
@@ -279,14 +282,30 @@ const Api = (props: tabItemsProps) => {
 
 const Changelog = (props: tabItemsProps) => {
     const {onScroll} = props
+    const steps = [
+        ChangelogStep({
+            version: '0.0.1',
+            type: 'feat',
+            time: '2022-10-5',
+            list: [
+                {type: "feat", list: [<Text pure>你在干嘛</Text>, '12321']},
+            ]
+        }),
+        ChangelogStep({
+            version: '0.0.2',
+            type: 'feat',
+            time: '2022-10-5',
+            list: [
+                {type: "feat", list: [<Text pure>你在干嘛</Text>, '12321']},
+            ]
+        }),
 
+    ] as step[]
     return (
         <>
             <ContentContent onScroll={onScroll} width={'100%'}>
                 <ContentItem id={''} label={'Button Props'} paddingTop={64}>
-                    <>
-                        123
-                    </>
+                    <Steps steps={steps}/>
                 </ContentItem>
             </ContentContent>
         </>

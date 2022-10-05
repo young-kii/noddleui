@@ -7,12 +7,16 @@ export default (props: _Divider.dividerProps) => {
     /**
      * default backgroundColor : #DCDCDCFF
      */
-    const {spacing, position, children, direction, color, thickness} = props
+    const {spacing, position, children, direction, color, thickness, width, height} = props
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
     const getDirection = () => {
         if (direction)
             return ['horizontal', 'vertical'].indexOf(direction) > -1 ? direction : 'horizontal'
         return 'horizontal'
+    }
+    const style_container = {
+        width,
+        height
     }
     const class_container = styles({
         container: true,
@@ -54,7 +58,7 @@ export default (props: _Divider.dividerProps) => {
         ) : <></>
     }
     return (
-        <div className={class_container}>
+        <div className={class_container} style={style_container}>
             <div className={class_startLine} style={style_startLine}/>
             {renderChildren()}
             <div className={class_endLine} style={style_endLine}/>

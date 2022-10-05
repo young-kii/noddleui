@@ -2,6 +2,8 @@ import {CSSProperties, ReactNode} from "react";
 
 namespace _Divider {
     export interface dividerProps {
+        width?: CSSProperties["width"]
+        height?: CSSProperties["height"]
         thickness?: number | string
         color?: CSSProperties['color']
         children?: string | ReactNode

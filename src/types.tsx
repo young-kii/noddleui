@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import React, {CSSProperties, ReactNode} from "react";
 import {ColumnsType} from "@/noddle-components/table";
 import Text from "@/noddle-components/text";
 
@@ -10,8 +10,8 @@ interface spaceProps {
     children: ReactNode[] | ReactNode
     direction?: direction
     gap?: number
-    width?: 'max-content' | number | string
-    height?: 'max-content' | number | string
+    width?: CSSProperties["width"]
+    height?: CSSProperties["height"]
 }
 
 interface DataType {
@@ -22,6 +22,8 @@ interface DataType {
     required: 'YES' | 'NO'
 }
 
+const noddle_main_color = '#0252D9FF'
+type link_target = '_blank' | '_self' | '_three' | '_top' | string
 const apiTableColumns: ColumnsType<DataType> = [
     {
         title: '参数',
@@ -75,5 +77,5 @@ const apiTableColumns: ColumnsType<DataType> = [
     }
 ]
 
-export type {direction, spaceProps, DataType, themeTypes}
-export {apiTableColumns}
+export type {direction, spaceProps, DataType, themeTypes, link_target}
+export {apiTableColumns, noddle_main_color}

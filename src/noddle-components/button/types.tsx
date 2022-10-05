@@ -1,11 +1,11 @@
 import {CSSProperties} from "react";
-import {commonColors} from "@/noddle-components/commonTypes";
+import {themeTypes} from "@/types";
 
 interface buttonProps {
     widthFitsText?: boolean;
     children: any;
     onClick?: () => any
-    type?: commonColors,
+    type?: themeTypes,
     border?: 'default' | 'solid' | 'dashed' | 'text'
     disabled?: boolean
     backgroundStyle?: 'default' | 'none' | 'border'

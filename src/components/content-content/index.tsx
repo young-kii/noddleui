@@ -1,6 +1,8 @@
 import STYLE from './index.module.less'
 import React, {ReactNode, useEffect, useState} from "react";
 import DrinkIcon from "@/noddle-components/icons/drink-icon";
+import CircleIcon from "@/noddle-components/icons/circle-icon";
+import {noddle_main_color} from "@/types";
 
 interface contentContentProps {
     children?: ReactNode
@@ -67,9 +69,8 @@ export default (props: contentContentProps) => {
                          transform: `translateY(${itemIndex * 24}px)`,
                          position: "absolute",
                          transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",
-                         fontSize: '24px',
                          lineHeight: '24px'
-                     }}>·
+                     }}><CircleIcon height={5} width={5} color={noddle_main_color}/>
                 </div>
                 {
                     contentItems.map((item: contentItem) => {
