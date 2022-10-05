@@ -18,6 +18,7 @@
 .container {
   padding: 0 6px;
   margin: 0 4px;
+  word-break: break-word;
   border-radius: @base-border-radius;
   background-color: @textBackgroundColor-default;
   color: @textColor-default;
@@ -83,4 +84,8 @@ each(@line-types, {
 
 .isButton {
   cursor: pointer;
+}
+
+.noWrap {
+  white-space: nowrap;
 }

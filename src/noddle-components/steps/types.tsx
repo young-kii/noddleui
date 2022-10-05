@@ -5,6 +5,7 @@ interface stepsProps {
     direction?: direction
     type?: themeTypes
     steps: step[] | []
+    sort?: (steps: step[]) => (step[] | [])
 }
 
 interface step {
@@ -12,6 +13,7 @@ interface step {
     content: {
         main: string | ReactNode
         extra: {
+            time?: string | number
             content: string | ReactNode,
             position?: 'footer' | 'behind-title'
         }

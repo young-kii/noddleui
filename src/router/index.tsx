@@ -1,6 +1,7 @@
 import React, {lazy, Suspense} from "react";
 import {Navigate, RouteObject, useRoutes} from "react-router-dom";
 import Loading from "@/noddle-components/loading";
+import content from "@/layout/content";
 
 namespace SyncRoute {
     export type Routes = {
@@ -92,7 +93,7 @@ const syncRouter = (table: SyncRoute.Routes[]): RouteObject[] => {
         mRouteTable.push({
             path: route.path,
             element: (
-                <Suspense fallback={<Loading/>}>
+                <Suspense fallback={<div style={{padding: 20}}><Loading/></div>}>
                     <route.component/>
                 </Suspense>
             ),

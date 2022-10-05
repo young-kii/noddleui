@@ -1,19 +1,16 @@
-import STYLE from './index.module.less'
 import ContentHeader, {tabsConfig} from "@/components/content-header";
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
 import CodeBox from "@/noddle-components/codeBox";
-import React, {MutableRefObject, ReactNode, useEffect, useRef, useState} from "react";
+import React, {useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
-import Table, {ColumnsType} from "@/noddle-components/table";
 import Text from "@/noddle-components/text";
-import {apiTableColumns, DataType} from "@/types";
+import {DataType} from "@/types";
 import TableApi from "@/components/table-api";
-import Divider from "@/noddle-components/divider";
-import Steps from "@/noddle-components/steps";
-import {step, stepsProps} from "@/noddle-components/steps/types";
+import {step} from "@/noddle-components/steps/types";
 import ChangelogStep from "@/components/changelog-step";
+import ChangelogComponent from "@/components/changelog-component";
 
 let code = `<Space direction={"vertical"}>
  <Space>
@@ -74,7 +71,7 @@ export default () => {
     )
 }
 
-interface tabItemsProps {
+export interface tabItemsProps {
     onScroll?: (scrollTop: number) => any
 }
 
@@ -274,7 +271,10 @@ const Api = (props: tabItemsProps) => {
 
     return (
         <>
-            <TableApi data={data} onScroll={onScroll} label={'Button Props'}/>
+            <ContentContent onScroll={onScroll} width={'100%'}>
+                <TableApi data={data} onScroll={onScroll} label={'Button Props'}/>
+                <TableApi data={data} onScroll={onScroll} label={'Butston Props'}/>
+            </ContentContent>
         </>
     )
 }
@@ -284,30 +284,32 @@ const Changelog = (props: tabItemsProps) => {
     const {onScroll} = props
     const steps = [
         ChangelogStep({
-            version: '0.0.1',
-            type: 'feat',
+            version: '1.0.1',
             time: '2022-10-5',
-            list: [
-                {type: "feat", list: [<Text pure>你在干嘛</Text>, '12321']},
+            list: [{
+                type: "feat",
+                list: [
+                    '按钮Button组件页面初始化构建完成',
+                    <>
+                        完成Button基本的Props：
+                        <Text noWrap bolder type={"danger"}>widthFitsText</Text>
+                        <Text bolder noWrap type={"danger"}>children</Text>
+                        <Text noWrap bolder type={"danger"}>onClick</Text>
+                        <Text noWrap bolder type={"danger"}>type</Text>
+                        <Text noWrap bolder type={"danger"}>border</Text>
+                        <Text noWrap bolder type={"danger"}>clickEffect</Text>
+                        <Text noWrap bolder type={"danger"}>block</Text>
+                        <Text noWrap bolder type={"danger"}>backgroundStyle</Text>
+                        <Text noWrap bolder type={"danger"}>disabled</Text>
+                    </>
+                ]
+            },
             ]
-        }),
-        ChangelogStep({
-            version: '0.0.2',
-            type: 'feat',
-            time: '2022-10-5',
-            list: [
-                {type: "feat", list: [<Text pure>你在干嘛</Text>, '12321']},
-            ]
-        }),
-
+        })
     ] as step[]
     return (
         <>
-            <ContentContent onScroll={onScroll} width={'100%'}>
-                <ContentItem id={''} label={'Button Props'} paddingTop={64}>
-                    <Steps steps={steps}/>
-                </ContentItem>
-            </ContentContent>
+            <ChangelogComponent steps={steps} onScroll={onScroll}/>
         </>
     )
 }

@@ -38,7 +38,7 @@ export default {
 //     nav: {
 //         start: '开始',
 //         getting_started: '快速开始',
-//         changelog: '更新日志',
+//         changelog-component: '更新日志',
 //         overview: '组件概览',
 //     },
 //     config: {

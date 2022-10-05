@@ -3,6 +3,7 @@ import {DataType, themeTypes} from "@/types";
 
 namespace _Text {
     export interface textProps {
+        noWrap?: boolean
         children: string
         type?: themeTypes
         pure?: boolean

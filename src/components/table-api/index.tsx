@@ -10,7 +10,7 @@ type tableApiProps = {
     label: string
 }
 export default (props: tableApiProps) => {
-    const {onScroll, data, label} = props
+    const { data, label} = props
     const sort = (data: any[]) => {
         return data.sort((a, b) => {
             return a.property.localeCompare(b.property)
@@ -18,14 +18,12 @@ export default (props: tableApiProps) => {
     }
     return (
         <>
-            <ContentContent onScroll={onScroll} width={'100%'}>
                 <ContentItem id={label.split(' ').join('-')} label={label} paddingTop={64}>
                     <>
                         <h3>Button Props</h3>
                         <Table columns={apiTableColumns} rowKey={'property'} dataSource={sort(data)} outline/>
                     </>
                 </ContentItem>
-            </ContentContent>
         </>
     )
 }

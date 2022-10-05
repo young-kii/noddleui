@@ -11,6 +11,22 @@
   word-break: break-all;
   position: relative;
 
+  .blank {
+    min-height: calc(100vh - 305px);
+  }
+  .bottom {
+    min-height: 240px;
+    background-color: @base-inactive-background-color;
+    .header {
+      display: flex;
+      align-items: center;
+      min-height: 64px;
+      margin-top: 64px;
+      padding: 0 0 0 48px;
+      background-color: @base-inactive-background-color;
+    }
+
+  }
 }
 
 .content::-webkit-scrollbar {

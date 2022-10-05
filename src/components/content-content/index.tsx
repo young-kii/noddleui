@@ -95,12 +95,6 @@ export default (props: contentContentProps) => {
                     renderRight()
                 }
             </div>
-            <div className={STYLE.bottom}>
-                <div className={STYLE.header}>
-                    <DrinkIcon style={{marginRight: 24}}/>
-                    <strong>noddle ui</strong>
-                </div>
-            </div>
         </>
     )
 }
