@@ -48,7 +48,7 @@ export default (props: props): step => {
             </>,
             extra: {
                 time,
-                content: <Text type={"default"} bolder>{time}</Text>
+                content: <Text type={"default"} bolder fontSize={16}>{time}</Text>
             }
         }
     }

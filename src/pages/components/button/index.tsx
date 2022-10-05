@@ -305,7 +305,8 @@ const Changelog = (props: tabItemsProps) => {
                 ]
             },
             ]
-        })
+        }),
+
     ] as step[]
     return (
         <>

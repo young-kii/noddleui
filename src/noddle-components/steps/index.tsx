@@ -85,7 +85,11 @@ const Step = (props: step & { index: number, sum: number, Icon: any }) => {
                 </div>
             </div>
             <div className={STYLE.content}>
-                <Divider direction={"vertical"} width={iconWidth}/>
+                {
+                    index === sum - 1 ?
+                        <div style={{ width: iconWidth }}/>
+                        : <Divider direction={"vertical"} width={iconWidth}/>
+                }
                 <div className={STYLE.content}>
                     <div className={STYLE.main} >{content?.main}</div>
                     <div className={STYLE.footer}>
@@ -97,11 +101,6 @@ const Step = (props: step & { index: number, sum: number, Icon: any }) => {
                     </div>
                 </div>
             </div>
-            {
-                index === sum - 1 ?
-                    <CircleIcon height={iconWidth} width={iconWidth} color={noddle_main_color}/>
-                    : <></>
-            }
         </>
     )
 }
