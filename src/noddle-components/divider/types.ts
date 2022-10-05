@@ -1,10 +1,13 @@
-import {ReactNode} from "react";
+import {CSSProperties, ReactNode} from "react";
 
 namespace _Divider {
     export interface dividerProps {
+        thickness?: number | string
+        color?: CSSProperties['color']
         children?: string | ReactNode
-        position?: 'left' | 'center' | 'right'
+        position?: 'start' | 'center' | 'end'
         spacing?: number
+        direction?: 'horizontal' | 'vertical'
     }
 }
 

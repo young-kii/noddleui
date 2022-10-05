@@ -154,7 +154,7 @@ const Demo = (props: tabItemsProps) => {
                             <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
-                            <Button type={"success"} >填充按钮</Button>
+                            <Button type={"success"}>填充按钮</Button>
                             <Button type={"success"} border={"solid"}>描边按钮</Button>
                             <Button type={"success"} border={"dashed"}>虚框按钮</Button>
                             <Button type={"success"} border={"text"}>文字按钮</Button>
@@ -220,7 +220,7 @@ const Api = (props: tabItemsProps) => {
         {
             property: 'border',
             description: '按钮边框的样式',
-            type:'default | solid | dashed | text',
+            type: 'default | solid | dashed | text',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },
@@ -229,30 +229,46 @@ const Api = (props: tabItemsProps) => {
             description: '是否处于禁用状态',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
             required: 'NO',
-            defaultValue: <Text bolder type={"warning"}>false</Text>
+            defaultValue: <Text bolder type={"danger"}>false</Text>
         },
         {
             property: 'backgroundStyle',
             description: '是否填充/背景色是否透明',
-            type:'default | none | border',
+            type: 'default | none | border',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },
         {
-            property: 'noPadding',
-            description: '是否具有padding',
+            property: 'block',
+            description: '使按钮宽度适合其父元素宽度',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
             required: 'NO',
-            defaultValue: <Text bolder type={"warning"}>true</Text>
+            defaultValue: <Text bolder type={"danger"}>false</Text>
         },
-        
+        {
+            property: 'widthFitsText',
+            description: '使按钮宽度适合文本宽度',
+            type: <Text pure bolder type={"warning"}>boolean</Text>,
+            required: 'NO',
+            defaultValue: <Text bolder type={"default"}>default</Text>
+        },
+        {
+            property: 'clickEffect',
+            description:
+                <>点击按钮之后的特效。特别地，
+                    <strong>border</strong>为
+                    <Text pure type={"danger"} bolder>text</Text>
+                    的按钮<strong>clickEffect</strong>
+                    只能为<Text pure type={"danger"} bolder>none</Text>
+                    或<Text pure type={"danger"} bolder>default</Text>
+                </>,
+            type: `currentColor | default | none`,
+            required: 'NO',
+            defaultValue: <Text bolder type={"danger"}>false</Text>
+        },
+
     ]
-    const a = () => {
-        console.log('Jason and I gonna do something awesome tomorrow')
-    }
-    (function (){
-        return a()
-    })()
+
     return (
         <>
             <TableApi data={data} onScroll={onScroll} label={'Button Props'}/>
@@ -264,63 +280,12 @@ const Api = (props: tabItemsProps) => {
 const Changelog = (props: tabItemsProps) => {
     const {onScroll} = props
 
-    interface DataType {
-        key: React.Key
-        property: string
-        description?: string
-        type: string
-        defaultValue: string
-        required: 'yes' | 'no'
-    }
-
-    const columns: ColumnsType<DataType> = [
-        {
-            title: '参数',
-            dataIndex: 'property',
-        },
-        {
-            title: '说明',
-            dataIndex: 'description'
-        },
-        {
-            title: '类型',
-            dataIndex: 'type'
-        },
-        {
-            title: '默认值',
-            dataIndex: 'defaultValue'
-        },
-        {
-            title: '必传',
-            dataIndex: 'required'
-        }
-    ]
-    const data: DataType[] = [
-        {
-            key: 1,
-            property: 'children',
-            description: '按钮的文字内容',
-            type: 'string',
-            required: 'yes',
-            defaultValue: '-'
-        },
-        {
-            key: 2,
-            property: 'onClick',
-            description: '点击按钮时的回调',
-            type: '( event ) => void',
-            required: 'no',
-            defaultValue: '-'
-        }
-    ]
-
     return (
         <>
             <ContentContent onScroll={onScroll} width={'100%'}>
-                <ContentItem id={'button-props'} label={'Button Props'} paddingTop={64}>
+                <ContentItem id={''} label={'Button Props'} paddingTop={64}>
                     <>
-                        <h3>Button Props</h3>
-                        <Table columns={columns} dataSource={data}/>
+                        123
                     </>
                 </ContentItem>
             </ContentContent>

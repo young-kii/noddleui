@@ -12,7 +12,7 @@ export default (props: contentItemProps) => {
     const {id, children, label, marginBottom, paddingTop} = props
     const newId = 'noddle-contentItem-' + id
     return (
-        <div className={STYLE.container} id={newId} data-label={label} style={{marginBottom,paddingTop}}>
+        <div className={STYLE.container} id={(id && id.length !== 0) ? newId : ''} data-label={label} style={{marginBottom,paddingTop}}>
             { children }
         </div>
     )

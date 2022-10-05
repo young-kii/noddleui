@@ -2,9 +2,13 @@ import React, {ReactNode} from "react";
 import {ColumnsType} from "@/noddle-components/table";
 import Text from "@/noddle-components/text";
 
+type direction = 'horizontal' | 'vertical'
+
+type themeTypes = 'danger' | 'default' | 'primary' | 'warning' | 'success'
+
 interface spaceProps {
     children: ReactNode[] | ReactNode
-    direction?: 'horizontal' | 'vertical'
+    direction?: direction
     gap?: number
     width?: 'max-content' | number | string
     height?: 'max-content' | number | string
@@ -71,5 +75,5 @@ const apiTableColumns: ColumnsType<DataType> = [
     }
 ]
 
-export type {spaceProps, DataType}
+export type {direction, spaceProps, DataType, themeTypes}
 export {apiTableColumns}

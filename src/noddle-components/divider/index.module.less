@@ -2,22 +2,41 @@
 
 .container {
   display: flex;
-  align-items: center;
-  width: 100%;
   font-size: 14px;
-  .leftLine {
+
+  .startLine {
     flex: 1;
-    height: 1px;
-    min-width: 16px;
     background-color: @base-inactive-background-color;
   }
-  .rightLine {
+
+  .endLine {
     flex: 1;
-    height: 1px;
-    min-width: 16px;
     background-color: @base-inactive-background-color;
   }
+
   .children {
     margin: 0 4px;
   }
+
+  .vertical_line {
+    width: 1px;
+    min-height: 16px;
+  }
+
+  .horizontal_line {
+    height: 1px;
+    min-width: 16px;
+  }
+}
+
+.vertical_container {
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.horizontal_container {
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }

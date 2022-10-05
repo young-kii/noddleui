@@ -59,7 +59,7 @@ each(@button-types, {
 
 each(@button-types, {
   .click[data-buttontype=@{value}][data-bordertype=solid][data-clickeffect=currentColor], .click[data-buttontype=@{value}][data-bordertype=default][data-clickeffect=currentColor], .click[data-buttontype=@{value}][data-bordertype=dashed][data-clickeffect=currentColor] {
-    animation: .8s ease @value;
+    animation: .8s ease @value!important;
   }
 })
 

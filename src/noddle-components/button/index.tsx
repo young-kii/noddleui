@@ -16,7 +16,7 @@ export default (props: buttonProps) => {
 
 const Button = (props: baseButtonProps) => {
 
-    const {children, onClick, type, border, disabled, backgroundStyle, noPadding, textWidth, block, clickEffect} = props
+    const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block, clickEffect} = props
     const [click, setClick] = useState(false)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
     const style_container = styles({
@@ -27,8 +27,8 @@ const Button = (props: baseButtonProps) => {
 
     const _style = {
         width: block ? '100%' : '',
-        padding: noPadding ? 0 : 16,
-        minWidth: textWidth ? 0 : 60
+        padding: widthFitsText ? 0 : 16,
+        minWidth: widthFitsText ? 0 : 60
     }
 
     const handleClick = () => {

@@ -17,7 +17,7 @@ export default (props: _Text.textProps) => {
         pure,
         bolder,
         [`${decoration || 'none'}`]: true,
-        [`${lineType}`]: true,
+        [`${lineType || 'solid'}`]: true,
         isButton
     })
     return (

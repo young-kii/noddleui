@@ -37,37 +37,40 @@ export default (props: _Table.tableProps) => {
     const newTitleAlign = titleAlign || 'left'
     const newCellAlign = cellAlign || 'left'
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
-    const STYLE_container = styles({
+    const CLASS_container = styles({
         container: true,
         outline: outline || bordered,
         crossing
     })
-    const style_container = {
+    const class_container = {
         width: autoWidth ? 'max-content' : '100%',
         fontSize: fontSize || 14
     }
-    const style_th = styles({
+    const class_th_props = {
         left: newTitleAlign === 'left',
         right: newTitleAlign === 'right',
         center: newTitleAlign === 'center',
         nowrap: wrap === "nowrap",
         bordered
-    })
-    const style_td = styles({
+    }
+
+    const class_td_props = {
         left: newCellAlign === 'left',
         right: newCellAlign === 'right',
         center: newCellAlign === 'center',
         nowrap: wrap === "nowrap",
         bordered
-    })
+    }
+
     return (
-        <div className={STYLE_container} style={style_container}>
+        <div className={CLASS_container} style={class_container}>
             <table cellPadding={cellPadding === 0 ? 0 : cellPadding ? cellPadding : 16} cellSpacing={0}>
                 <thead className={STYLE.header}>
                 <tr>
                     {
                         newColumns.map(item => {
-                            return <th className={style_th} style={{...item.headerStyle, textAlign: item.position}}
+                            const className = styles({...class_th_props, [`${item.position}`]: true})
+                            return <th className={className} style={{...item.headerStyle}}
                                        key={item.dataIndex}>{item.title}</th>
                         })
                     }
@@ -79,18 +82,21 @@ export default (props: _Table.tableProps) => {
                         return <tr key={rowKey ? item[rowKey] : item.key}>
                             {
                                 newColumns.map(column => {
-                                    let content: JSX.Element = <td className={style_td} key={column.dataIndex}/>
+                                    const className = styles({...class_td_props, [`${column.position}`]: true})
+                                    let content: JSX.Element = <td className={className} key={column.dataIndex}/>
                                     Object.keys(item).map((key, index) => {
                                         if (key === column.dataIndex) {
                                             if (column.render && typeof column.render === "function") {
-                                                content = <td className={style_td}
-                                                              style={{...column.cellStyle, textAlign: column.position}}
+                                                content = <td className={className}
+                                                              style={{...column.cellStyle}}
                                                               key={index}>
                                                     {
                                                         column.render(item[key], item)
                                                     }
                                                 </td>
-                                            } else content = <td className={style_td} style={{...column.cellStyle,textAlign: column.position}}
+                                            } else content = <td className={className} style={{
+                                                ...column.cellStyle,
+                                            }}
                                                                  key={index}>{item[key]}</td>
                                         }
                                         return false

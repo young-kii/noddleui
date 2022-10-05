@@ -4,32 +4,60 @@ import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {CSSProperties} from "react";
 
 export default (props: _Divider.dividerProps) => {
-    const {spacing,position,children} = props
+    /**
+     * default backgroundColor : #DCDCDCFF
+     */
+    const {spacing, position, children, direction, color, thickness} = props
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
+    const getDirection = () => {
+        if (direction)
+            return ['horizontal', 'vertical'].indexOf(direction) > -1 ? direction : 'horizontal'
+        return 'horizontal'
+    }
     const class_container = styles({
-        container: true
+        container: true,
+        [`${getDirection()}_container`]: true
     })
-    const class_leftLine = styles({
-        leftLine: true
+    const class_startLine = styles({
+        startLine: true,
+        [`${getDirection()}_line`]: true
     })
-    const class_rightLine = styles({
-        rightLine: true
+    const class_endLine = styles({
+        endLine: true,
+        [`${getDirection()}_line`]: true
     })
-    const style_leftLine = {
-        flex: position === 'left' ? 1 : (position === 'right' ? 10000 : 1),
-        minWidth: position === 'left' ? (spacing && spacing > 50 ) ? '50%' : spacing + '%' : 16
+    const style_startLine = {
+        flex: position === 'start' ? 1 : (position === 'end' ? 10000 : 1),
+        minWidth: direction === 'horizontal' ?
+            (position === 'start' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16)
+            : thickness,
+        minHeight: direction === 'vertical' ?
+            (position === 'start' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16)
+            : thickness,
+        backgroundColor: color
     } as CSSProperties
-    const style_rightLine = {
-        flex: position === 'right' ? 1 : (position === 'left' ? 10000 : 1),
-        minWidth: position === 'right' ? (spacing && spacing > 50 ) ? '50%' : spacing + '%' : 16
+    const style_endLine = {
+        flex: position === 'end' ? 1 : (position === 'start' ? 10000 : 1),
+        minWidth: direction === 'horizontal' ?
+            position === 'end' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16
+            : thickness,
+        minHeight: direction === 'vertical' ?
+            (position === 'end' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16)
+            : thickness,
+        backgroundColor: color
     } as CSSProperties
-    return (
-        <div className={class_container}>
-            <div className={class_leftLine} style={style_leftLine}/>
+    const renderChildren = () => {
+        return children ? (
             <div className={STYLE.children}>
                 {children}
             </div>
-            <div className={class_rightLine} style={style_rightLine}/>
+        ) : <></>
+    }
+    return (
+        <div className={class_container}>
+            <div className={class_startLine} style={style_startLine}/>
+            {renderChildren()}
+            <div className={class_endLine} style={style_endLine}/>
         </div>
     )
 }

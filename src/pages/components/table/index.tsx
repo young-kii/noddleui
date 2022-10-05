@@ -37,8 +37,8 @@ export default () => {
             render: (value, records) => (
                 <>
                     <Space>
-                        <Button type={"primary"} border={"text"} backgroundStyle={"none"} noPadding textWidth>{value}</Button>
-                        <Button type={"danger"}>{value}</Button>
+                        <Button type={"primary"} border={"text"} backgroundStyle={"none"} widthFitsText>{value}</Button>
+                        <Button type={"danger"} >{value}</Button>
                     </Space>
                 </>
             )

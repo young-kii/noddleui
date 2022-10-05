@@ -1,6 +1,5 @@
 import STYLE from './index.module.less'
 import ContentHeader, {tabsConfig} from "@/components/content-header";
-import Select, {Option} from "@/noddle-components/select";
 import Content from "@/layout/content";
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";

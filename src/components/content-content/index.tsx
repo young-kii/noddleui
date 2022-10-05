@@ -23,13 +23,16 @@ export default (props: contentContentProps) => {
     let _items: contentItem[] = []
     useEffect(() => {
         const items = document.querySelectorAll('[id*=noddle-contentItem]') as any
-        let newItems = [], index = 0
-        for (let item of items) {
-            newItems.push({id: item?.id, label: item?.dataset?.label, top: item.offsetTop, index: index++})
+        if( items.length !== 0 )
+        {
+            let newItems = [], index = 0
+            for (let item of items) {
+                newItems.push({id: item?.id, label: item?.dataset?.label, top: item.offsetTop, index: index++})
+            }
+            setItems(newItems)
+            setSelectedItem(items[0].id)
+            _items = newItems
         }
-        setItems(newItems)
-        setSelectedItem(items[0].id)
-        _items = newItems
         const scroll = document.getElementById('noddle-content') as HTMLDivElement
         const handleScroll = (e: any) => {
             onScroll?.(e.target.scrollTop)
@@ -55,33 +58,41 @@ export default (props: contentContentProps) => {
             behavior: "smooth"
         })
     }
+    const renderRight = () => {
+        const hasRightMenu = contentItems && contentItems.length !== 0
+        return hasRightMenu ? (
+            <div className={STYLE.right}>
+                <div className={STYLE.active}
+                     style={{
+                         transform: `translateY(${itemIndex * 24}px)`,
+                         position: "absolute",
+                         transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",
+                         fontSize: '24px',
+                         lineHeight: '24px'
+                     }}>·
+                </div>
+                {
+                    contentItems.map((item: contentItem) => {
+                        return <div key={item.id}
+                                    data-id={item.id}
+                                    data-selected={item.id === selectedItem}
+                                    className={STYLE.nav + ' ' + (item.id === selectedItem ? STYLE.active : '')}
+                                    onClick={(e) => handleClick(e)}>{item.label}
+                        </div>
+                    })
+                }
+            </div>
+        ) : <></>
+    }
     return (
         <>
             <div className={STYLE.container}>
                 <div className={STYLE.left} style={{width}}>
                     {children}
                 </div>
-                <div className={STYLE.right}>
-                    <div className={STYLE.active}
-                         style={{
-                             transform: `translateY(${itemIndex * 24}px)`,
-                             position: "absolute",
-                             transition: ".3s cubic-bezier(0.165, 0.84, 0.44, 1)",
-                             fontSize: '24px',
-                             lineHeight: '24px'
-                         }}>·
-                    </div>
-                    {
-                        contentItems.map((item: contentItem) => {
-                            return <div key={item.id}
-                                        data-id={item.id}
-                                        data-selected={item.id === selectedItem}
-                                        className={STYLE.nav + ' ' + (item.id === selectedItem ? STYLE.active : '')}
-                                        onClick={(e) => handleClick(e)}>{item.label}
-                            </div>
-                        })
-                    }
-                </div>
+                {
+                    renderRight()
+                }
             </div>
             <div className={STYLE.bottom}>
                 <div className={STYLE.header}>
