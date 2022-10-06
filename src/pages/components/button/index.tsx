@@ -1,4 +1,3 @@
-import ContentHeader, {tabsConfig} from "@/components/content-header";
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
 import CodeBox from "@/noddle-components/codeBox";
@@ -11,6 +10,7 @@ import TableApi from "@/components/table-api";
 import {step} from "@/noddle-components/steps/types";
 import ChangelogStep from "@/components/changelog-step";
 import ChangelogComponent from "@/components/changelog-component";
+import PageBase from "@/components/page-base";
 
 let code = `<Space direction={"vertical"}>
  <Space>
@@ -26,49 +26,9 @@ let code = `<Space direction={"vertical"}>
 </Space>`
 
 export default () => {
-    const [tab, setTab] = useState('demo')
-    const [scrollHistory, setScrollHistory] = useState({
-        demo: 0,
-        api: 0,
-        changelog: 0
-    }) as any
-    const noddle_content = document.getElementById('noddle-content') as HTMLDivElement
-    const tabsConfig = {
-        tabs: [
-            {tab: 'demo', label: '示例'},
-            {tab: 'api', label: 'API'},
-            {tab: 'changelog', label: '日志'},
-        ],
-        onChange: (value) => {
-            setTab(value.tab)
-            setTimeout(() => {
-                noddle_content?.scrollTo({
-                    top: scrollHistory[value.tab],
-                    behavior: "smooth"
-                })
-            }, 10)
-        }
-    } as tabsConfig
-    const handleScroll = (scrollTop: number) => {
-        setScrollHistory({...scrollHistory, [tab]: scrollTop})
-    }
-    const map = {
-        demo: <Demo onScroll={handleScroll}/>,
-        api: <Api onScroll={handleScroll}/>,
-        changelog: <Changelog onScroll={handleScroll}/>
-    } as any
-    return (
-        <div>
-            <ContentHeader
-                tabsConfig={tabsConfig}
-                title={'Button 按钮'}
-                description={'按钮用于链接用户点击的操作，例如“取消”，“确认”，“提交”等。'}
-            />
-            {
-                map[tab]
-            }
-        </div>
-    )
+    return <>
+        <PageBase Demo={Demo} Api={Api} Changelog={Changelog} title={"Button 按钮"} description={"按钮用于链接用户点击的操作，例如“取消”，“确认”，“提交”等。"}/>
+    </>
 }
 
 export interface tabItemsProps {
@@ -108,20 +68,6 @@ const Demo = (props: tabItemsProps) => {
                         </Space>
                     </Space>
                 </CodeBox>
-                <ContentItem id={'basic-button2'} label={'图标按钮'} paddingTop={64}>
-                    <>
-                        <h3>基础按钮</h3>
-                        <p>基础按钮包括填充按钮、描边按钮、虚框按钮和文字按钮。</p>
-                        <h4>填充按钮</h4>
-                        <p>一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作。</p>
-                        <h4>描边按钮</h4>
-                        <p>描边按钮常见白底加文字的形式，在视觉强调程度上弱于填充按钮，通常与填充按钮搭配成组使用。</p>
-                        <h4>虚框按钮</h4>
-                        <p>按钮边框线为虚线，常用于表单中的添加配置项。</p>
-                        <h4>文字按钮</h4>
-                        <p>直接使用文字作为按钮。是视觉吸引力最弱的一个按钮，通常出现在表格操作栏、标题和字段旁。</p>
-                    </>
-                </ContentItem>
                 <ContentItem id={'block-button'} label={'block按钮'} paddingTop={64}>
                     <>
                         <h3>Block按钮</h3>
@@ -137,9 +83,9 @@ const Demo = (props: tabItemsProps) => {
                         <Button block border={"text"} backgroundStyle={"border"}>文字按钮</Button>
                     </Space>
                 </CodeBox>
-                <ContentItem id={'change-color'} label={'改变颜色'} paddingTop={64}>
+                <ContentItem id={'change-color'} label={'颜色主题'} paddingTop={64}>
                     <>
-                        <h3>改变颜色</h3>
+                        <h3>颜色主题</h3>
                         <p>初始主题颜色有以下几种：浅灰色、蓝色、红色、黄色、绿色。</p>
                     </>
                 </ContentItem>
@@ -273,7 +219,6 @@ const Api = (props: tabItemsProps) => {
         <>
             <ContentContent onScroll={onScroll} width={'100%'}>
                 <TableApi data={data} onScroll={onScroll} label={'Button Props'}/>
-                <TableApi data={data} onScroll={onScroll} label={'Butston Props'}/>
             </ContentContent>
         </>
     )
@@ -288,21 +233,29 @@ const Changelog = (props: tabItemsProps) => {
             time: '2022-10-5',
             list: [{
                 type: "feat",
-                list: [
-                    '按钮Button组件页面初始化构建完成',
-                    <>
-                        完成Button基本的Props：
-                        <Text noWrap bolder type={"danger"}>widthFitsText</Text>
-                        <Text bolder noWrap type={"danger"}>children</Text>
-                        <Text noWrap bolder type={"danger"}>onClick</Text>
-                        <Text noWrap bolder type={"danger"}>type</Text>
-                        <Text noWrap bolder type={"danger"}>border</Text>
-                        <Text noWrap bolder type={"danger"}>clickEffect</Text>
-                        <Text noWrap bolder type={"danger"}>block</Text>
-                        <Text noWrap bolder type={"danger"}>backgroundStyle</Text>
-                        <Text noWrap bolder type={"danger"}>disabled</Text>
-                    </>
-                ]
+                list: {
+                    title: '页面完成情况',
+                    items: [
+                        <>
+                            按钮Button组件页面初始化构建完成：
+                            <Text noWrap bolder type={"default"}>基础按钮</Text>
+                            <Text noWrap bolder type={"default"}>block按钮</Text>
+                            <Text noWrap bolder type={"default"}>颜色主题</Text>
+                        </>,
+                        <>
+                            完成Button基本的Props：
+                            <Text noWrap bolder type={"danger"}>widthFitsText</Text>
+                            <Text bolder noWrap type={"danger"}>children</Text>
+                            <Text noWrap bolder type={"danger"}>onClick</Text>
+                            <Text noWrap bolder type={"danger"}>type</Text>
+                            <Text noWrap bolder type={"danger"}>border</Text>
+                            <Text noWrap bolder type={"danger"}>clickEffect</Text>
+                            <Text noWrap bolder type={"danger"}>block</Text>
+                            <Text noWrap bolder type={"danger"}>backgroundStyle</Text>
+                            <Text noWrap bolder type={"danger"}>disabled</Text>
+                        </>
+                    ]
+                }
             },
             ]
         }),

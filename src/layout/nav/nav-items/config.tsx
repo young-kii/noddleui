@@ -2,63 +2,63 @@ import {item} from "@/layout/nav/nav-items/types";
 
 const itemList: item[] = [
     {
-        id: 1,
         title: 'nav',
         children: [
-            {id: 1, title: 'getting_started', to: 'getting-started'},
-            {id: 2, title: 'changelog'},
-            {id: 3, title: 'overview'},
+            {title: 'getting_started', to: 'getting-started'},
+            {title: 'changelog'},
+            {title: 'overview'},
         ]
     },
     {
-        id: 2,
         title: 'config',
         extra: 'components',
         children: [
-            {id: 1, title: 'globalConfig'},
+            {title: 'globalConfig'},
         ]
     },
     {
-        id: 3,
         title: 'general',
         extra: 'components',
         children: [
-            {id: 1, title: 'button'},
-            {id: 2, title: 'text'},
+            {title: 'button'},
+            {title: 'text'},
         ]
     },
     {
-        id: 4,
         title: 'layout',
         extra: 'components',
         children: [
-            {id: 1, title: 'space'},
-            {id: 2, title: 'divider'},
+            {title: 'space'},
+            {title: 'divider'},
         ]
     },
     {
-        id: 5,
+        title: 'navigation',
+        extra: 'components',
+        children: [
+            {title: 'steps'},
+        ]
+    },
+    {
         title: 'dataEntry',
         extra: 'components',
         children: [
-            {id: 1, title: 'select'},
-            {id: 2, title: 'form'},
+            {title: 'select'},
+            {title: 'form'},
         ]
     },
     {
-        id: 6,
         title: 'dataDisplay',
         extra: 'components',
         children: [
-            {id: 1, title: 'table'},
+            {title: 'table'},
         ]
     },
     {
-        id: 7,
         title: 'feedback',
         extra: 'components',
         children: [
-            {id: 1, title: 'loading'},
+            {title: 'loading'},
         ]
     },
 

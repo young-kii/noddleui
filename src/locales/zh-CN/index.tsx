@@ -19,6 +19,10 @@ export default {
         space: 'Space 间距',
         divider: 'Divider 分割线'
     },
+    navigation: {
+        '': '导航',
+        steps: 'Steps 步骤条'
+    },
     dataEntry: {
         '': '输入',
         select: 'Select 选择器',

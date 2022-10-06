@@ -20,7 +20,7 @@ export default (props: tableApiProps) => {
         <>
                 <ContentItem id={label.split(' ').join('-')} label={label} paddingTop={64}>
                     <>
-                        <h3>Button Props</h3>
+                        <h3>{label}</h3>
                         <Table columns={apiTableColumns} rowKey={'property'} dataSource={sort(data)} outline/>
                     </>
                 </ContentItem>

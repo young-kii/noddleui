@@ -6,13 +6,18 @@
   height: 100vh;
   overflow: scroll;
   background-color: white;
-  width: calc(100% - 260px);
+  width: calc(100vw - 260px);
   z-index: var(--content-z-index);
   word-break: break-all;
   position: relative;
 
   .blank {
+    overflow: scroll;
     min-height: calc(100vh - 305px);
+  }
+
+  .blank::-webkit-scrollbar {
+    display: none;
   }
   .bottom {
     min-height: 240px;

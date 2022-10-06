@@ -1,0 +1,36 @@
+@import "src/assets/css/global";
+
+.container {
+  cursor: pointer;
+  display: flex;
+  width: max-content;
+  min-width: 36px;
+  height: 20px;
+  border-radius: 16px;
+  background-color: @base-inactive-background-color;
+  align-items: center;
+  padding: 2px;
+  transition: .2s ease;
+  .ball {
+    transition: .2s ease;
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    border-radius: 50%;
+  }
+}
+
+.on[data-theme=primary], .on[data-theme=default] {
+  background-color: @noddle-main-color;
+}
+.on[data-theme=success] {
+  background-color: @color-success;
+}
+.on[data-theme=warning] {
+  background-color: @color-warning;
+}
+.on[data-theme=danger] {
+  background-color: @color-danger;
+}
+
+

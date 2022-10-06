@@ -4,15 +4,15 @@ import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import CircleIcon from "@/noddle-components/icons/circle-icon";
 import {noddle_main_color} from "@/types";
 import Divider from "@/noddle-components/divider";
-import {forwardRef} from "react";
+import {CSSProperties, forwardRef} from "react";
 
-const Steps = forwardRef((props: stepsProps,ref: any) => {
+const Steps = forwardRef((props: stepsProps, ref: any) => {
     const {direction, steps, type, sort} = props
     const renderSteps = () => {
         return map[direction || 'horizontal']
     }
     let newSteps = steps
-    if(sort && typeof sort === "function"){
+    if (sort && typeof sort === "function") {
         newSteps = sort(steps)
     }
     let newProps = {
@@ -30,7 +30,7 @@ const Steps = forwardRef((props: stepsProps,ref: any) => {
     )
 })
 
-const Horizontal = forwardRef((props: Omit<stepsProps, 'direction'>,ref: any) => {
+const Horizontal = forwardRef((props: Omit<stepsProps, 'direction'>, ref: any) => {
     const {type, steps} = props
     const steps_count = steps?.length
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
@@ -87,18 +87,18 @@ const Step = (props: step & { index: number, sum: number, Icon: any }) => {
             <div className={STYLE.content}>
                 {
                     index === sum - 1 ?
-                        <div style={{ width: iconWidth }}/>
+                        <div style={{minWidth: iconWidth}}/>
                         : <Divider direction={"vertical"} width={iconWidth}/>
                 }
                 <div className={STYLE.content}>
-                    <div className={STYLE.main} >{content?.main}</div>
-                    <div className={STYLE.footer}>
-                        {
-                            extra_position === 'footer' ?
-                                content?.extra?.content
-                                : <></>
-                        }
-                    </div>
+                    <div className={STYLE.main}>{content?.main}</div>
+                    {
+                        extra_position === 'footer' ?
+                            <div className={STYLE.footer}>
+                                {content?.extra?.content}
+                            </div>
+                            : <></>
+                    }
                 </div>
             </div>
         </>

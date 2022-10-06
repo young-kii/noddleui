@@ -15,11 +15,11 @@ export default ({list}: { list: item[] }) => {
         <>
             {
                 list.map(item => {
-                    return <Fragment key={item.id}>
+                    return <Fragment key={item.title}>
                         <div className={STYLE.nav_title}>{translate(item.title)}</div>
                         {
                             sort(item.children).map(child => {
-                                return <div key={child.id} className={STYLE.nav_item}>
+                                return <div key={child.title} className={STYLE.nav_item}>
                                     <NoddleLink
                                         to={'/' + ((item.extra ? `${item.extra}/` : '') + (child.to ? child.to : child.title))}>{translate(item.title + '.' + child.title)}</NoddleLink>
                                 </div>

@@ -20,6 +20,10 @@ export default {
         space: 'Space',
         divider: 'Divider'
     },
+    navigation: {
+        '': 'Navigation',
+        steps: 'Steps'
+    },
     dataEntry: {
         '': 'Data Entry',
         select: 'Select',

@@ -1,7 +1,7 @@
 import STYLE from './index.module.less'
 import {step} from "@/noddle-components/steps/types";
 import Text from "@/noddle-components/text";
-import React, {ReactNode} from "react";
+import React, {Fragment, ReactNode} from "react";
 import {_object} from "@/noddle-components/globalConfig/types";
 
 interface props {
@@ -9,7 +9,10 @@ interface props {
     time: string
     list: {
         type: 'fix' | 'feat' | 'others' | 'change' | string
-        list: ReactNode[] | string[]
+        list: {
+            title: ReactNode | string,
+            items: any[]
+        }
     }[]
 }
 
@@ -27,22 +30,27 @@ export default (props: props): step => {
             main: <>
                 {
                     list?.map((item, index) => {
-                        return <ul key={index} className={STYLE.ul_container}>
-                            <li>
-                                <div style={{whiteSpace: "nowrap"}}>
-                                    {types[item.type]}
-                                </div>
-                                <ul className={STYLE.ul_circle}>
-                                    {
-                                        item.list.map((item, index) => {
-                                            if (item)
-                                                return <li key={index}>{item}</li>
-                                            return ''
-                                        })
-                                    }
-                                </ul>
-                            </li>
-                        </ul>
+                        return <Fragment key={index}>
+                            <div style={{whiteSpace: "nowrap"}} className={STYLE.type_container}>
+                                {types[item.type]}
+                            </div>
+                            <ul key={index}>
+                                <li>
+                                    <div style={{marginTop: 8}}>
+                                        {item.list.title}
+                                    </div>
+                                    <ul className={STYLE.ul_circle}>
+                                        {
+                                            item.list.items.map((item, index) => {
+                                                if (item)
+                                                    return <li key={index}>{item}</li>
+                                                return ''
+                                            })
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </Fragment>
                     })
                 }
             </>,
