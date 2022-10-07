@@ -1,20 +1,20 @@
 import {baseButtonProps, buttonProps} from "./types";
 import STYLE from './index.module.less'
-import {useState} from "react";
+import {forwardRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 
-export default (props: buttonProps) => {
+export default forwardRef((props: buttonProps,ref: any) => {
 
     const {children} = props
 
     return (
         <>
-            <Button {...props}>{children}</Button>
+            <Button ref={ref} {...props}>{children}</Button>
         </>
     )
-}
+})
 
-const Button = (props: baseButtonProps) => {
+const Button = forwardRef((props: baseButtonProps, ref: any) => {
 
     const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block, clickEffect} = props
     const [click, setClick] = useState(false)
@@ -42,7 +42,7 @@ const Button = (props: baseButtonProps) => {
     }
 
     return (
-        <div className={style_container} style={_style} onClick={handleClick}
+        <div ref={ref} className={style_container} style={_style} onClick={handleClick}
              data-buttontype={type || 'default'}
              data-bordertype={border || 'default'}
              data-clickeffect={clickEffect || 'default'}
@@ -51,4 +51,4 @@ const Button = (props: baseButtonProps) => {
             {children}
         </div>
     )
-}
+})

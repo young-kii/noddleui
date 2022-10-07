@@ -4,7 +4,7 @@ namespace _Icon {
     export interface baseIconProps {
         width?: number,
         height?: number,
-        color?: string,
+        color?: CSSProperties["color"]
         spin?:boolean,
         style?: CSSProperties,
     }

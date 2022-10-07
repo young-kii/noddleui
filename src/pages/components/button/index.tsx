@@ -27,7 +27,8 @@ let code = `<Space direction={"vertical"}>
 
 export default () => {
     return <>
-        <PageBase Demo={Demo} Api={Api} Changelog={Changelog} title={"Button 按钮"} description={"按钮用于链接用户点击的操作，例如“取消”，“确认”，“提交”等。"}/>
+        <PageBase Demo={Demo} Api={Api} Changelog={Changelog} title={"Button 按钮"}
+                  description={"按钮用于链接用户点击的操作，例如“取消”，“确认”，“提交”等。"}/>
     </>
 }
 
@@ -179,8 +180,8 @@ const Api = (props: tabItemsProps) => {
         },
         {
             property: 'backgroundStyle',
-            description: '是否填充/背景色是否透明',
-            type: 'default | none | border',
+            description: <>当<strong>border</strong>为<Text pure bolder type={'danger'}>text</Text>时，按钮背景的样式：填充、边框、隐藏</>,
+            type: 'default | border | none',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },

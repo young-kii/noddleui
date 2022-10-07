@@ -1,9 +1,9 @@
 import STYLE from './index.module.less'
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import _Text from "@/noddle-components/text/types";
-import {CSSProperties} from "react";
+import {CSSProperties, forwardRef} from "react";
 
-export default (props: _Text.textProps) => {
+export default forwardRef((props: _Text.textProps, ref: any) => {
 
     const {children, type, pure, bolder, decoration, lineType, isButton, onClick, fontSize, color, noWrap} = props
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
@@ -22,9 +22,10 @@ export default (props: _Text.textProps) => {
         isButton
     })
     return (
-        children ?
-        <span className={class_container} style={style_container} onClick={isButton ? onClick : () => {} }>
+            children ?
+            <span ref={ref} className={class_container} style={style_container} onClick={isButton ? onClick : () => {
+            }}>
             {children}
         </span> : <></>
     )
-}
+})
