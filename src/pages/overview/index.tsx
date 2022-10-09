@@ -13,8 +13,8 @@ export default () => {
             overview
             <Space>
                 <Switch theme={"default"} onChange={ result => console.log(result)}/>
-                <Switch theme={'success'}/>
-                <Switch extraContent={[
+                <Switch theme={'success'} extraContent={{on:'长一点的长一点点',off:'短一'}}/>
+                <Switch biggerButton extraContent={[
                     {content: <><AddIcon height={14} width={14} color={"white"}/>关注</>, theme: "danger"},
                     {content: <><CheckMark height={14} width={14} color={"white"}/>确认</>, theme: "success"},
                     {content: <><CheckMark height={14} width={14} color={"white"}/>王新昊</>, theme: "warning"},

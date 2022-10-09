@@ -31,6 +31,13 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
         minWidth: widthFitsText ? 0 : 60
     }
 
+    /**
+     * @see handleClick
+     * @description 处理点击事件
+     * @see disabled
+     * @description 当disabled时为禁用状态，无法完成点击事件
+     */
+
     const handleClick = () => {
         if (disabled)
             return null

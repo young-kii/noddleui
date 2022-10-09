@@ -2,6 +2,8 @@
 
 .default {
   .container {
+    user-select: none;
+
     cursor: pointer;
     display: flex;
     width: max-content;
@@ -13,6 +15,7 @@
     font-size: 12px;
     padding: 2px;
     transition: .2s ease;
+    overflow: hidden;
 
     .ball {
       flex-shrink: 0;
@@ -53,7 +56,9 @@
     background-color: @base-inactive-background-color;
     width: max-content;
     min-width: 44px;
-    transition: .2s ease ;
+    transition: .2s ease;
+    overflow: hidden;
+
   }
 }
 

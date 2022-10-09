@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pushToOrigin": "git add . && git commit -m 'update' && git pull && git push"
   },
   "dependencies": {
     "less": "^4.1.3",

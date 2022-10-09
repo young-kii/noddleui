@@ -11,12 +11,24 @@ import {themeTypes} from "@/types";
 
 export default (props: switchProps) => {
     const {theme, biggerButton, onChange, extraContent, type} = props
+
+    /**
+     * @see getTheme
+     * @description 获取switch的主题,默认返回`default`
+     */
+
     const getTheme = (): themeTypes => {
         if (theme) {
             return ["danger", "default", "primary", "warning", "success"].indexOf(theme) > -1 ? theme : "default"
         }
         return "default"
     }
+
+    /**
+     * @see getType
+     * @description 获取switch的类型,以及显示的额外内容
+     */
+
     const getType = () => {
         let _type = 'default', _extraContent
         if (type) {
@@ -25,6 +37,7 @@ export default (props: switchProps) => {
         _extraContent =  extraContent || extraContentMap[_type]
         return [_type, _extraContent]
     }
+
     const extraContentMap = {
         default: {
             on: '',
@@ -37,11 +50,13 @@ export default (props: switchProps) => {
             { content: '关注', theme: 'success'},
         ] as moreStatusExtraContent[]
     } as any
+
     const [newType, newExtraContent] = getType()
     const map = {
         default: <Default {...{theme: getTheme(), biggerButton, onChange, extraContent: newExtraContent}}/>,
         moreStatus: <MoreStatus {...{ onChange, extraContent: newExtraContent}}/>
     } as any
+
     return (
         <>
             {
@@ -90,10 +105,13 @@ const Default = (props: defaultProps) => {
     useEffect(() => {
         setContainerWidth(containerRef.current.offsetWidth)
         setContainerHeight(containerRef.current.offsetHeight)
+        /**
+         * @see setExtraWidth
+         * autoWidth 控制是否宽度自适应
+         */
         setExtraWidth(extraRef.current.offsetWidth)
-        setBallWidth(ballRef.current.offsetWidth)
     }, [status])
-    useEffect(() => {
+    const initExtraWidth = () => {
         const hiddenSpan = extraRef.current.getElementsByClassName('hiddenSpan') as unknown as HTMLSpanElement[]
         let maxWidth = 0
         for (let item of hiddenSpan) {
@@ -101,6 +119,10 @@ const Default = (props: defaultProps) => {
                 maxWidth = item.offsetWidth
         }
         setExtraWidth(maxWidth)
+    }
+    useEffect(() => {
+        // initExtraWidth()
+        setBallWidth(ballRef.current.offsetWidth)
     }, [])
     return (
         <div className={STYLE.default}>
