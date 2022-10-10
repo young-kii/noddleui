@@ -6,12 +6,13 @@ import DismissIcon from "@/noddle-components/icons/dismiss-icon";
 import CheckMark from "@/noddle-components/icons/check-mark";
 import AddIcon from "@/noddle-components/icons/add-icon";
 import BeachIcon from "@/noddle-components/icons/beach-icon";
+import Tooltips from "@/noddle-components/tooltips";
 
 export default () => {
     return (
         <>
             overview
-            <Space>
+            <Space direction={"vertical"}>
                 <Switch theme={"default"} onChange={ result => console.log(result)}/>
                 <Switch biggerButton theme={'success'} extraContent={{on:'长一点的长一点点',off:'短一'}}/>
                 <Switch biggerButton extraContent={[
@@ -24,6 +25,9 @@ export default () => {
                 <DismissIcon/>
                 <CheckMark/>
                 <AddIcon/>
+                <Tooltips tips={'测试按钮啊啊啊啊啊'}>
+                    <Button>测试按钮</Button>
+                </Tooltips>
             </Space>
         </>
     )
