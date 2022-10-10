@@ -6,7 +6,7 @@ import {CSSProperties} from "react";
 
 export default (props: spaceProps) => {
 
-    const {children, direction, gap, width, height} = props
+    const {children, direction, gap, width, height, style} = props
     const newDirection = direction || 'horizontal'
     const newGap = gap === 0 ? 0 : (gap ? gap/2 : 10)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
@@ -20,7 +20,7 @@ export default (props: spaceProps) => {
         height
     } as CSSProperties
     return (
-        <div className={container} style={_style}>
+        <div className={container} style={{...style, ..._style}}>
             {children instanceof Array ? children.map((item, index, array) => {
                 return <div key={index}
                             className={STYLE.items}

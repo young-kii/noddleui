@@ -65,22 +65,26 @@ each(@line-types, {
     text-decoration: 2px @value currentColor underline;
   }
 
+  .overline[class*=@{value}] {
+    text-decoration: 1px @value currentColor overline;
+  }
+
+  .overline[class*=bolder][class*=@{value}] {
+    text-decoration: 2px @value currentColor overline;
+  }
+
+  .through[class*=@{value}] {
+    text-decoration: 1px @value currentColor line-through;
+  }
+
+  .through[class*=bolder][class*=@{value}] {
+    text-decoration: 2px @value currentColor line-through;
+  }
+
   .@{value} {
     opacity: 1;
   }
 })
-
-.through {
-  text-decoration: 1px solid currentColor line-through;
-}
-
-.overline {
-  text-decoration: 1px solid currentColor overline;
-}
-
-.overline[class*=bolder] {
-  text-decoration: 2px solid currentColor overline;
-}
 
 .isButton {
   cursor: pointer;

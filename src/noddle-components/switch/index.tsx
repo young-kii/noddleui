@@ -10,13 +10,11 @@ import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {themeTypes} from "@/types";
 
 export default (props: switchProps) => {
-    const {theme, biggerButton, onChange, extraContent, type} = props
-
+    const {theme, biggerButton, onChange, extraContent, type, defaultStatus} = props
     /**
      * @see getTheme
      * @description 获取switch的主题,默认返回`default`
      */
-
     const getTheme = (): themeTypes => {
         if (theme) {
             return ["danger", "default", "primary", "warning", "success"].indexOf(theme) > -1 ? theme : "default"
@@ -53,7 +51,7 @@ export default (props: switchProps) => {
 
     const [newType, newExtraContent] = getType()
     const map = {
-        default: <Default {...{theme: getTheme(), biggerButton, onChange, extraContent: newExtraContent}}/>,
+        default: <Default {...{theme: getTheme(), biggerButton, onChange, extraContent: newExtraContent, defaultStatus}}/>,
         moreStatus: <MoreStatus {...{ onChange, extraContent: newExtraContent}}/>
     } as any
 
@@ -67,9 +65,9 @@ export default (props: switchProps) => {
 }
 
 const Default = (props: defaultProps) => {
-    const {theme, biggerButton, onChange, extraContent} = props
+    const {theme, biggerButton, onChange, extraContent, defaultStatus} = props
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
-    const [status, setStatus] = useState(false)
+    const [status, setStatus] = useState(defaultStatus === 'on')
     const containerRef = useRef() as MutableRefObject<HTMLDivElement>
     const extraRef = useRef() as MutableRefObject<HTMLDivElement>
     const ballRef = useRef() as MutableRefObject<HTMLDivElement>
@@ -121,7 +119,7 @@ const Default = (props: defaultProps) => {
         setExtraWidth(maxWidth)
     }
     useEffect(() => {
-        // initExtraWidth()
+        initExtraWidth()
         setBallWidth(ballRef.current.offsetWidth)
     }, [])
     return (
@@ -162,6 +160,12 @@ const MoreStatus = (props: moreStatusProps) => {
         setCurrentStatus(_status)
         onChange?.({status: _status, content: extraContent[_status].content})
     }
+    useEffect(() => {
+        extraContent?.find((item,index) => {
+            if(item.default)
+                setCurrentStatus(index)
+        })
+    },[])
     return (
         <div className={STYLE.moreStatus} onClick={handleClick}>
             <div className={class_container} style={style_container} data-theme={extraContent[currentStatus].theme || 'default'}>

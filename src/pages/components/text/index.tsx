@@ -11,7 +11,10 @@ import {step} from "@/noddle-components/steps/types";
 import ChangelogStep from "@/components/changelog-step";
 import ChangelogComponent from "@/components/changelog-component";
 import PageBase from "@/components/page-base";
-import Steps from "@/noddle-components/steps";
+import BeachIcon from "@/noddle-components/icons/beach-icon";
+import Divider from "@/noddle-components/divider";
+import Select from "@/noddle-components/select";
+import Switch from "@/noddle-components/switch";
 
 export default () => {
     return <>
@@ -26,22 +29,95 @@ export interface tabItemsProps {
 
 const Demo = (props: tabItemsProps) => {
     const {onScroll} = props
-
     return (
         <>
             <ContentContent onScroll={onScroll}>
                 <ContentItem id={'basic-usage'} label={'基本用法'} paddingTop={64}>
                     <>
                         <h3>基本用法</h3>
-                        <p>步骤条内容主要包括以下三部分：<Text bolder>标题</Text><Text bolder>主要内容</Text><Text bolder>额外内容</Text></p>
-                        <CodeBox code={''}>
-
-                        </CodeBox>
+                        <p>步骤条内容主要包括以下三部分：<Text bolder>标题</Text><Text bolder>主要内容</Text><Text
+                            bolder>额外内容额外内容额外内容额外内容额外内容额外内容额外内容</Text></p>
+                        <CodeBox1/>
                     </>
-
                 </ContentItem>
-
             </ContentContent>
+        </>
+    )
+}
+
+const CodeBox1 = () => {
+    const [decoration, setDecoration] = useState('none') as any
+    const [type, setType] = useState('default') as any
+    const [bolder, setBolder] = useState(false) as any
+    const [pure, setPure] = useState(false) as any
+    const [lineType, setLineType] = useState('solid') as any
+    const ConfigPanel = () => {
+        return (
+            <>
+                <Divider position={"start"} spacing={'36px'}>配置</Divider>
+                <Space style={{padding: '24px 40px 0 40px'}} direction={'vertical'}>
+                    <Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>主题：</Text>
+                            <Switch type={"moreStatus"} extraContent={[
+                                {content: 'primary', theme: 'primary'},
+                                {content: 'default', default: true, theme: 'default'},
+                                {content: 'danger', theme: 'danger'},
+                                {content: 'warning', theme: 'warning'},
+                                {content: 'success', theme: 'success'}
+                            ]} onChange={result => setType(result.content)}/>
+                        </Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>粗体：</Text>
+                            <Switch onChange={result => setBolder(result)}/>
+                        </Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>仅文字：</Text>
+                            <Switch onChange={result => setPure(result)}/>
+                        </Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>修饰：</Text>
+                            <Select autoWidth value={decoration} onChange={value => setDecoration(value.value)}>
+                                <Select.Option value={'underline'}>underline</Select.Option>
+                                <Select.Option value={'through'}>through</Select.Option>
+                                <Select.Option value={'overline'}>overline</Select.Option>
+                                <Select.Option value={'none'}>none</Select.Option>
+                            </Select>
+                        </Space>
+                        {
+                            decoration !== 'none' ?
+                                <Space gap={0}>
+                                    <Text pure color={'black'} fontSize={14}>类型：</Text>
+                                    <Select autoWidth value={lineType} onChange={value => setLineType(value.value)}>
+                                        <Select.Option value={'solid'}>solid</Select.Option>
+                                        <Select.Option value={'dashed'}>dashed</Select.Option>
+                                        <Select.Option value={'dotted'}>dotted</Select.Option>
+                                    </Select>
+                                </Space>
+                                : ''
+                        }
+                    </Space>
+                </Space>
+            </>
+        )
+    }
+    const code = `<Text type={${type}} pure={${pure}} lineType={${lineType}} decoration=${decoration} bolder=${bolder}>
+                        测试文本
+                    </Text>`
+    return (
+        <>
+            <CodeBox position={"center"} code={code} config={ConfigPanel()}>
+                <Space>
+                    <Text type={type}
+                          pure={pure}
+                          lineType={lineType}
+                          decoration={decoration}
+                          bolder={bolder}
+                    >
+                        测试文本
+                    </Text>
+                </Space>
+            </CodeBox>
         </>
     )
 }

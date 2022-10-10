@@ -10,7 +10,7 @@ namespace _Select {
 
     export interface selectProps extends _Input.baseInputProps{
         children?: any
-        value: string,
+        value?: string,
         _map?: _object,
         onChange?: (value: {value: any, label: string | boolean}) => void
     }

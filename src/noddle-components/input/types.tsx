@@ -12,7 +12,7 @@ namespace _Input {
         initValue?: string | number,
         initWidth?: number,
         readonly?:boolean,
-        value: string,
+        value?: string,
     }
     export interface inputProps extends baseInputProps{
         onChange: (value: string | number) => void

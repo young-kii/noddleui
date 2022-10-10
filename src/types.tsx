@@ -7,6 +7,7 @@ type direction = 'horizontal' | 'vertical'
 type themeTypes = 'danger' | 'default' | 'primary' | 'warning' | 'success'
 
 interface spaceProps {
+    style?: CSSProperties
     children: ReactNode[] | ReactNode
     direction?: direction
     gap?: number

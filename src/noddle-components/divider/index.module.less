@@ -6,15 +6,19 @@
   flex-shrink: 0;
   .startLine {
     flex: 1;
-    background-color: @base-inactive-background-color;
+    background-color: @base-box-shadow-color;
   }
 
   .endLine {
     flex: 1;
-    background-color: @base-inactive-background-color;
+    background-color: @base-box-shadow-color;
   }
 
   .children {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
     margin: 0 4px;
   }
 

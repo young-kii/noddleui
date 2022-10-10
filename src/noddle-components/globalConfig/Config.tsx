@@ -1,6 +1,8 @@
-import {createContext, useContext, useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 import Select from "@/noddle-components/select";
 import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/types";
+import STYLE from "./index.module.less";
+import BeachIcon from "@/noddle-components/icons/beach-icon";
 const localStorage_localeKey = 'noddle-locale'
 export const globalContext = createContext({})
 
@@ -123,5 +125,16 @@ export namespace ClassNameConfig {
                 result += (' ' + ( props[key] ? this[key] : '' ))
             }
             return result
+    }
+}
+
+export namespace EmptyConfig {
+    export const Empty = () => {
+        return (
+            <div className={STYLE.empty}>
+                <BeachIcon/>
+                <div className={STYLE.emptyText}>没有数据</div>
+            </div>
+        )
     }
 }

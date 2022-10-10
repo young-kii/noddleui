@@ -3,7 +3,7 @@ import _Select from "@/noddle-components/select/types";
 import Input from "@/noddle-components/input";
 import {createContext, useContext, useEffect, useState} from "react";
 import ArrowDown from "@/noddle-components/icons/arrow-down";
-import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
+import {ClassNameConfig, EmptyConfig} from "@/noddle-components/globalConfig/Config";
 
 
 export const selectContext = createContext({})
@@ -86,9 +86,9 @@ const Select_ = () => {
     return (
         <div className={style_container}
              onClick={clickContainer}>
-            <Input {...{...props, value: _map ? _map[value] : '', onChange: () => null}}/>
+            <Input {...{...props, value: value ? (_map ? _map[value] : '') : '', onChange: () => null}}/>
             <ArrowDown width={16} height={16} style={arrayDownStyle} active={ifFocus}/>
-            <DropDownBox focus={ifFocus}>{children}</DropDownBox>
+            <DropDownBox focus={ifFocus}>{children || EmptyConfig.Empty()}</DropDownBox>
         </div>
     )
 }

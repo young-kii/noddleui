@@ -8,7 +8,7 @@ namespace _Divider {
         color?: CSSProperties['color']
         children?: string | ReactNode
         position?: 'start' | 'center' | 'end'
-        spacing?: number
+        spacing?: number | string
         direction?: 'horizontal' | 'vertical'
     }
 }

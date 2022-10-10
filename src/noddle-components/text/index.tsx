@@ -15,7 +15,7 @@ export default forwardRef((props: _Text.textProps, ref: any) => {
         container: true,
         [`${type || 'default'}`]: true,
         pure,
-        bolder,
+        bolder: typeof bolder === 'boolean' ? bolder : false,
         noWrap: typeof noWrap === "boolean" ? noWrap : false,
         [`${decoration || 'none'}`]: true,
         [`${lineType || 'solid'}`]: true,

@@ -9,6 +9,9 @@ import CodeIcon from "@/noddle-components/icons/code-icon";
 import Space from "@/noddle-components/space";
 import BugIcon from "@/noddle-components/icons/bug-icon";
 import header from "@/layout/header";
+import Divider from "@/noddle-components/divider";
+import LaucherSetting from "@/noddle-components/icons/laucher-setting";
+import Tooltips from "@/noddle-components/tooltips";
 
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
@@ -17,7 +20,7 @@ const tags = new Set(['Cascader', 'div', 'Button', 'Space']);
 const special = ['React']
 
 export default (props: _CodeBox.codeBoxProps) => {
-    const {children, height, width} = props
+    const {children, height, width, config} = props
     const code = props?.code || ''
     const position = props?.position || 'left'
     const positionMap = {
@@ -28,6 +31,7 @@ export default (props: _CodeBox.codeBoxProps) => {
     const codeRef = useRef() as MutableRefObject<HTMLElement>
     const pre = useRef() as any
     const [showCode, setShowCode] = useState(false)
+    const [showConfig, setShowConfig] = useState(false)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
 
     const style_pre = styles({
@@ -160,8 +164,17 @@ export default (props: _CodeBox.codeBoxProps) => {
         setShowCode(!showCode)
     }
 
+    const handleShowConfig = () => {
+        setShowConfig(!showConfig)
+    }
+
     const copy = () => {
         console.log('copy')
+    }
+
+    const renderConfig = () => {
+        if (config && showConfig)
+            return config
     }
     useEffect(() => {
         compile(false)
@@ -169,14 +182,17 @@ export default (props: _CodeBox.codeBoxProps) => {
     }, [])
 
     return <>
-        <div className={STYLE.codeBoxContainer} style={{ width: width || '100%' }}>
+        <div className={STYLE.codeBoxContainer} style={{width: width || '100%'}}>
             <div className={STYLE.view} style={{justifyContent: positionMap[position]}}>
                 {children}
             </div>
+            {
+                renderConfig()
+            }
             <div className={STYLE.option_buttons}>
                 <Space gap={4}>
-                    <div className={STYLE.option_button}>
-                        <BugIcon/>
+                    <div className={STYLE.option_button} onClick={handleShowConfig}>
+                        <LaucherSetting/>
                     </div>
                     <div className={STYLE.option_button} onClick={show}>
                         <CodeIcon/>

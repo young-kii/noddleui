@@ -30,24 +30,49 @@ export default (props: _Divider.dividerProps) => {
         endLine: true,
         [`${getDirection()}_line`]: true
     })
+    const getMinWidth = (lineType: 'start' | 'end') => {
+        if (lineType === 'start') {
+            if (typeof spacing === "string" && spacing.includes('px'))
+                return getDirection() === 'horizontal' ? spacing : thickness
+            else return getDirection() === 'horizontal' ?
+                (position === 'start' ? ((spacing && spacing > 50) ? '50%' : spacing + '%') : 16)
+                : thickness
+        } else if (lineType === 'end') {
+            if (typeof spacing === "string" && spacing.includes('px'))
+                return getDirection() === 'horizontal' ? spacing : thickness
+            else return getDirection() === 'horizontal' ?
+                    position === 'end' ? ((spacing && spacing > 50) ? '50%' : spacing + '%') : 16
+                    : thickness
+        }
+    }
+
+    const getMinHeight = (lineType: 'start' | 'end') => {
+        if (lineType === "start") {
+            if (typeof spacing === "string" && spacing.includes('px'))
+                return getDirection() === 'vertical' ? spacing : thickness
+            else return getDirection() === 'vertical' ?
+                    (position === 'start' ? ((spacing && spacing > 50) ? '50%' : spacing + '%' ): 16)
+                    : thickness
+
+        } else if (lineType === "end") {
+            if (typeof spacing === "string" && spacing.includes('px'))
+                return getDirection() === 'vertical' ? spacing : thickness
+            else return getDirection() === 'vertical' ?
+                (position === 'end' ? ((spacing && spacing > 50) ? '50%' : spacing + '%') : 16)
+                : thickness
+        }
+    }
+
     const style_startLine = {
         flex: position === 'start' ? 1 : (position === 'end' ? 10000 : 1),
-        minWidth: direction === 'horizontal' ?
-            (position === 'start' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16)
-            : thickness,
-        minHeight: direction === 'vertical' ?
-            (position === 'start' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16)
-            : thickness,
+        minWidth: getMinWidth("start"),
+        minHeight: getMinHeight("start"),
         backgroundColor: color
     } as CSSProperties
     const style_endLine = {
         flex: position === 'end' ? 1 : (position === 'start' ? 10000 : 1),
-        minWidth: direction === 'horizontal' ?
-            position === 'end' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16
-            : thickness,
-        minHeight: direction === 'vertical' ?
-            (position === 'end' ? (spacing && spacing > 50) ? '50%' : spacing + '%' : 16)
-            : thickness,
+        minWidth: getMinWidth("end"),
+        minHeight: getMinHeight("end"),
         backgroundColor: color
     } as CSSProperties
     const renderChildren = () => {

@@ -2,6 +2,7 @@ import {themeTypes} from "@/types";
 import {ReactNode} from "react";
 
 interface switchProps {
+    defaultStatus?: 'on' | 'off'
     theme?: themeTypes
     type?: 'default' | 'moreStatus'
     extraContent?: defaultExtraContent | moreStatusExtraContent[]
