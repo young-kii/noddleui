@@ -25,7 +25,7 @@ export default () => {
                 <DismissIcon/>
                 <CheckMark/>
                 <AddIcon/>
-                <Tooltips tips={'测试按钮啊啊啊啊啊'}>
+                <Tooltips theme={"success"} tips={'测试按钮啊啊啊啊啊'}>
                     <Button>测试按钮</Button>
                 </Tooltips>
             </Space>

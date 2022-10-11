@@ -1,6 +1,6 @@
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
-import CodeBox from "@/noddle-components/codeBox";
+import CodeBox from "@/components/codeBox";
 import React, {useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";

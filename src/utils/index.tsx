@@ -22,4 +22,18 @@ const linkTo = (url: linkToData["url"], target?: linkToData["target"]) => {
     window.open(url, target || '_blank')
 }
 
-export {getLinksToDocument, linkTo}
+const copy = (value: string) => {
+    const input = document.createElement('textarea')
+    input.setAttribute('readonly','readonly')
+    input.setAttribute('style', 'position: absolute; opacity: 0;')
+    input.value = value
+    document.body.appendChild(input)
+    input.select()
+    document.execCommand('copy')
+    document.body.removeChild(input)
+}
+
+export {getLinksToDocument, linkTo, copy}
+
+
+

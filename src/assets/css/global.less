@@ -25,6 +25,8 @@
 @color-warning: #ffa200;
 @color-default: @base-inactive-background-color;
 
+@cubic-bezier1: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
 body {
   background-color: #e0e0e0;
   margin: 0;
@@ -38,6 +40,19 @@ a {
   -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
 }
+
+.noddle-configPanel {
+  animation: .5s show ease;
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
 
 :root {
   font-size: 16px;

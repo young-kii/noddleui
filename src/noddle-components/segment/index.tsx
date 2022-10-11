@@ -3,12 +3,15 @@ import _Segment from "@/noddle-components/segment/types";
 import {MutableRefObject, useEffect, useRef, useState} from "react";
 import {__function} from "@/noddle-components/globalConfig/types";
 import {useNavigate} from "react-router-dom";
+import {LocaleConfig} from "@/noddle-components/globalConfig/Config";
+import getLocale = LocaleConfig.getLocale;
 
 export default (props: _Segment.segmentProps) => {
     let newSelected: number | string | undefined = 0
     const {className, tabs, selected, onChange} = props
     const [optionWidth, setOptionWidth] = useState([]) as [[], __function]
     const segmentOption = useRef() as MutableRefObject<any>
+    const currentLocale = getLocale()
     const [options, setOptions] = useState([]) as [[], __function]
     const newTabs = tabs.map((tab: _Segment.tab, index: number) => {
         if (tab.tab === selected) newSelected = index
@@ -22,7 +25,7 @@ export default (props: _Segment.segmentProps) => {
         }
         setOptionWidth(optionWidthArray)
         setOptions(_options)
-    }, [])
+    }, [currentLocale])
     return (
         <>
             <div ref={segmentOption} className={STYLE.container + ' ' + className}>

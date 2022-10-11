@@ -2,7 +2,7 @@ import STYLE from './index.module.less'
 import Table, {ColumnsType} from "@/noddle-components/table";
 import React from "react";
 import Button from "@/noddle-components/button";
-import CodeBox from "@/noddle-components/codeBox";
+import CodeBox from "@/components/codeBox";
 import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
 

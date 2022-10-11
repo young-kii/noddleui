@@ -35,52 +35,40 @@ export default {
     feedback: {
         '': '反馈',
         loading: 'Loading 加载中'
-    }
+    },
+    page: {
+        text: {
+            testText: '测试文本',
+            onlyText: '仅文字',
+            header: {
+                title: 'Text 文本',
+                description: '用于修饰文本，改变文本的显示效果，以及添加额外事件。'
+            },
+            section1: {
+                p1: '尝试在配置面板更改测试文本的样式。'
+            }
+        }
+    },
+    common: {
+        demo: '示例',
+        api: 'API',
+        copy: '复制',
+        copied: '已复制',
+        changelog: '日志',
+        changelog_uppercase: '日志',
+        basicUsage: '基本用法',
+        configuration: '配置',
+        type: '类型',
+        theme: {
+            '': '主题',
+            default: '默认',
+            success: '成功',
+            warning: '告警',
+            danger: '危险',
+            primary: '初始'
+        },
+        bolder: '粗体',
+        decoration: '修饰'
+    },
 }
 
-// const aa = {
-//     nav: {
-//         start: '开始',
-//         getting_started: '快速开始',
-//         changelog-component: '更新日志',
-//         overview: '组件概览',
-//     },
-//     config: {
-//         config: '全局配置',
-//         globalConfig: '全局特性配置',
-//     },
-//     dataEntry: {
-//         dataEntry: '输入',
-//         select: {
-//             a: {
-//                 b:'123'
-//             },
-//             c: {
-//                 d:'1234'
-//             }
-//         }
-//     }
-// } as const
-// let index = 0
-//
-// const arr: { key: keyof aa}[] = []
-// function getKeys(obj: { [x: string]: any },result:string = '') {
-//         let origin = result
-//         for(let key in obj) {
-//
-//             result += (result ? '.' : '') + key
-//             // console.log('key:',key)
-//             if(typeof obj[key] === "object")
-//                 getKeys(obj[key],origin + (origin ? '.' : '') + key)
-//             else {
-//                 let a = {
-//                     key:result
-//                 }
-//                 arr.push(a)
-//                 result = origin
-//             }
-//         }
-// }
-//
-// getKeys(aa)
-// console.log(arr)

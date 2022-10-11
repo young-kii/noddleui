@@ -59,26 +59,37 @@
 each(@line-types, {
   .underline[class*=@{value}] {
     text-decoration: 1px @value currentColor underline;
+    text-decoration-skip: auto;
   }
 
   .underline[class*=bolder][class*=@{value}] {
     text-decoration: 2px @value currentColor underline;
+    text-decoration-skip: auto;
+
   }
 
   .overline[class*=@{value}] {
     text-decoration: 1px @value currentColor overline;
+    text-decoration-skip: auto;
+
   }
 
   .overline[class*=bolder][class*=@{value}] {
     text-decoration: 2px @value currentColor overline;
+    text-decoration-skip: auto;
+
   }
 
   .through[class*=@{value}] {
     text-decoration: 1px @value currentColor line-through;
+    text-decoration-skip: auto;
+
   }
 
   .through[class*=bolder][class*=@{value}] {
     text-decoration: 2px @value currentColor line-through;
+    text-decoration-skip: auto;
+
   }
 
   .@{value} {

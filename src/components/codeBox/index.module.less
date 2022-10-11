@@ -1,5 +1,5 @@
 @import "index";
-@import "src/assets/css/global";
+@import "../../assets/css/global";
 
 .codeBoxContainer {
   margin-top: 24px;
@@ -14,20 +14,21 @@
 
     .codeContainer {
       color: @codeBox-baseColor;
-      background-color: @codeBox-backgroundColor;
+      background-color: #f7f7f7;
       box-shadow: 0 -1px 1px @base-box-shadow-color;
       overflow: scroll;
-      padding: 0 6px;
+      padding: 0 24px;
       transition: .5s ease;
-      height: 300px;
       display: flex;
       flex-direction: column;
 
       &:hover .copy {
         opacity: 1;
+        visibility: visible;
       }
 
       .copy {
+        visibility: hidden;
         transition: .5s ease;
         opacity: 0;
         cursor: pointer;
@@ -43,8 +44,9 @@
   }
 
   .code {
-    line-height: 20px;
-    font-size: 14px;
+    line-height: 24px;
+    font-size: 15px;
+    font-weight: 500;
   }
 
   .view {
@@ -71,7 +73,6 @@
       align-items: center;
       justify-content: center;
       transition: .3s;
-
     }
 
     .option_button:hover {

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ContentHeader, {tabsConfig} from "@/components/content-header";
+import {useTranslation} from "@/noddle-components/globalConfig/Config";
 interface props {
     Api: any
     Demo: any
@@ -8,6 +9,7 @@ interface props {
     description: string
 }
 export default (props: props) => {
+    const translate = useTranslation()
     const [tab, setTab] = useState('demo')
     const {description, Demo, Api, title, Changelog} = props
     const [scrollHistory, setScrollHistory] = useState({
@@ -18,9 +20,9 @@ export default (props: props) => {
     const noddle_content = document.getElementById('noddle-content') as HTMLDivElement
     const tabsConfig = {
         tabs: [
-            {tab: 'demo', label: '示例'},
-            {tab: 'api', label: 'API'},
-            {tab: 'changelog', label: '日志'},
+            {tab: 'demo', label: translate('common.demo')},
+            {tab: 'api', label: translate('common.api')},
+            {tab: 'changelog', label: translate('common.changelog_uppercase')},
         ],
         onChange: (value) => {
             setTab(value.tab)

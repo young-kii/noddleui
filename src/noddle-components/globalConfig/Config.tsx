@@ -49,7 +49,7 @@ export const useTranslation = () => {
                 const keys = value.split('.')
                 const result = keys.reduce((pre: _object, cur: string, currentIndex, array) => {
                     if (currentIndex === array.length - 1) {
-                        if (lan[cur])
+                        if ( lan && lan.hasOwnProperty(cur))
                             if (lan[cur][''])
                                 return lan[cur]['']
                     }
@@ -75,6 +75,12 @@ export namespace LocaleConfig {
             localStorage.setItem(localStorage_localeKey, _locale)
             setLocale(_locale)
         }
+    }
+
+    export function getLocale() {
+        const context = useContext(globalContext)
+        const {locale} = context as contextType
+        return locale
     }
 
     export function LocaleOption() {

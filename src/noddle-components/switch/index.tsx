@@ -158,7 +158,7 @@ const MoreStatus = (props: moreStatusProps) => {
             _status = 0
         else _status = currentStatus + 1
         setCurrentStatus(_status)
-        onChange?.({status: _status, content: extraContent[_status].content})
+        onChange?.({status: _status, content: extraContent[_status].content, theme: extraContent[_status].theme})
     }
     useEffect(() => {
         extraContent?.find((item,index) => {

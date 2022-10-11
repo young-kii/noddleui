@@ -1,8 +1,11 @@
 import STYLE from './index.module.less'
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {ReactNode, useContext, useEffect, useState} from "react";
 import DrinkIcon from "@/noddle-components/icons/drink-icon";
 import CircleIcon from "@/noddle-components/icons/circle-icon";
 import {noddle_main_color} from "@/types";
+import globalConfig from "@/pages/components/globalConfig";
+import {LocaleConfig} from "@/noddle-components/globalConfig/Config";
+import getLocale = LocaleConfig.getLocale;
 
 interface contentContentProps {
     children?: ReactNode
@@ -22,6 +25,7 @@ export default (props: contentContentProps) => {
     const [contentItems, setItems] = useState([]) as any
     const [selectedItem, setSelectedItem] = useState('')
     const [itemIndex, setItemIndex] = useState(0)
+    const currentLocale = getLocale()
     let _items: contentItem[] = []
     useEffect(() => {
         const items = document.querySelectorAll('[id*=noddle-contentItem]') as any
@@ -49,7 +53,7 @@ export default (props: contentContentProps) => {
         return () => {
             scroll.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [currentLocale])
     const handleClick = (e: any) => {
         const id = e.target?.dataset?.id
         const scroll = document.getElementById('noddle-content') as HTMLDivElement

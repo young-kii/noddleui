@@ -13,6 +13,7 @@
   transition: .3s ease border-bottom-color, .3s ease border-top-color, .3s ease border-left-color, .3s ease border-right-color, .2s outline-width;
   border: 1px solid @base-inactive-background-color;
   .dropDownBox_container {
+    cursor: default;
     transition: .3s ease;
     position: absolute;
     z-index: 99;
@@ -27,7 +28,9 @@
     border-radius: @base-border-radius;
     //width: 100%;
     .option {
+      cursor: pointer;
       overflow: hidden;
+      user-select: none;
       text-overflow: ellipsis;
       max-width: 100%;
       white-space: nowrap;

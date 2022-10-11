@@ -3,7 +3,7 @@ import {ColumnsType} from "@/noddle-components/table";
 import Text from "@/noddle-components/text";
 
 type direction = 'horizontal' | 'vertical'
-
+type size = 'small' | 'medium' | 'large'
 type themeTypes = 'danger' | 'default' | 'primary' | 'warning' | 'success'
 
 interface spaceProps {
@@ -22,9 +22,18 @@ interface DataType {
     defaultValue: string | ReactNode
     required: 'YES' | 'NO'
 }
-
-const noddle_main_color = '#0252D9FF'
 type link_target = '_blank' | '_self' | '_three' | '_top' | string
+const themes_array = ['default', 'danger', 'primary', 'warning', 'success'] as themeTypes[]
+const noddle_main_color = '#0252D9FF'
+const codeBoxConfigPanelStyle = {padding: '24px 40px 0 40px'}
+const sizes_Base = ['small', 'medium', 'large'] as size[]
+const sizes_font = {...sizes_Base}
+const sizes_font_map = {
+    small: 12,
+    medium: 16,
+    large: 24
+} as any
+
 const apiTableColumns: ColumnsType<DataType> = [
     {
         title: '参数',
@@ -78,5 +87,15 @@ const apiTableColumns: ColumnsType<DataType> = [
     }
 ]
 
-export type {direction, spaceProps, DataType, themeTypes, link_target}
-export {apiTableColumns, noddle_main_color}
+const getPropertyValue = (value: any, map: any[], defaultValue: any) => {
+    if(value)
+        return map.indexOf(value) > -1 ? value : defaultValue
+    return defaultValue
+}
+
+export type {direction, spaceProps, DataType, themeTypes, link_target, size}
+export {apiTableColumns, codeBoxConfigPanelStyle}
+export {noddle_main_color, themes_array}
+export {sizes_Base, sizes_font}
+export {sizes_font_map}
+export {getPropertyValue}

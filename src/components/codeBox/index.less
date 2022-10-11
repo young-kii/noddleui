@@ -1,4 +1,4 @@
-@import "src/assets/css/global";
+@import "../../assets/css/global";
 @codeBox-backgroundColor: @base-hover-background-color;
 @codeBox-baseColor: #6d6d6d;
 
@@ -6,9 +6,10 @@
 @comma: @keywords;
 @punctuation: @codeBox-baseColor;
 @mark: #35841a;
-@tags: #eea617;
-@functions: #c84242;
+@tags: #e8a01a;
+@functions: #ff0000;
 @objectKey: #8429a4;
+@inTagValue: @keywords;
 
 @codeBoxType: {
   noddle-keywords: @keywords;
@@ -18,6 +19,7 @@
   noddle-functions: @functions;
   noddle-comma: @comma;
   noddle-objectKey:@objectKey;
+  noddle-inTagValue: @inTagValue;
 }
 
 each(@codeBoxType, {

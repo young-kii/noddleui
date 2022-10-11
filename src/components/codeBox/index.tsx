@@ -1,8 +1,8 @@
 import STYLE from './index.module.less';
 import './index.less';
 import {MutableRefObject, useEffect, useRef, useState} from "react";
-import _CodeBox from "@/noddle-components/codeBox/types";
-import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
+import _CodeBox from "@/components/codeBox/types";
+import {ClassNameConfig, useTranslation} from "@/noddle-components/globalConfig/Config";
 import CopyIcon from "@/noddle-components/icons/copy-icon";
 import Button from "@/noddle-components/button";
 import CodeIcon from "@/noddle-components/icons/code-icon";
@@ -12,11 +12,12 @@ import header from "@/layout/header";
 import Divider from "@/noddle-components/divider";
 import LaucherSetting from "@/noddle-components/icons/laucher-setting";
 import Tooltips from "@/noddle-components/tooltips";
+import {copy, getLinksToDocument, linkTo} from "@/utils";
 
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
 const punctuation = new Set(['.', '(', ')', '{', '}', '=', '<', '>', '[', ']', ':', '/']);
-const tags = new Set(['Cascader', 'div', 'Button', 'Space']);
+const tags = new Set(['Cascader', 'div', 'Button', 'Space', 'Text']);
 const special = ['React']
 
 export default (props: _CodeBox.codeBoxProps) => {
@@ -30,8 +31,13 @@ export default (props: _CodeBox.codeBoxProps) => {
     }
     const codeRef = useRef() as MutableRefObject<HTMLElement>
     const pre = useRef() as any
+    const translate = useTranslation()
     const [showCode, setShowCode] = useState(false)
     const [showConfig, setShowConfig] = useState(false)
+    const [calcHeight, setCalcHeight] = useState(0)
+    const [copyStatus, setCopyStatus] = useState(false)
+    const copyWord = copyStatus ? translate('common.copied') : translate('common.copy')
+    const copyTheme = copyStatus ? 'success' : 'default'
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
 
     const style_pre = styles({
@@ -67,7 +73,9 @@ export default (props: _CodeBox.codeBoxProps) => {
                     newArray = currentArray
                     currentArray = ''
                     markCount = 0
-                    return previousValue + `<span class="noddle-mark">${newArray}</span>`
+                    if (!inTag)
+                        return previousValue + `<span class="noddle-mark">${newArray}</span>`
+                    return previousValue + `<span class="noddle-inTagValue">${newArray}</span>`
                 }
             }
             if (markCount === 1) {
@@ -94,14 +102,18 @@ export default (props: _CodeBox.codeBoxProps) => {
                         newArray = `<span class="noddle-objectKey">${currentArray}</span>`
                 }
                 if (currentValue === '=') {
-                    if (inTag)
+                    if (inTag) {
                         className = 'noddle-mark'
+                        newArray = `<span class="noddle-mark">${newArray}</span>`
+                    }
                 }
                 if (currentValue === '{') {
                     inCurlyBracket = true
                 }
                 if (currentValue === '}') {
                     inCurlyBracket = false
+                    if (inTag)
+                        newArray = `<span class="noddle-inTagValue">${newArray}</span>`
                 }
                 currentArray = ''
                 return previousValue + newArray + `<span class="${className}">${currentValue}</span>`
@@ -168,7 +180,9 @@ export default (props: _CodeBox.codeBoxProps) => {
         setShowConfig(!showConfig)
     }
 
-    const copy = () => {
+    const handleCopy = () => {
+        setCopyStatus(true)
+        copy(codeRef.current.innerText)
         console.log('copy')
     }
 
@@ -179,7 +193,8 @@ export default (props: _CodeBox.codeBoxProps) => {
     useEffect(() => {
         compile(false)
         codeRef.current.innerHTML = compile(true)
-    }, [])
+        setCalcHeight(codeRef.current.offsetHeight + 42)
+    }, [code])
 
     return <>
         <div className={STYLE.codeBoxContainer} style={{width: width || '100%'}}>
@@ -191,18 +206,27 @@ export default (props: _CodeBox.codeBoxProps) => {
             }
             <div className={STYLE.option_buttons}>
                 <Space gap={4}>
-                    <div className={STYLE.option_button} onClick={handleShowConfig}>
-                        <LaucherSetting/>
-                    </div>
+                    {
+                        config ?
+                            <div className={STYLE.option_button} onClick={handleShowConfig}>
+                                <LaucherSetting/>
+                            </div>
+                            :
+                            <></>
+                    }
                     <div className={STYLE.option_button} onClick={show}>
                         <CodeIcon/>
                     </div>
                 </Space>
             </div>
             <div className={STYLE.code_area}>
-                <div className={style_pre} style={{height}} ref={pre}>
-                    <div className={STYLE.copy} onClick={copy}>
-                        <CopyIcon width={24} height={24}/>
+                <div className={style_pre} style={{height: height || calcHeight}} ref={pre}>
+                    <div className={STYLE.copy} onClick={handleCopy}>
+                        <Tooltips tips={copyWord} theme={copyTheme} handleMouseLeave={() => {
+                            setCopyStatus(false)
+                        }}>
+                            <CopyIcon width={24} height={24}/>
+                        </Tooltips>
                     </div>
                     <pre>
               <code className={STYLE.code} ref={codeRef}/>

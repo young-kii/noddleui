@@ -15,7 +15,7 @@ namespace _Input {
         value?: string,
     }
     export interface inputProps extends baseInputProps{
-        onChange: (value: string | number) => void
+        onChange: (value: string | undefined | number) => void
     }
 
     export interface pureInputProps extends inputProps {

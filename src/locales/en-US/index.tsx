@@ -36,24 +36,39 @@ export default {
     feedback: {
         '': 'feedback',
         loading: 'Loading'
-    }
-}
-
-const aa = {
-    nav: {
-        start: 'Start',
-        getting_started: 'Getting-Started',
+    },
+    page: {
+        text: {
+            testText: 'Text',
+            onlyText: 'Text Only',
+            header: {
+                title: 'Text',
+                description: 'Used to decorate text, change the display effect of text, and add additional events.'
+            },
+            section1: {
+                p1: 'Try changing the style of the test text in the configuration panel.'
+            }
+        }
+    },
+    common: {
+        demo: 'DEMO',
+        api: 'API',
+        copy: 'Copy',
+        copied: 'Copied',
         changelog: 'Changelog',
-        overview: 'Components Overview',
+        changelog_uppercase: 'CHANGELOG',
+        basicUsage: 'Basic Usage',
+        configuration: 'Configuration',
+        type: 'Type',
+        theme: {
+            '': 'Theme',
+            default: 'Default',
+            success: 'Success',
+            warning: 'Warning',
+            danger: 'Danger',
+            primary: 'Primary'
+        },
+        bolder: 'Bolder',
+        decoration: 'Decoration'
     },
-    config: {
-        config: 'Config',
-        globalConfig: 'Global Property Configuration',
-
-    },
-
-    dataEntry: {
-        dataEntry: 'Data Entry',
-        select: 'Select'
-    }
 }

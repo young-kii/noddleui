@@ -3,7 +3,7 @@ import ContentHeader, {tabsConfig} from "@/components/content-header";
 import Content from "@/layout/content";
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
-import CodeBox from "@/noddle-components/codeBox";
+import CodeBox from "@/components/codeBox";
 import React, {MutableRefObject, ReactNode, useEffect, useRef, useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";

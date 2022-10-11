@@ -1,11 +1,11 @@
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
-import CodeBox from "@/noddle-components/codeBox";
+import CodeBox from "@/components/codeBox";
 import React, {useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
-import {DataType} from "@/types";
+import {codeBoxConfigPanelStyle, DataType} from "@/types";
 import TableApi from "@/components/table-api";
 import {step} from "@/noddle-components/steps/types";
 import ChangelogStep from "@/components/changelog-step";
@@ -15,10 +15,14 @@ import BeachIcon from "@/noddle-components/icons/beach-icon";
 import Divider from "@/noddle-components/divider";
 import Select from "@/noddle-components/select";
 import Switch from "@/noddle-components/switch";
+import {useTranslation} from "@/noddle-components/globalConfig/Config";
+import Locales from "@/locales";
+import allLocales = Locales.allLocales;
 
 export default () => {
+    const translate = useTranslation()
     return <>
-        <PageBase title={'Text 文本'} description={'用于修饰文本，改变文本的显示效果，以及添加额外事件'} Demo={Demo} Api={Api}
+        <PageBase title={translate('page.text.header.title')} description={translate('page.text.header.description')} Demo={Demo} Api={Api}
                   Changelog={Changelog}/>
     </>
 }
@@ -28,15 +32,15 @@ export interface tabItemsProps {
 }
 
 const Demo = (props: tabItemsProps) => {
+    const translate = useTranslation()
     const {onScroll} = props
     return (
         <>
             <ContentContent onScroll={onScroll}>
-                <ContentItem id={'basic-usage'} label={'基本用法'} paddingTop={64}>
+                <ContentItem id={'basic-usage'} label={translate('common.basicUsage')} paddingTop={64}>
                     <>
-                        <h3>基本用法</h3>
-                        <p>步骤条内容主要包括以下三部分：<Text bolder>标题</Text><Text bolder>主要内容</Text><Text
-                            bolder>额外内容额外内容额外内容额外内容额外内容额外内容额外内容</Text></p>
+                        <h3>{translate('common.basicUsage')}</h3>
+                        <p>{translate('page.text.section1.p1')}</p>
                         <CodeBox1/>
                     </>
                 </ContentItem>
@@ -46,6 +50,7 @@ const Demo = (props: tabItemsProps) => {
 }
 
 const CodeBox1 = () => {
+    const translate = useTranslation()
     const [decoration, setDecoration] = useState('none') as any
     const [type, setType] = useState('default') as any
     const [bolder, setBolder] = useState(false) as any
@@ -53,30 +58,30 @@ const CodeBox1 = () => {
     const [lineType, setLineType] = useState('solid') as any
     const ConfigPanel = () => {
         return (
-            <>
-                <Divider position={"start"} spacing={'36px'}>配置</Divider>
-                <Space style={{padding: '24px 40px 0 40px'}} direction={'vertical'}>
+            <div className={'noddle-configPanel'}>
+                <Divider position={"start"} spacing={'36px'}>{translate('common.configuration')}</Divider>
+                <Space style={codeBoxConfigPanelStyle} direction={'vertical'}>
                     <Space>
                         <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>主题：</Text>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.theme')+'：'}</Text>
                             <Switch type={"moreStatus"} extraContent={[
-                                {content: 'primary', theme: 'primary'},
-                                {content: 'default', default: true, theme: 'default'},
-                                {content: 'danger', theme: 'danger'},
-                                {content: 'warning', theme: 'warning'},
-                                {content: 'success', theme: 'success'}
-                            ]} onChange={result => setType(result.content)}/>
+                                {content: translate('common.theme.primary'), theme: 'primary'},
+                                {content: translate('common.theme.default'), default: true, theme: 'default'},
+                                {content: translate('common.theme.danger'), theme: 'danger'},
+                                {content: translate('common.theme.warning'), theme: 'warning'},
+                                {content: translate('common.theme.success'), theme: 'success'}
+                            ]} onChange={result => setType(result.theme)}/>
                         </Space>
                         <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>粗体：</Text>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.bolder')+ '：'}</Text>
                             <Switch onChange={result => setBolder(result)}/>
                         </Space>
                         <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>仅文字：</Text>
+                            <Text pure color={'black'} fontSize={14}>{translate('page.text.onlyText') + '：'}</Text>
                             <Switch onChange={result => setPure(result)}/>
                         </Space>
                         <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>修饰：</Text>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.decoration') + '：'}</Text>
                             <Select autoWidth value={decoration} onChange={value => setDecoration(value.value)}>
                                 <Select.Option value={'underline'}>underline</Select.Option>
                                 <Select.Option value={'through'}>through</Select.Option>
@@ -87,7 +92,7 @@ const CodeBox1 = () => {
                         {
                             decoration !== 'none' ?
                                 <Space gap={0}>
-                                    <Text pure color={'black'} fontSize={14}>类型：</Text>
+                                    <Text pure color={'black'} fontSize={14}>{translate('common.type') + '：'}</Text>
                                     <Select autoWidth value={lineType} onChange={value => setLineType(value.value)}>
                                         <Select.Option value={'solid'}>solid</Select.Option>
                                         <Select.Option value={'dashed'}>dashed</Select.Option>
@@ -98,12 +103,19 @@ const CodeBox1 = () => {
                         }
                     </Space>
                 </Space>
-            </>
+            </div>
         )
     }
-    const code = `<Text type={${type}} pure={${pure}} lineType={${lineType}} decoration=${decoration} bolder=${bolder}>
-                        测试文本
-                    </Text>`
+    const code = `<Text 
+ type="${type}"
+ pure={${pure}}
+ lineType="${lineType}"
+ decoration="${decoration}"
+ bolder={${bolder}}
+>
+ ${translate('page.text.testText')}
+</Text>
+`
     return (
         <>
             <CodeBox position={"center"} code={code} config={ConfigPanel()}>
@@ -114,7 +126,7 @@ const CodeBox1 = () => {
                           decoration={decoration}
                           bolder={bolder}
                     >
-                        测试文本
+                        {translate('page.text.testText')}
                     </Text>
                 </Space>
             </CodeBox>
@@ -122,7 +134,9 @@ const CodeBox1 = () => {
     )
 }
 
+
 const Api = (props: tabItemsProps) => {
+
     const {onScroll} = props
 
     const data: DataType[] = [

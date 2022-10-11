@@ -1,6 +1,6 @@
 import STYLE from './index.module.less'
 import ContentHeader from "@/components/content-header";
-import CodeBox from "@/noddle-components/codeBox";
+import CodeBox from "@/components/codeBox";
 
 export default () => {
 
