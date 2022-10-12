@@ -13,6 +13,7 @@ import Divider from "@/noddle-components/divider";
 import LaucherSetting from "@/noddle-components/icons/laucher-setting";
 import Tooltips from "@/noddle-components/tooltips";
 import {copy, getLinksToDocument, linkTo} from "@/utils";
+import ArrowHookUpLeft from "@/noddle-components/icons/arrow-hook-up-left";
 
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);
@@ -21,7 +22,7 @@ const tags = new Set(['Cascader', 'div', 'Button', 'Space', 'Text']);
 const special = ['React']
 
 export default (props: _CodeBox.codeBoxProps) => {
-    const {children, height, width, config} = props
+    const {children, height, width, config, onReset, isConfigChanged} = props
     const code = props?.code || ''
     const position = props?.position || 'left'
     const positionMap = {
@@ -208,9 +209,18 @@ export default (props: _CodeBox.codeBoxProps) => {
                 <Space gap={4}>
                     {
                         config ?
-                            <div className={STYLE.option_button} onClick={handleShowConfig}>
-                                <LaucherSetting/>
-                            </div>
+                            <Space gap={4}>
+                                {
+                                    isConfigChanged ?
+                                        <div className={STYLE.option_button} onClick={onReset}>
+                                            <ArrowHookUpLeft/>
+                                        </div>
+                                        : ''
+                                }
+                                <div className={STYLE.option_button} onClick={handleShowConfig}>
+                                    <LaucherSetting/>
+                                </div>
+                            </Space>
                             :
                             <></>
                     }
@@ -223,7 +233,9 @@ export default (props: _CodeBox.codeBoxProps) => {
                 <div className={style_pre} style={{height: height || calcHeight}} ref={pre}>
                     <div className={STYLE.copy} onClick={handleCopy}>
                         <Tooltips tips={copyWord} theme={copyTheme} handleMouseLeave={() => {
-                            setCopyStatus(false)
+                            setTimeout(() => {
+                                setCopyStatus(false)
+                            }, 300)
                         }}>
                             <CopyIcon width={24} height={24}/>
                         </Tooltips>

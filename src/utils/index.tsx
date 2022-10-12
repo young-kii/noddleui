@@ -31,6 +31,7 @@ const copy = (value: string) => {
     input.select()
     document.execCommand('copy')
     document.body.removeChild(input)
+    return value
 }
 
 export {getLinksToDocument, linkTo, copy}

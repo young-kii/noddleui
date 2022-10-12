@@ -1,7 +1,7 @@
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
 import CodeBox from "@/components/codeBox";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
@@ -55,7 +55,22 @@ const CodeBox1 = () => {
     const [type, setType] = useState('default') as any
     const [bolder, setBolder] = useState(false) as any
     const [pure, setPure] = useState(false) as any
+    const [color, setColor] = useState('') as any
+    const [onCopy, setOnCopy] = useState(false) as any
     const [lineType, setLineType] = useState('solid') as any
+    const [isConfigChanged, setIsConfigChanged] = useState(false) as any
+    const [status1, setStatus1] = useState() as any
+    const [status2, setStatus2] = useState() as any
+    const [status3, setStatus3] = useState() as any
+    const [status4, setStatus4] = useState() as any
+    const onReset = () => {
+        setColor('')
+        setIsConfigChanged(false)
+    }
+    useEffect(()=>{
+       if(color !== '')
+           setIsConfigChanged(type)
+    },[color])
     const ConfigPanel = () => {
         return (
             <div className={'noddle-configPanel'}>
@@ -64,21 +79,16 @@ const CodeBox1 = () => {
                     <Space>
                         <Space gap={0}>
                             <Text pure color={'black'} fontSize={14}>{translate('common.theme')+'：'}</Text>
-                            <Switch type={"moreStatus"} extraContent={[
+                            <Switch status={status1} type={"moreStatus"} extraContent={[
                                 {content: translate('common.theme.primary'), theme: 'primary'},
                                 {content: translate('common.theme.default'), default: true, theme: 'default'},
                                 {content: translate('common.theme.danger'), theme: 'danger'},
                                 {content: translate('common.theme.warning'), theme: 'warning'},
                                 {content: translate('common.theme.success'), theme: 'success'}
-                            ]} onChange={result => setType(result.theme)}/>
-                        </Space>
-                        <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>{translate('common.bolder')+ '：'}</Text>
-                            <Switch onChange={result => setBolder(result)}/>
-                        </Space>
-                        <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>{translate('page.text.onlyText') + '：'}</Text>
-                            <Switch onChange={result => setPure(result)}/>
+                            ]} onChange={result => {
+                                setStatus1(result.status)
+                                setType(result.theme)
+                            }}/>
                         </Space>
                         <Space gap={0}>
                             <Text pure color={'black'} fontSize={14}>{translate('common.decoration') + '：'}</Text>
@@ -101,6 +111,33 @@ const CodeBox1 = () => {
                                 </Space>
                                 : ''
                         }
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.color') + '：'}</Text>
+                            <input type={"color"} value={color} onChange={e => setColor(e.target.value)}/>
+                        </Space>
+                    </Space>
+                    <Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.bolder')+ '：'}</Text>
+                            <Switch status={status2} onChange={result => {
+                                setStatus2(result)
+                                setBolder(result)
+                            }}/>
+                        </Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>{translate('page.text.onlyText') + '：'}</Text>
+                            <Switch status={status3} onChange={result => {
+                                setStatus3(result)
+                                setPure(result)
+                            }}/>
+                        </Space>
+                        <Space gap={0}>
+                            <Text pure color={'black'} fontSize={14}>{translate('page.text.copyable') + '：'}</Text>
+                            <Switch status={status4} onChange={result => {
+                                setStatus4(result)
+                                setOnCopy(result)
+                            }}/>
+                        </Space>
                     </Space>
                 </Space>
             </div>
@@ -109,22 +146,25 @@ const CodeBox1 = () => {
     const code = `<Text 
  type="${type}"
  pure={${pure}}
- lineType="${lineType}"
+ lineType="${lineType}"${color ? ('\n color="' + color + '"') : ''}
  decoration="${decoration}"
  bolder={${bolder}}
+ onCopy={${onCopy}}
 >
  ${translate('page.text.testText')}
 </Text>
 `
     return (
         <>
-            <CodeBox position={"center"} code={code} config={ConfigPanel()}>
+            <CodeBox position={"center"} code={code} isConfigChanged={isConfigChanged} config={ConfigPanel()} onReset={onReset}>
                 <Space>
                     <Text type={type}
+                          color={color}
                           pure={pure}
                           lineType={lineType}
                           decoration={decoration}
                           bolder={bolder}
+                          onCopy={onCopy}
                     >
                         {translate('page.text.testText')}
                     </Text>

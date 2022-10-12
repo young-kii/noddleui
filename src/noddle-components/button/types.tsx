@@ -4,7 +4,7 @@ import {themeTypes} from "@/types";
 interface buttonProps {
     widthFitsText?: boolean;
     children: any;
-    onClick?: () => any
+    onClick?: (value?: any) => any
     type?: themeTypes,
     border?: 'default' | 'solid' | 'dashed' | 'text'
     disabled?: boolean

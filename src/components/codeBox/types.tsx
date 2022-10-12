@@ -6,8 +6,10 @@ namespace _CodeBox {
         code: string;
         position?: 'left' | 'right' | 'center';
         children: ReactNode[] | ReactNode
+        onReset?: () => any
         height?: number
         width?: number | string | 'max-content'
+        isConfigChanged?: boolean
     }
 }
 

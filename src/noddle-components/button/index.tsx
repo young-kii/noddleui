@@ -2,6 +2,7 @@ import {baseButtonProps, buttonProps} from "./types";
 import STYLE from './index.module.less'
 import {forwardRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
+import {getPropertyValue, themes_array} from "@/types";
 
 export default forwardRef((props: buttonProps,ref: any) => {
 
@@ -19,6 +20,10 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
     const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block, clickEffect} = props
     const [click, setClick] = useState(false)
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
+    const getType = () => {
+        return getPropertyValue(type, themes_array, 'primary')
+    }
+
     const style_container = styles({
         container: true,
         click,
@@ -38,10 +43,10 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
      * @description 当disabled时为禁用状态，无法完成点击事件
      */
 
-    const handleClick = () => {
+    const handleClick = (e: any) => {
         if (disabled)
             return null
-        onClick?.()
+        onClick?.(e)
         setClick(false)
         setTimeout(() => {
             setClick(true)
@@ -50,7 +55,7 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
 
     return (
         <div ref={ref} className={style_container} style={_style} onClick={handleClick}
-             data-buttontype={type || 'default'}
+             data-buttontype={getType() || 'primary'}
              data-bordertype={border || 'default'}
              data-clickeffect={clickEffect || 'default'}
              data-backgroundstyle={backgroundStyle || 'default'}

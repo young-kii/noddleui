@@ -80,6 +80,14 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'steps',
                         component: lazy(() => import('@/pages/components/steps'))
+                    },
+                    {
+                        path: 'switch',
+                        component: lazy(() => import('@/pages/components/switch'))
+                    },
+                    {
+                        path: 'tooltips',
+                        component: lazy(() => import('@/pages/components/tooltips'))
                     }
                 ]
             },

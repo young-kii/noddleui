@@ -26,11 +26,13 @@ export default {
     dataEntry: {
         '': '输入',
         select: 'Select 选择器',
-        form: 'Form 表单'
+        form: 'Form 表单',
+        switch: 'Switch 开关',
     },
     dataDisplay: {
         '': '数据展示',
-        table: 'Table 表格'
+        table: 'Table 表格',
+        tooltips: 'Tooltips 文字提示'
     },
     feedback: {
         '': '反馈',
@@ -38,8 +40,9 @@ export default {
     },
     page: {
         text: {
-            testText: '测试文本',
+            copyable: '可复制',
             onlyText: '仅文字',
+            testText: '测试文本',
             header: {
                 title: 'Text 文本',
                 description: '用于修饰文本，改变文本的显示效果，以及添加额外事件。'
@@ -50,15 +53,20 @@ export default {
         }
     },
     common: {
-        demo: '示例',
         api: 'API',
-        copy: '复制',
-        copied: '已复制',
+        basicUsage: '基本用法',
+        bolder: '粗体',
         changelog: '日志',
         changelog_uppercase: '日志',
-        basicUsage: '基本用法',
+        color: '颜色',
+        content: '内容',
+        copy: '复制',
+        copied: '已复制',
         configuration: '配置',
+        decoration: '修饰',
+        demo: '示例',
         type: '类型',
+        title: '标题',
         theme: {
             '': '主题',
             default: '默认',
@@ -67,8 +75,6 @@ export default {
             danger: '危险',
             primary: '初始'
         },
-        bolder: '粗体',
-        decoration: '修饰'
     },
 }
 

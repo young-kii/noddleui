@@ -2,6 +2,7 @@ import {themeTypes} from "@/types";
 import {ReactNode} from "react";
 
 interface switchProps {
+    status?: switchProps["defaultStatus"] | number
     defaultStatus?: 'on' | 'off'
     theme?: themeTypes
     type?: 'default' | 'moreStatus'

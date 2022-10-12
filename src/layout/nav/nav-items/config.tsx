@@ -43,8 +43,9 @@ const itemList: item[] = [
         title: 'dataEntry',
         extra: 'components',
         children: [
-            {title: 'select'},
             {title: 'form'},
+            {title: 'select'},
+            {title: 'switch'},
         ]
     },
     {
@@ -52,6 +53,7 @@ const itemList: item[] = [
         extra: 'components',
         children: [
             {title: 'table'},
+            {title: 'tooltips'},
         ]
     },
     {

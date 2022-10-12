@@ -27,11 +27,13 @@ export default {
     dataEntry: {
         '': 'Data Entry',
         select: 'Select',
-        form: 'Form'
+        form: 'Form',
+        switch: 'Switch',
     },
     dataDisplay: {
         '': 'Data Display',
-        table: 'Table'
+        table: 'Table',
+        tooltips: 'Tooltips'
     },
     feedback: {
         '': 'feedback',
@@ -39,8 +41,9 @@ export default {
     },
     page: {
         text: {
-            testText: 'Text',
+            copyable: 'Copyable',
             onlyText: 'Text Only',
+            testText: 'Text',
             header: {
                 title: 'Text',
                 description: 'Used to decorate text, change the display effect of text, and add additional events.'
@@ -51,15 +54,20 @@ export default {
         }
     },
     common: {
-        demo: 'DEMO',
         api: 'API',
-        copy: 'Copy',
-        copied: 'Copied',
+        basicUsage: 'Basic Usage',
+        bolder: 'Bolder',
         changelog: 'Changelog',
         changelog_uppercase: 'CHANGELOG',
-        basicUsage: 'Basic Usage',
+        content: 'Content',
+        color: 'Color',
+        copy: 'Copy',
+        copied: 'Copied',
         configuration: 'Configuration',
+        decoration: 'Decoration',
+        demo: 'DEMO',
         type: 'Type',
+        title: 'Title',
         theme: {
             '': 'Theme',
             default: 'Default',
@@ -68,7 +76,5 @@ export default {
             danger: 'Danger',
             primary: 'Primary'
         },
-        bolder: 'Bolder',
-        decoration: 'Decoration'
     },
 }

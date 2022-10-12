@@ -88,7 +88,7 @@ export default () => {
     return (
         <div style={{padding: 16}}>
             <CodeBox code={'nothing'}>
-                <Table columns={columns} dataSource={[]} outline />
+                <Table columns={columns} dataSource={data} outline />
             </CodeBox>
         </div>
     )

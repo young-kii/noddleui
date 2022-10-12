@@ -1,0 +1,16 @@
+@import "src/assets/css/global";
+
+@themes: default, danger, success, primary, warning;
+
+@default: black;
+@danger: @color-danger;
+@success: @color-success;
+@primary: @noddle-main-color;
+@warning: @color-warning;
+
+each(@themes, {
+  .@{value} {
+    color: @@value;
+    fill: currentColor;
+  }
+})

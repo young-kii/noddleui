@@ -11,6 +11,7 @@ import {step} from "@/noddle-components/steps/types";
 import ChangelogStep from "@/components/changelog-step";
 import ChangelogComponent from "@/components/changelog-component";
 import PageBase from "@/components/page-base";
+import Tooltips from "@/noddle-components/tooltips";
 
 let code = `<Space direction={"vertical"}>
  <Space>
@@ -162,7 +163,7 @@ const Api = (props: tabItemsProps) => {
             description: <>按钮类型，改变的是按钮的<Text bolder pure type={"danger"}>颜色</Text></>,
             type: 'default | danger | success | primary | warning',
             required: 'NO',
-            defaultValue: <Text bolder type={"default"}>default</Text>
+            defaultValue: <Text bolder type={"primary"}>primary</Text>
         },
         {
             property: 'border',
@@ -260,7 +261,20 @@ const Changelog = (props: tabItemsProps) => {
             },
             ]
         }),
-
+        ChangelogStep({
+            version: '1.0.2',
+            time: '2022-10-12',
+            list: [{
+                type: "change",
+                list: {
+                    title: '修改API',
+                    items: [
+                        <><Text type={'danger'}>type</Text>的默认值改为<Text type={'primary'}>primary</Text></>
+                    ]
+                }
+            },
+            ]
+        }),
     ] as step[]
     return (
         <>

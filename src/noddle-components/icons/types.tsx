@@ -1,7 +1,9 @@
 import {CSSProperties} from "react";
+import {themeTypes} from "@/types";
 
 namespace _Icon {
     export interface baseIconProps {
+        theme?: themeTypes
         width?: number,
         height?: number,
         color?: CSSProperties["color"]

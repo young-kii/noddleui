@@ -10,7 +10,7 @@ import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {themeTypes} from "@/types";
 
 export default (props: switchProps) => {
-    const {theme, biggerButton, onChange, extraContent, type, defaultStatus} = props
+    const {theme, biggerButton, onChange, extraContent, type, defaultStatus, status} = props
     /**
      * @see getTheme
      * @description 获取switch的主题,默认返回`default`
@@ -51,8 +51,8 @@ export default (props: switchProps) => {
 
     const [newType, newExtraContent] = getType()
     const map = {
-        default: <Default {...{theme: getTheme(), biggerButton, onChange, extraContent: newExtraContent, defaultStatus}}/>,
-        moreStatus: <MoreStatus {...{ onChange, extraContent: newExtraContent}}/>
+        default: <Default {...{theme: getTheme(), biggerButton, onChange, extraContent: newExtraContent, defaultStatus,status}}/>,
+        moreStatus: <MoreStatus {...{ onChange, extraContent: newExtraContent,status:Number(status)}}/>
     } as any
 
     return (
@@ -65,20 +65,20 @@ export default (props: switchProps) => {
 }
 
 const Default = (props: defaultProps) => {
-    const {theme, biggerButton, onChange, extraContent, defaultStatus} = props
+    const {theme, biggerButton, onChange, extraContent, defaultStatus, status} = props
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
-    const [status, setStatus] = useState(defaultStatus === 'on')
+    const [_status, setStatus] = useState(status || (defaultStatus === 'on'))
     const containerRef = useRef() as MutableRefObject<HTMLDivElement>
     const extraRef = useRef() as MutableRefObject<HTMLDivElement>
     const ballRef = useRef() as MutableRefObject<HTMLDivElement>
-    const extra = status ? extraContent?.on : extraContent?.off
+    const extra = _status ? extraContent?.on : extraContent?.off
     const [containerWidth, setContainerWidth] = useState(0)
     const [containerHeight, setContainerHeight] = useState(0)
     const [extraWidth, setExtraWidth] = useState(0)
     const [ballWidth, setBallWidth] = useState(0)
     const class_container = styles({
         container: true,
-        on: status
+        on: _status
     })
     const class_ball = styles({
         ball: true
@@ -88,17 +88,17 @@ const Default = (props: defaultProps) => {
     })
     const style_container = {} as CSSProperties
     const style_ball = {
-        transform: status ?
+        transform: _status ?
             `translateX(${containerWidth - containerHeight}px) ${biggerButton ? 'scale(1.4)' : ''}`
             : `translateX(0) ${biggerButton ? 'scale(1.4)' : ''}`
     } as CSSProperties
     const style_extra = {
         minWidth: extraWidth,
-        transform: status ? `translateX(-${ballWidth}px)` : 'none'
+        transform: _status ? `translateX(-${ballWidth}px)` : 'none'
     } as CSSProperties
     const handleClick = () => {
-        setStatus(!status)
-        onChange?.(!status)
+        setStatus(!_status)
+        onChange?.(!_status)
     }
     useEffect(() => {
         setContainerWidth(containerRef.current.offsetWidth)
@@ -108,7 +108,7 @@ const Default = (props: defaultProps) => {
          * autoWidth 控制是否宽度自适应
          */
         setExtraWidth(extraRef.current.offsetWidth)
-    }, [status])
+    }, [_status])
     const initExtraWidth = () => {
         const hiddenSpan = extraRef.current.getElementsByClassName('hiddenSpan') as unknown as HTMLSpanElement[]
         let maxWidth = 0
@@ -121,7 +121,7 @@ const Default = (props: defaultProps) => {
     useEffect(() => {
         initExtraWidth()
         setBallWidth(ballRef.current.offsetWidth)
-    }, [])
+    }, [_status])
     return (
         <div className={STYLE.default}>
             <div ref={containerRef} className={class_container} style={style_container}
@@ -140,8 +140,8 @@ const Default = (props: defaultProps) => {
     )
 }
 
-const MoreStatus = (props: moreStatusProps) => {
-    const {onChange, extraContent} = props
+const MoreStatus = (props: Omit<moreStatusProps,'status'> & {status: number}) => {
+    const {onChange, extraContent, status} = props
     const [currentStatus, setCurrentStatus] = useState(0)
     const extraContentLength = extraContent.length
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
@@ -163,7 +163,7 @@ const MoreStatus = (props: moreStatusProps) => {
     useEffect(() => {
         extraContent?.find((item,index) => {
             if(item.default)
-                setCurrentStatus(index)
+                setCurrentStatus( status || index)
         })
     },[])
     return (
