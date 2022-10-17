@@ -3,6 +3,7 @@ import {themeTypes} from "@/types";
 
 namespace _Icon {
     export interface baseIconProps {
+        onClick?: (value?: any) => any
         theme?: themeTypes
         width?: number,
         height?: number,

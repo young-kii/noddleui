@@ -1,0 +1,42 @@
+@import "src/assets/css/global";
+
+.container {
+  font-size: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .itemContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    transform-origin: top;
+    transition: .3s @cubic-bezier1;
+    color: transparent;
+    background-color: transparent;
+    max-width: 95%;
+
+    .inner {
+      position: absolute;
+      color: black;
+      border-radius: @base-border-radius;
+      display: flex;
+      padding: 0 24px;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+      width: 100%;
+      max-width: 100%;
+    }
+
+  }
+
+}

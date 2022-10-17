@@ -1,7 +1,6 @@
 import RouteTable from '@/router'
 
 function App() {
-    
     return <RouteTable/>
 }
 

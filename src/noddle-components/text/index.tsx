@@ -6,6 +6,7 @@ import Space from "@/noddle-components/space";
 import DocumentCopy from "@/noddle-components/icons/document-copy";
 import CheckMark from "@/noddle-components/icons/check-mark";
 import {copy} from "@/utils";
+import message from "@/noddle-components/message";
 
 export default forwardRef((props: _Text.textProps, ref: any) => {
 
@@ -42,20 +43,20 @@ export default forwardRef((props: _Text.textProps, ref: any) => {
     })
     const handleCopy = () => {
         setCopied(true)
-        if(onCopy) {
-            if(typeof onCopy === "function")
-            {
-                onCopy?.(copy(children))
+        if (!timer.current)
+        {
+            if (onCopy) {
+                if (typeof onCopy === "function") {
+                    onCopy?.(copy(children))
+                }
+                copy(children)
             }
-            copy(children)
+            message.success('复制成功')
+            timer.current = setTimeout(() => {
+                setCopied(false)
+                timer.current = null
+            }, 2000)
         }
-        if (timer.current)
-            clearTimeout(timer.current)
-        timer.current = setTimeout(() => {
-            setCopied(false)
-            timer.current = null
-        }, 2000)
-
     }
 
     return (

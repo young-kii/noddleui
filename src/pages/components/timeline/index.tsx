@@ -7,15 +7,15 @@ import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
 import {DataType} from "@/types";
 import TableApi from "@/components/table-api";
-import {step} from "@/noddle-components/steps/types";
+import {step} from "@/noddle-components/timeline/types";
 import ChangelogStep from "@/components/changelog-step";
 import ChangelogComponent from "@/components/changelog-component";
 import PageBase from "@/components/page-base";
-import Steps from "@/noddle-components/steps";
+import Timeline from "@/noddle-components/timeline";
 
 export default () => {
     return <>
-        <PageBase title={'Steps 步骤条'} description={'引导用户按照流程完成任务的导航条，也可用于时间轴展示'} Demo={Demo} Api={Api}
+        <PageBase title={'Timeline 时间线'} description={'引导用户按照流程完成任务的导航条，也可用于时间轴展示'} Demo={Demo} Api={Api}
                   Changelog={Changelog}/>
     </>
 }
@@ -26,7 +26,7 @@ export interface tabItemsProps {
 
 const Demo = (props: tabItemsProps) => {
     const {onScroll} = props
-    const steps = [
+    const timeline = [
         {
             title: '事件一',
             content: {
@@ -76,10 +76,10 @@ const Demo = (props: tabItemsProps) => {
                 <ContentItem id={'basic-usage'} label={'基本用法'} paddingTop={64}>
                     <>
                         <h3>基本用法</h3>
-                        <p>步骤条内容主要包括以下三部分：<Text bolder>标题</Text><Text bolder>主要内容</Text><Text bolder>额外内容</Text></p>
+                        <p>时间线内容主要包括以下三部分：<Text bolder>标题</Text><Text bolder>主要内容</Text><Text bolder>额外内容</Text></p>
                         <CodeBox code={''}>
                             <Space width={300}>
-                                <Steps steps={steps}/>
+                                <Timeline timeline={timeline}/>
                             </Space>
                         </CodeBox>
                     </>
@@ -171,7 +171,7 @@ const Api = (props: tabItemsProps) => {
     return (
         <>
             <ContentContent onScroll={onScroll} width={'100%'}>
-                <TableApi data={data} onScroll={onScroll} label={'Steps Props'}/>
+                <TableApi data={data} onScroll={onScroll} label={'Timeline Props'}/>
             </ContentContent>
         </>
     )
@@ -180,13 +180,13 @@ const Api = (props: tabItemsProps) => {
 
 const Changelog = (props: tabItemsProps) => {
     const {onScroll} = props
-    const steps = [
+    const timeline = [
         ChangelogStep({
             version: '1.0.1',
             time: '2022-10-5',
             list: [{
                 type: "feat",
-                list: {
+                list: [{
                     title: '页面完成情况',
                     items: [
                         <>
@@ -208,7 +208,7 @@ const Changelog = (props: tabItemsProps) => {
                             <Text noWrap bolder type={"danger"}>disabled</Text>
                         </>
                     ]
-                }
+                }]
             },
             ]
         }),
@@ -217,7 +217,7 @@ const Changelog = (props: tabItemsProps) => {
             time: '2022-10-8',
             list: [{
                 type: "feat",
-                list: {
+                list: [{
                     title: '页面完成情况',
                     items: [
                         <>
@@ -239,11 +239,11 @@ const Changelog = (props: tabItemsProps) => {
                             <Text noWrap bolder type={"danger"}>disabled</Text>
                         </>
                     ]
-                }
+                }]
             },
                 {
                     type: "fix",
-                    list: {
+                    list: [{
                         title: '页面完成情况',
                         items: [
                             <>
@@ -265,7 +265,7 @@ const Changelog = (props: tabItemsProps) => {
                                 <Text noWrap bolder type={"danger"}>disabled</Text>
                             </>
                         ]
-                    }
+                    }]
                 },
             ]
         }),
@@ -273,7 +273,7 @@ const Changelog = (props: tabItemsProps) => {
     ] as step[]
     return (
         <>
-            <ChangelogComponent steps={steps} onScroll={onScroll}/>
+            <ChangelogComponent timeline={timeline} onScroll={onScroll}/>
         </>
     )
 }

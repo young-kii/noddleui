@@ -1,11 +1,11 @@
 import React, {ReactNode} from "react";
 import {direction, themeTypes} from "@/types";
 
-interface stepsProps {
+interface timelineProps {
     direction?: direction
     type?: themeTypes
-    steps: step[] | []
-    sort?: (steps: step[]) => (step[] | [])
+    timeline: step[] | []
+    sort?: (timeline: step[]) => (step[] | [])
 }
 
 interface step {
@@ -20,4 +20,4 @@ interface step {
     }
 }
 
-export type {stepsProps, step}
+export type {timelineProps, step}

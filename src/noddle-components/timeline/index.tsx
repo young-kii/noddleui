@@ -1,4 +1,4 @@
-import {step, stepsProps} from "@/noddle-components/steps/types";
+import {step, timelineProps} from "@/noddle-components/timeline/types";
 import STYLE from './index.module.less'
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import CircleIcon from "@/noddle-components/icons/circle-icon";
@@ -6,18 +6,18 @@ import {noddle_main_color} from "@/types";
 import Divider from "@/noddle-components/divider";
 import {CSSProperties, forwardRef} from "react";
 
-const Steps = forwardRef((props: stepsProps, ref: any) => {
-    const {direction, steps, type, sort} = props
-    const renderSteps = () => {
+const Timeline = forwardRef((props: timelineProps, ref: any) => {
+    const {direction, timeline, type, sort} = props
+    const renderTimeline = () => {
         return map[direction || 'horizontal']
     }
-    let newSteps = steps
+    let newTimeline = timeline
     if (sort && typeof sort === "function") {
-        newSteps = sort(steps)
+        newTimeline = sort(timeline)
     }
     let newProps = {
         type,
-        steps: newSteps
+        timeline: newTimeline
     }
     const map = {
         horizontal: <Horizontal {...newProps} ref={ref}/>,
@@ -25,23 +25,23 @@ const Steps = forwardRef((props: stepsProps, ref: any) => {
     }
     return (
         <>
-            {renderSteps()}
+            {renderTimeline()}
         </>
     )
 })
 
-const Horizontal = forwardRef((props: Omit<stepsProps, 'direction'>, ref: any) => {
-    const {type, steps} = props
-    const steps_count = steps?.length
+const Horizontal = forwardRef((props: Omit<timelineProps, 'direction'>, ref: any) => {
+    const {type, timeline} = props
+    const timeline_count = timeline?.length
     const styles = ClassNameConfig.mClassNames.bind(STYLE)
     const class_container = styles({
         container_horizontal: true
     })
-    const renderSteps = () => {
+    const renderTimeline = () => {
         return <>
             {
-                steps?.map((item, index) => {
-                    return <Step index={index} key={index} sum={steps_count} {...item} Icon={CircleIcon}/>
+                timeline?.map((item, index) => {
+                    return <Step index={index} key={index} sum={timeline_count} {...item} Icon={CircleIcon}/>
                 })
             }
         </>
@@ -49,13 +49,13 @@ const Horizontal = forwardRef((props: Omit<stepsProps, 'direction'>, ref: any) =
     return (
         <div ref={ref} className={class_container}>
             {
-                renderSteps()
+                renderTimeline()
             }
         </div>
     )
 })
 
-const Vertical = (props: Omit<stepsProps, 'direction'>) => {
+const Vertical = (props: Omit<timelineProps, 'direction'>) => {
     return <></>
 }
 
@@ -105,4 +105,4 @@ const Step = (props: step & { index: number, sum: number, Icon: any }) => {
     )
 }
 
-export default Steps
+export default Timeline

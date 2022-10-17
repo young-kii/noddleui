@@ -7,7 +7,7 @@ import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
 import {codeBoxConfigPanelStyle, DataType} from "@/types";
 import TableApi from "@/components/table-api";
-import {step} from "@/noddle-components/steps/types";
+import {step} from "@/noddle-components/timeline/types";
 import ChangelogStep from "@/components/changelog-step";
 import ChangelogComponent from "@/components/changelog-component";
 import PageBase from "@/components/page-base";
@@ -181,26 +181,27 @@ const Api = (props: tabItemsProps) => {
 
     const data: DataType[] = [
         {
+            property: 'onCopy',
+            type: <><Text pure bolder type={"warning"}>boolean</Text><Text pure bolder type={"danger"}>{' | (value?: string) => any'}</Text></>,
+            description: '用于复制文本内容',
+            required: 'NO',
+            defaultValue: <Text bolder type={"danger"}>false</Text>
+        },
+        {
+            property: 'noWrap',
+            description: '控制文本是否自动换行',
+            type: <Text pure bolder type={"warning"}>boolean</Text>,
+            required: 'NO',
+            defaultValue: <Text bolder type={"danger"}>false</Text>
+        },
+        {
             property: 'children',
-            type: "string",
-            description: '按钮显示的文本',
+            description: '显示的文本内容',
+            type: 'string',
             required: 'YES',
             defaultValue: '-'
         },
-        {
-            property: 'onClick',
-            description: '点击按钮时的回调',
-            type: '( Event ) => void',
-            required: 'NO',
-            defaultValue: '-'
-        },
-        {
-            property: 'type',
-            description: <>按钮类型，改变的是按钮的<Text bolder pure type={"danger"}>颜色</Text></>,
-            type: 'default | danger | success | primary | warning',
-            required: 'NO',
-            defaultValue: <Text bolder type={"default"}>default</Text>
-        },
+        //todo
         {
             property: 'border',
             description: '按钮边框的样式',
@@ -250,7 +251,6 @@ const Api = (props: tabItemsProps) => {
             required: 'NO',
             defaultValue: <Text bolder type={"danger"}>false</Text>
         },
-
     ]
 
     return (
@@ -262,16 +262,15 @@ const Api = (props: tabItemsProps) => {
     )
 }
 
-
 const Changelog = (props: tabItemsProps) => {
     const {onScroll} = props
-    const steps = [
+    const timeline = [
         ChangelogStep({
             version: '1.0.1',
             time: '2022-10-5',
             list: [{
                 type: "feat",
-                list: {
+                list: [{
                     title: '页面完成情况',
                     items: [
                         <>
@@ -293,72 +292,15 @@ const Changelog = (props: tabItemsProps) => {
                             <Text noWrap bolder type={"danger"}>disabled</Text>
                         </>
                     ]
-                }
+                }]
             },
-            ]
-        }),
-        ChangelogStep({
-            version: '1.0.12',
-            time: '2022-10-8',
-            list: [{
-                type: "feat",
-                list: {
-                    title: '页面完成情况',
-                    items: [
-                        <>
-                            按钮Button组件页面初始化构建完成：
-                            <Text noWrap bolder type={"default"}>基础按钮</Text>
-                            <Text noWrap bolder type={"default"}>block按钮</Text>
-                            <Text noWrap bolder type={"default"}>颜色主题</Text>
-                        </>,
-                        <>
-                            完成Button基本的Props：
-                            <Text noWrap bolder type={"danger"}>widthFitsText</Text>
-                            <Text bolder noWrap type={"danger"}>children</Text>
-                            <Text noWrap bolder type={"danger"}>onClick</Text>
-                            <Text noWrap bolder type={"danger"}>type</Text>
-                            <Text noWrap bolder type={"danger"}>border</Text>
-                            <Text noWrap bolder type={"danger"}>clickEffect</Text>
-                            <Text noWrap bolder type={"danger"}>block</Text>
-                            <Text noWrap bolder type={"danger"}>backgroundStyle</Text>
-                            <Text noWrap bolder type={"danger"}>disabled</Text>
-                        </>
-                    ]
-                }
-            },
-                {
-                    type: "fix",
-                    list: {
-                        title: '页面完成情况',
-                        items: [
-                            <>
-                                按钮Button组件页面初始化构建完成：
-                                <Text noWrap bolder type={"default"}>基础按钮</Text>
-                                <Text noWrap bolder type={"default"}>block按钮</Text>
-                                <Text noWrap bolder type={"default"}>颜色主题</Text>
-                            </>,
-                            <>
-                                完成Button基本的Props：
-                                <Text noWrap bolder type={"danger"}>widthFitsText</Text>
-                                <Text bolder noWrap type={"danger"}>children</Text>
-                                <Text noWrap bolder type={"danger"}>onClick</Text>
-                                <Text noWrap bolder type={"danger"}>type</Text>
-                                <Text noWrap bolder type={"danger"}>border</Text>
-                                <Text noWrap bolder type={"danger"}>clickEffect</Text>
-                                <Text noWrap bolder type={"danger"}>block</Text>
-                                <Text noWrap bolder type={"danger"}>backgroundStyle</Text>
-                                <Text noWrap bolder type={"danger"}>disabled</Text>
-                            </>
-                        ]
-                    }
-                },
             ]
         }),
 
     ] as step[]
     return (
         <>
-            <ChangelogComponent steps={steps} onScroll={onScroll}/>
+            <ChangelogComponent timeline={timeline} onScroll={onScroll}/>
         </>
     )
 }

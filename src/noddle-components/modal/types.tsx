@@ -1,11 +1,19 @@
 import { ReactNode } from "react";
 
 interface modalProps {
+    zoom?: 'in' | 'out'
     open?: boolean
     title?: string
-    content?: ReactNode
+    children?: ReactNode
+    draggable?: boolean
     onCancel?: (value?: any) => any
     onConfirm?: (value?: any) => any
 }
 
-export type {modalProps}
+interface confirmModalProps extends Required<Pick<modalProps, 'title'>>, Partial<Pick<modalProps,  | 'onConfirm' | 'onCancel'>>{
+    content?: string | ReactNode
+    immediatelyCancel?: (value?: any) => any
+    asyncCancel?: (value?: any) => any
+}
+
+export type {modalProps, confirmModalProps}

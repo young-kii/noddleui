@@ -1,5 +1,5 @@
 import STYLE from './index.module.less'
-import {step} from "@/noddle-components/steps/types";
+import {step} from "@/noddle-components/timeline/types";
 import Text from "@/noddle-components/text";
 import React, {Fragment, ReactNode} from "react";
 import {_object} from "@/noddle-components/globalConfig/types";
@@ -12,7 +12,7 @@ interface props {
         list: {
             title: ReactNode | string,
             items: any[]
-        }
+        }[]
     }[]
 }
 
@@ -21,7 +21,7 @@ export default (props: props): step => {
     const types = {
         fix: <Text pure bolder color={"black"} fontSize={18}>🐞 Bug Fixes</Text>,
         feat: <Text pure bolder color={"black"} fontSize={18}>🚀 Features</Text>,
-        change: <Text pure bolder color={"black"} fontSize={18}>❗ Breaking Changes️</Text>,
+        change: <Text pure bolder color={"black"} fontSize={18}>💡 Changes️</Text>,
         others: <Text pure bolder color={"black"} fontSize={18}>🚧 Others</Text>,
     } as _object
     return {
@@ -35,20 +35,24 @@ export default (props: props): step => {
                                 {types[item.type]}
                             </div>
                             <ul key={index}>
-                                <li>
-                                    <div style={{marginTop: 8}}>
-                                        {item.list.title}
-                                    </div>
-                                    <ul className={STYLE.ul_circle}>
-                                        {
-                                            item.list.items.map((item, index) => {
-                                                if (item)
-                                                    return <li key={index}>{item}</li>
-                                                return ''
-                                            })
-                                        }
-                                    </ul>
-                                </li>
+                                {
+                                    item.list.map((_item, index) => {
+                                        return <li key={index}>
+                                            <div style={{marginTop: 8}}>
+                                                {_item.title}
+                                            </div>
+                                            <ul className={STYLE.ul_circle}>
+                                                {
+                                                    _item.items.map((item, index) => {
+                                                        if (item)
+                                                            return <li key={index}>{item}</li>
+                                                        return ''
+                                                    })
+                                                }
+                                            </ul>
+                                        </li>
+                                    })
+                                }
                             </ul>
                         </Fragment>
                     })

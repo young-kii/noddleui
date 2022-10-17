@@ -22,7 +22,7 @@ export default {
     },
     navigation: {
         '': 'Navigation',
-        steps: 'Steps'
+        timeline: 'Timeline'
     },
     dataEntry: {
         '': 'Data Entry',
@@ -33,7 +33,10 @@ export default {
     dataDisplay: {
         '': 'Data Display',
         table: 'Table',
-        tooltips: 'Tooltips'
+        tooltips: 'Tooltips',
+        modal: 'Modal',
+        message: 'Message',
+        notification: 'Notification',
     },
     feedback: {
         '': 'feedback',

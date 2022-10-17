@@ -21,7 +21,7 @@ export default {
     },
     navigation: {
         '': '导航',
-        steps: 'Steps 步骤条'
+        timeline: 'Timeline 时间线'
     },
     dataEntry: {
         '': '输入',
@@ -32,7 +32,10 @@ export default {
     dataDisplay: {
         '': '数据展示',
         table: 'Table 表格',
-        tooltips: 'Tooltips 文字提示'
+        tooltips: 'Tooltips 文字提示',
+        modal: 'Modal 对话框',
+        message: 'Message 全局提示',
+        notification: 'Notification 通知提醒框',
     },
     feedback: {
         '': '反馈',

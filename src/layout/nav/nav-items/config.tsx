@@ -36,7 +36,7 @@ const itemList: item[] = [
         title: 'navigation',
         extra: 'components',
         children: [
-            {title: 'steps'},
+            {title: 'timeline'},
         ]
     },
     {
@@ -54,6 +54,9 @@ const itemList: item[] = [
         children: [
             {title: 'table'},
             {title: 'tooltips'},
+            {title: 'modal'},
+            {title: 'message'},
+            {title: 'notification'},
         ]
     },
     {

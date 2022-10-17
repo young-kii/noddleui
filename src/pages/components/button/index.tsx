@@ -7,7 +7,7 @@ import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
 import {DataType} from "@/types";
 import TableApi from "@/components/table-api";
-import {step} from "@/noddle-components/steps/types";
+import {step} from "@/noddle-components/timeline/types";
 import ChangelogStep from "@/components/changelog-step";
 import ChangelogComponent from "@/components/changelog-component";
 import PageBase from "@/components/page-base";
@@ -59,14 +59,14 @@ const Demo = (props: tabItemsProps) => {
                 <CodeBox code={code}>
                     <Space direction={"vertical"}>
                         <Space>
-                            <Button>填充按钮</Button>
-                            <Button border={"solid"}>描边按钮</Button>
-                            <Button border={"dashed"}>虚框按钮</Button>
+                            <Button type={'default'}>填充按钮</Button>
+                            <Button type={'default'} border={"solid"}>描边按钮</Button>
+                            <Button type={'default'} border={"dashed"}>虚框按钮</Button>
                         </Space>
                         <Space>
-                            <Button border={"text"}>文字按钮</Button>
-                            <Button border={"text"} backgroundStyle={"border"}>文字按钮</Button>
-                            <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
+                            <Button type={'default'} border={"text"}>文字按钮</Button>
+                            <Button type={'default'} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button type={'default'} border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                     </Space>
                 </CodeBox>
@@ -78,11 +78,11 @@ const Demo = (props: tabItemsProps) => {
                 </ContentItem>
                 <CodeBox code={'block button'}>
                     <Space direction={"vertical"} width={'100%'}>
-                        <Button type={"primary"} block>填充按钮</Button>
-                        <Button block border={"solid"}>描边按钮</Button>
-                        <Button block border={"dashed"}>虚框按钮</Button>
-                        <Button block border={"text"}>文字按钮</Button>
-                        <Button block border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                        <Button block>填充按钮</Button>
+                        <Button block type={'default'} border={"solid"}>描边按钮</Button>
+                        <Button block type={'default'} border={"dashed"}>虚框按钮</Button>
+                        <Button block type={'default'} border={"text"}>文字按钮</Button>
+                        <Button block type={'default'} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
                     </Space>
                 </CodeBox>
                 <ContentItem id={'change-color'} label={'颜色主题'} paddingTop={64}>
@@ -229,13 +229,13 @@ const Api = (props: tabItemsProps) => {
 
 const Changelog = (props: tabItemsProps) => {
     const {onScroll} = props
-    const steps = [
+    const timeline = [
         ChangelogStep({
             version: '1.0.1',
             time: '2022-10-5',
             list: [{
                 type: "feat",
-                list: {
+                list: [{
                     title: '页面完成情况',
                     items: [
                         <>
@@ -257,7 +257,7 @@ const Changelog = (props: tabItemsProps) => {
                             <Text noWrap bolder type={"danger"}>disabled</Text>
                         </>
                     ]
-                }
+                }]
             },
             ]
         }),
@@ -266,19 +266,41 @@ const Changelog = (props: tabItemsProps) => {
             time: '2022-10-12',
             list: [{
                 type: "change",
-                list: {
+                list: [{
                     title: '修改API',
                     items: [
                         <><Text type={'danger'}>type</Text>的默认值改为<Text type={'primary'}>primary</Text></>
                     ]
-                }
+                }]
+            },
+            ]
+        }),
+        ChangelogStep({
+            version: '1.0.3',
+            time: '2022-10-13',
+            list: [{
+                type: "change",
+                list: [
+                    {
+                        title: '修改样式',
+                        items: [
+                            '更改按钮点击后的动效',
+                        ]
+                    },
+                    {
+                        title: '去除prop',
+                        items:[
+                            <>去除<Text type={'danger'}>clickEffect</Text></>
+                        ]
+                    }
+                ]
             },
             ]
         }),
     ] as step[]
     return (
         <>
-            <ChangelogComponent steps={steps} onScroll={onScroll}/>
+            <ChangelogComponent timeline={timeline} onScroll={onScroll}/>
         </>
     )
 }

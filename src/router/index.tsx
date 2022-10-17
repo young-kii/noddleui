@@ -78,8 +78,8 @@ const RouteTable: SyncRoute.Routes[] = [
                         component: lazy(() => import('@/pages/components/form'))
                     },
                     {
-                        path: 'steps',
-                        component: lazy(() => import('@/pages/components/steps'))
+                        path: 'timeline',
+                        component: lazy(() => import('@/pages/components/timeline'))
                     },
                     {
                         path: 'switch',
@@ -88,6 +88,14 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'tooltips',
                         component: lazy(() => import('@/pages/components/tooltips'))
+                    },
+                    {
+                        path: 'message',
+                        component: lazy(() => import('@/pages/components/message'))
+                    },
+                    {
+                        path: 'notification',
+                        component: lazy(() => import('@/pages/components/notification'))
                     }
                 ]
             },

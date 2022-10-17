@@ -14,7 +14,7 @@ export default (props: _Tooltips.tooltipsProps) => {
     const [containerWidth, setContainerWidth] = useState(0)
     const [containerStyle, setContainerStyle] = useState({})
     const [childrenDisplay, setChildrenDisplay] = useState('')
-    const [windowWidth, setWindowWidth] = useState(window.outerWidth)
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const getTheme = (): themeTypes => {
         return getPropertyValue(theme, themes_array, 'default')
     }
@@ -47,11 +47,13 @@ export default (props: _Tooltips.tooltipsProps) => {
         handleMouseLeave?.()
         setMouseEnter(false)
     }
-    useEffect(()=>{
-        window.onresize = () => {
-            setWindowWidth(window.innerWidth)
+    useEffect(() => {
+        const setWidth = () => setWindowWidth(window.innerWidth)
+        window.addEventListener('resize',setWidth)
+        return () => {
+            window.removeEventListener('resize',setWidth)
         }
-    },[])
+    }, [])
     useEffect(() => {
         setTipsHeight(tipsRef.current?.offsetHeight)
         setTipsWidth(tipsRef.current?.offsetWidth)

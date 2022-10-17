@@ -8,9 +8,8 @@
   height: 32px;
   cursor: pointer;
   padding: 0 8px;
-  -moz-outline-radius: @base-border-radius;
   border-radius: @base-border-radius;
-  transition: .3s ease border-bottom-color, .3s ease border-top-color, .3s ease border-left-color, .3s ease border-right-color, .2s outline-width;
+  transition: .3s ease border-bottom-color, .3s ease border-top-color, .3s ease border-left-color, .3s ease border-right-color, .5s ease box-shadow;
   border: 1px solid @base-inactive-background-color;
   .dropDownBox_container {
     cursor: default;
@@ -72,7 +71,6 @@
 
 .focus {
   border: 1px solid @noddle-main-color;
-  outline: 2px solid @base-outline;
-  -moz-outline-radius: @base-border-radius;
+  box-shadow: 0 0 3px 1px @base-outline;
 }
 

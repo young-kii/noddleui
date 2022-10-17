@@ -1,0 +1,67 @@
+@import "src/assets/css/global";
+
+.container {
+  font-size: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  .itemContainer {
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    //align-items: center;
+    overflow: visible;
+    transform-origin: top;
+    transition: .3s ease;
+    color: transparent;
+    background-color: transparent;
+    width: 400px;
+    padding: 0 24px;
+    max-width: calc(95% - 24px);
+
+
+    .top {
+      width: 100%;
+      margin: 12px 0 4px 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+      .title {
+        font-weight: 500;
+        margin-left: 16px;
+      }
+    }
+    .bottom {
+      width: 100%;
+      font-size: 14px;
+      padding-left: 40px;
+    }
+
+    .inner {
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: black;
+      border-radius: @base-border-radius;
+      display: flex;
+      flex-direction: column;
+      padding: 0 24px;
+      //align-items: center;
+      //justify-content: center;
+      transition: .3s ease box-shadow;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+      width: 100%;
+      max-width: 100%;
+    }
+
+  }
+
+}

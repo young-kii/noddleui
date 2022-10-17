@@ -1,4 +1,4 @@
-import React, {MutableRefObject, useEffect, useRef, useState} from "react";
+import React, { MutableRefObject, useEffect, useRef, useState} from "react";
 
 import Tooltips from "@/noddle-components/tooltips";
 import AddIcon from "@/noddle-components/icons/add-icon";
@@ -9,22 +9,70 @@ import DismissIcon from "@/noddle-components/icons/dismiss-icon";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Modal from "@/noddle-components/modal";
-
+import ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
+import Drawer from "@/noddle-components/drawer";
+const {confirm} = Modal
 export default () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    const a = useRef(null) as any
     const handleCancel = () => {
         setIsModalOpen(false)
     }
     const handleConfirm = () => {
         console.log('ok')
     }
+    const handleDrawerCancel = () => {
+        setIsDrawerOpen(false)
+    }
+    const handleShowConfirm = () => {
+        confirm({
+            title: "这是对话框的标题",
+            content: '回家吧✈️',
+            onCancel:()=>{
+                console.log('确定？？？')
+            },
+            onConfirm:(onCancel)=>{
+                console.log('okok')
+                onCancel()
+
+            }
+        })
+    }
+    const showDrawer = () => {
+        setIsDrawerOpen(true)
+    }
+
     return (
         <>
-            <Button onClick={() => {
+            {a.current}
+            <Space>
+                <Button onClick={() => {
                     setIsModalOpen(true)
-            }}>Open</Button>
-            <Modal onConfirm={handleConfirm} onCancel={handleCancel} open={isModalOpen} title={'测试标题'}
-                   content={'容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦测试内容哦'}/>
+                }}>Open</Button>
+                {/*<Button onClick={handleShowConfirm}>open</Button>*/}
+                <Button type={'danger'} onClick={handleShowConfirm}>王新昊</Button>
+                <Button type={'warning'} onClick={showDrawer}>打开抽屉</Button>
+            </Space>
+            <Modal zoom={'out'} onConfirm={handleConfirm} onCancel={handleCancel} open={isModalOpen}
+                   title={'测试标题'}
+            >
+                <Space direction={"vertical"} gap={12}>
+                    {
+                        Array.from({length: 5}).fill('OOOOOK !!!').map((item, index) => {
+                            return <div key={index}>{String(item)}</div>
+                        })
+                    }
+                </Space>
+            </Modal>
+            <Drawer open={isDrawerOpen} title={'抽屉的标题'} onCancel={handleDrawerCancel}>
+                {
+                    Array.from({length: 10}).fill('funky music啊啊啊啊啊啊').map((item, index)=>{
+                        return <div key={index}>{String(item) + index}</div>
+                    })
+                }
+            </Drawer>
             {/*<div style={{backgroundColor: "red", marginTop: 100}}>*/}
             {/*    <div>overview</div>*/}
             {/*    <div>overview</div>*/}

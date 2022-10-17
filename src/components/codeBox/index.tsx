@@ -14,6 +14,7 @@ import LaucherSetting from "@/noddle-components/icons/laucher-setting";
 import Tooltips from "@/noddle-components/tooltips";
 import {copy, getLinksToDocument, linkTo} from "@/utils";
 import ArrowHookUpLeft from "@/noddle-components/icons/arrow-hook-up-left";
+import message from "@/noddle-components/message";
 
 
 const keywords = new Set(['boolean', 'type', 'true', 'false', 'new', 'as', 'any', 'if', 'of', 'else', 'var', 'import', 'export', 'let', 'default', 'function', 'from', 'const', 'return']);

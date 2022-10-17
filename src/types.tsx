@@ -15,7 +15,16 @@ interface DataType {
 }
 type link_target = '_blank' | '_self' | '_three' | '_top' | string
 const themes_array = ['default', 'danger', 'primary', 'warning', 'success'] as themeTypes[]
+const themes_message_array = ['danger', 'primary', 'warning', 'success'] as themeTypes[]
 const noddle_main_color = '#0252D9FF'
+const noddle_theme_colors = {
+    danger: '#f20a0a',
+    success: '#0fa40f',
+    warning: '#ffa200',
+    primary: noddle_main_color,
+    default: '#DCDCDCFF'
+} as any
+
 const codeBoxConfigPanelStyle = {padding: '24px 40px 0 40px'}
 const sizes_Base = ['nano', 'small', 'medium', 'large', 'great'] as size[]
 const sizes_font = {...sizes_Base}
@@ -88,7 +97,7 @@ const getPropertyValue = (value: any, map: any[], defaultValue: any) => {
 
 export type {direction, DataType, themeTypes, link_target, size}
 export {apiTableColumns, codeBoxConfigPanelStyle}
-export {noddle_main_color, themes_array}
+export {noddle_main_color, noddle_theme_colors, themes_message_array, themes_array}
 export {sizes_Base, sizes_font}
 export {sizes_font_map}
 export {getPropertyValue}

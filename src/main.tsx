@@ -17,11 +17,11 @@ import Config from "@/noddle-components/globalConfig/Config";
 // }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    // <React.StrictMode>
+    <React.StrictMode>
         <BrowserRouter>
             <Config Locales={Locales}>
                 <App/>
             </Config>
         </BrowserRouter>
-    // </React.StrictMode>
+    </React.StrictMode>
 )
