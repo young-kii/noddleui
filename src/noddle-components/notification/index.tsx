@@ -31,7 +31,7 @@ namespace notification {
         const [transform, setTransform] = useState('translateX(100%)')
         const [marginTop, setMarginTop] = useState(16)
         const [padding, setPadding] = useState('8px 24px')
-        const [boxShadow, setBoxShadow] = useState('0 0 10px rgba(0, 0, 0, .2)')
+        const [boxShadow, setBoxShadow] = useState('0 0 5px rgba(0, 0, 0, .2)')
         const timer = useRef(null) as any
         const rootTimer = useRef(null) as any
         const mouseEnter = useRef(false)
@@ -103,13 +103,13 @@ namespace notification {
 
         const handleMouseEnter = () => {
             mouseEnter.current = true
-            setBoxShadow('0 0 15px rgba(0, 0, 0, .3)')
+            setBoxShadow('0 0 8px rgba(0, 0, 0, .3)')
             clearAllTimers()
         }
 
         const handleMouseLeave = () => {
             mouseEnter.current = false
-            setBoxShadow('0 0 10px rgba(0, 0, 0, .2)')
+            setBoxShadow('0 0 5px rgba(0, 0, 0, .2)')
             resetTimer()
         }
 

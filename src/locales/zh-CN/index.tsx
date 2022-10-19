@@ -33,13 +33,16 @@ export default {
         '': '数据展示',
         table: 'Table 表格',
         tooltips: 'Tooltips 文字提示',
-        modal: 'Modal 对话框',
-        message: 'Message 全局提示',
-        notification: 'Notification 通知提醒框',
+        tag: 'Tag 标签',
+        tabs: 'Tabs 标签页',
+        badge: 'Badge 徽标数',
     },
     feedback: {
         '': '反馈',
-        loading: 'Loading 加载中'
+        loading: 'Loading 加载中',
+        modal: 'Modal 对话框',
+        message: 'Message 全局提示',
+        notification: 'Notification 通知提醒框',
     },
     page: {
         text: {

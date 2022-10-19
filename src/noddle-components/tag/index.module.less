@@ -1,0 +1,106 @@
+@import "src/assets/css/global";
+
+@tagColor-danger: #cd4646;
+@tagBackgroundColor-danger: #f8e8e8;
+
+@tagColor-success: #0d8a02;
+@tagBackgroundColor-success: #e8f4e4;
+
+@tagColor-primary: #3285f2;
+@tagBackgroundColor-primary: #eaeef1;
+
+@tagColor-warning: #e09404;
+@tagBackgroundColor-warning: #f5efe3;
+
+@tagColor-default: #555555;
+@tagBackgroundColor-default: #f5f5f5;
+
+@default-tagBorder-color: rgba(0,0,0,.2);
+
+.container {
+  animation: .3s ease show;
+  display: flex;
+  width: max-content;
+  flex-direction: column;
+  border-radius: @base-border-radius;
+  position: relative;
+  justify-content: center;
+  height: 24px;
+  font-size: 12px;
+  border: 1px dashed @default-tagBorder-color;
+  transition: .3s ease;
+  @keyframes show {
+    from {
+      opacity: 0;
+      transform: scale(.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .panel {
+    z-index: 1;
+    padding: 0 8px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    .dismissIconContainer {
+      display: flex;
+      margin-left: 4px;
+      height: max-content;
+      width: max-content;
+      border-radius: 50%;
+      transition: .3s ease;
+      &:hover {
+        background-color: rgba(0,0,0,.1);
+      }
+    }
+  }
+
+  .input {
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 8px;
+    outline: none;
+    //background-color: red;
+    position: absolute;
+    transition: .3s ease;
+    border-radius: @base-border-radius;
+    border: 1px solid transparent;
+  }
+
+}
+
+.onFocus {
+  box-shadow: 0 0 2px 1px @tagColor-primary;
+}
+
+.notEmpty {
+  background-color: @tagBackgroundColor-default;
+  border: 1px solid @default-tagBorder-color;
+}
+
+.danger {
+  background-color: @tagBackgroundColor-danger;
+  color: @tagColor-danger;
+}
+
+.primary {
+  background-color: @tagBackgroundColor-primary;
+  color: @tagColor-primary;
+}
+
+.warning {
+  background-color: @tagBackgroundColor-warning;
+  color: @tagColor-warning;
+}
+
+.success {
+  background-color: @tagBackgroundColor-success;
+  color: @tagColor-success;
+}

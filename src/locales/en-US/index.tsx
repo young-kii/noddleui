@@ -34,13 +34,16 @@ export default {
         '': 'Data Display',
         table: 'Table',
         tooltips: 'Tooltips',
-        modal: 'Modal',
-        message: 'Message',
-        notification: 'Notification',
+        tag: 'Tag',
+        tabs: 'Tabs',
+        badge: 'Badge',
     },
     feedback: {
         '': 'feedback',
-        loading: 'Loading'
+        loading: 'Loading',
+        modal: 'Modal',
+        message: 'Message',
+        notification: 'Notification',
     },
     page: {
         text: {

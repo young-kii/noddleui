@@ -96,6 +96,18 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'notification',
                         component: lazy(() => import('@/pages/components/notification'))
+                    },
+                    {
+                        path: 'tag',
+                        component: lazy(() => import('@/pages/components/tag'))
+                    },
+                    {
+                        path: 'tabs',
+                        component: lazy(() => import('@/pages/components/tabs'))
+                    },
+                    {
+                        path: 'badge',
+                        component: lazy(() => import('@/pages/components/badge'))
                     }
                 ]
             },

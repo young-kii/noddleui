@@ -233,7 +233,7 @@ export default (props: _CodeBox.codeBoxProps) => {
             <div className={STYLE.code_area}>
                 <div className={style_pre} style={{height: height || calcHeight}} ref={pre}>
                     <div className={STYLE.copy} onClick={handleCopy}>
-                        <Tooltips tips={copyWord} theme={copyTheme} handleMouseLeave={() => {
+                        <Tooltips tips={copyWord} size={'small'} theme={copyTheme} handleMouseLeave={() => {
                             setTimeout(() => {
                                 setCopyStatus(false)
                             }, 300)

@@ -54,9 +54,9 @@ const itemList: item[] = [
         children: [
             {title: 'table'},
             {title: 'tooltips'},
-            {title: 'modal'},
-            {title: 'message'},
-            {title: 'notification'},
+            {title: 'tag'},
+            {title: 'tabs'},
+            {title: 'badge'},
         ]
     },
     {
@@ -64,6 +64,9 @@ const itemList: item[] = [
         extra: 'components',
         children: [
             {title: 'loading'},
+            {title: 'modal'},
+            {title: 'message'},
+            {title: 'notification'},
         ]
     },
 

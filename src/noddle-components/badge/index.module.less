@@ -1,0 +1,53 @@
+@import "src/assets/css/global";
+
+.container {
+  position: relative;
+  z-index: 0;
+  .badge_count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -10px;
+    right: -10px;
+    position: absolute;
+    animation: 0.3s @cubic-bezier2 show;
+    background-color: @color-danger;
+    border: 1px solid white;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 10px;
+    transform-origin: center center;
+    transform: scale(1);
+    overflow: hidden;
+    .scroll {
+      margin: 0 4px;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      transform: scale(0.8);
+      font-weight: bolder;
+      transition: .3s @cubic-bezier1;
+      .numbers {
+        transition: .3s ease;
+        .number {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+        }
+      }
+    }
+  }
+  @keyframes show {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

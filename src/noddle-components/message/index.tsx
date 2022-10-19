@@ -113,7 +113,7 @@ namespace message {
             newRoot.render(item)
             setTimeout(() => {
                 newRoot.unmount()
-            }, duration + 600)
+            }, duration + 300)
         }
         if (!modal) {
             renderContainer()

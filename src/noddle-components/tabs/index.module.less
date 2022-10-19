@@ -1,0 +1,143 @@
+@import "src/assets/css/global";
+
+@tab-inactive-background-color: #f7f7f7;
+@tab-border-color: #dbdbdb;
+@tab-default-header-bottom-border-color: #f1f1f1;
+.default {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .header {
+    position: relative;
+    display: flex;
+    gap: 4px;
+    user-select: none;
+    height: max-content;
+    overflow-x: scroll;
+    overflow-y: visible;
+    border-bottom: 1px solid @tab-default-header-bottom-border-color;
+    .add {
+      background-color: white;
+      position: sticky;
+      right: 0;
+      z-index: 2;
+      box-shadow: 0 -4px 2px 2px white;
+    }
+
+    .slider {
+      z-index: 1;
+      height: 0;
+      transition: .3s ease;
+      border-top: 2px solid @noddle-main-color;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab {
+      font-weight: bolder;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .1s ease;
+      font-size: 14px;
+      padding: 16px 16px;
+      border-radius: @base-border-radius @base-border-radius 0 0;
+    }
+
+    .tab:hover {
+      color: @noddle-main-color;
+    }
+
+    .tab[data-active=true] {
+      color: @noddle-main-color;
+      background-color: white;
+    }
+
+  }
+
+  .content {
+    padding: 12px;
+    height: 100%;
+    overflow: scroll;
+  }
+
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .header {
+    display: flex;
+    gap: 4px;
+    user-select: none;
+    height: max-content;
+    overflow-x: scroll;
+    overflow-y: visible;
+    transform: translateY(1px);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab {
+      font-weight: bolder;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .1s ease;
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid @tab-border-color;
+      background-color: @tab-inactive-background-color;
+      border-radius: @base-border-radius @base-border-radius 0 0;
+    }
+
+
+    .tab:hover {
+      color: @noddle-main-color;
+    }
+
+    .tab[data-active=true] {
+      color: @noddle-main-color;
+      background-color: white;
+      border-bottom: 1px solid white;
+    }
+    .add {
+      position: sticky;
+      right: 0;
+      box-shadow: 0 -4px 2px 2px white;
+    }
+  }
+
+  .content {
+    padding: 12px;
+    height: 100%;
+    overflow: scroll;
+  }
+
+  .outlined {
+    border-radius: 0 0 @base-border-radius @base-border-radius;
+    border: 1px solid @tab-border-color;
+  }
+
+}
+
+
+
+
