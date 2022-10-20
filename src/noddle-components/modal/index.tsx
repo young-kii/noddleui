@@ -7,9 +7,10 @@ import {ClassNameConfig, useTranslation} from "@/noddle-components/globalConfig/
 import DismissIcon from "@/noddle-components/icons/dismiss-icon";
 import Draggable from 'react-draggable'
 import React, {CSSProperties, useEffect, useState} from "react";
-import {getPropertyValue, noddle_main_color} from "@/types";
+import { noddle_main_color} from "@/types/common";
 import {createRoot} from "react-dom/client";
 import AlertCircle from "@/noddle-components/icons/alert-circle";
+import {getPropertyValue} from "@/utils";
 
 const modalId = 'noddle-confirm-modal_sdju2414o9'
 let modal: any = null

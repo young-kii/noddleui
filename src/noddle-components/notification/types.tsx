@@ -1,4 +1,4 @@
-import {themeTypes} from "@/types";
+import {themeTypes} from "@/types/common";
 
 interface notificationItemProps extends notificationConfig{
     type?: themeTypes

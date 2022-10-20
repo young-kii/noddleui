@@ -1,5 +1,5 @@
 import {CSSProperties} from "react";
-import {themeTypes} from "@/types";
+import {themeTypes} from "@/types/common";
 
 interface buttonProps {
     widthFitsText?: boolean;

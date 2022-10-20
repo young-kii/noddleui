@@ -1,5 +1,5 @@
 import {CSSProperties} from "react";
-import {themeTypes} from "@/types";
+import {themeTypes} from "@/types/common";
 
 namespace _Icon {
     export interface baseIconProps {

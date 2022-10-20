@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import {direction, themeTypes} from "@/types";
+import {direction, themeTypes} from "@/types/common";
 
 interface timelineProps {
     direction?: direction

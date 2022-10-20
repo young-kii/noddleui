@@ -2,7 +2,7 @@ import {step, timelineProps} from "@/noddle-components/timeline/types";
 import STYLE from './index.module.less'
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import CircleIcon from "@/noddle-components/icons/circle-icon";
-import {noddle_main_color} from "@/types";
+import {noddle_main_color} from "@/types/common";
 import Divider from "@/noddle-components/divider";
 import {CSSProperties, forwardRef} from "react";
 

@@ -1,7 +1,7 @@
 import ContentContent from "@/components/content-content";
 import ContentItem from "@/components/content-item";
 import Table from "@/noddle-components/table";
-import {apiTableColumns} from "@/types";
+import {apiTableColumns} from "@/types/common";
 import React from "react";
 
 type tableApiProps = {

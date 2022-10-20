@@ -2,7 +2,7 @@ import STYLE from './index.module.less'
 import React, {ReactNode, useContext, useEffect, useState} from "react";
 import DrinkIcon from "@/noddle-components/icons/drink-icon";
 import CircleIcon from "@/noddle-components/icons/circle-icon";
-import {noddle_main_color} from "@/types";
+import {noddle_main_color} from "@/types/common";
 import globalConfig from "@/pages/components/globalConfig";
 import {LocaleConfig} from "@/noddle-components/globalConfig/Config";
 import getLocale = LocaleConfig.getLocale;

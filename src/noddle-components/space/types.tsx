@@ -1,5 +1,5 @@
 import {CSSProperties, ReactNode} from "react";
-import {direction} from "@/types";
+import {direction} from "@/types/common";
 
 interface spaceProps {
     onClick?: (value?: any) => any

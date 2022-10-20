@@ -7,7 +7,7 @@ export default () => {
 
     return (
         <>
-            <div style={{height: 400, width: '100%', padding: 24}}>
+            <div style={{minHeight: 400, width: '100%', padding: 24}}>
                 tabs
                 <Tabs type={"card"} outlined items={[
                     {
@@ -27,7 +27,7 @@ export default () => {
                     {children: 'child 3', closable: false, key: 3, label: "Tab 3"},
                 ]}/>
             </div>
-            <div style={{height: 400, width: '100%', padding: 24}}>
+            <div style={{minHeight: 400, width: '100%', padding: 24}}>
                 <Tabs outlined items={[
                     {children: 'child 1', key: 0, label: 'tab 1'},
                     {children: 'child 1', key: 1, label: 'tab 1'},

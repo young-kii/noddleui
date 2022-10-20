@@ -16,5 +16,14 @@ export default defineConfig({
         additionalData: '@import "./src/assets/css/global.less";',
       }
     }
+  },
+  server: {
+    proxy: {
+      "/musicApi": {
+        target: "https://interface.music.163.com",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/musicApi/,'')
+      }
+    }
   }
 })

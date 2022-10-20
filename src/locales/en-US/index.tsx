@@ -37,6 +37,8 @@ export default {
         tag: 'Tag',
         tabs: 'Tabs',
         badge: 'Badge',
+        list: 'List',
+        card: 'Card',
     },
     feedback: {
         '': 'feedback',

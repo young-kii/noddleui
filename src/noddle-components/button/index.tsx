@@ -2,7 +2,8 @@ import {baseButtonProps, buttonProps} from "./types";
 import STYLE from './index.module.less'
 import {CSSProperties, forwardRef, useEffect, useRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import {getPropertyValue, themes_array} from "@/types";
+import { themes_array} from "@/types/common";
+import {getPropertyValue} from "@/utils";
 
 export default forwardRef((props: buttonProps, ref: any) => {
 

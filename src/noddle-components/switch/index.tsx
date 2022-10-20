@@ -7,7 +7,7 @@ import {
 } from "@/noddle-components/switch/types";
 import {CSSProperties, MutableRefObject, useEffect, useRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import {themeTypes} from "@/types";
+import {themeTypes} from "@/types/common";
 
 export default (props: switchProps) => {
     const {theme, biggerButton, onChange, extraContent, type, defaultStatus, status} = props

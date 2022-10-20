@@ -1,5 +1,5 @@
 import {CSSProperties, MouseEventHandler} from "react";
-import {DataType, themeTypes} from "@/types";
+import {DataType, themeTypes} from "@/types/common";
 
 namespace _Text {
     export interface textProps {

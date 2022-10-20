@@ -1,4 +1,4 @@
-import {themeTypes} from "@/types";
+import {themeTypes} from "@/types/common";
 
 interface messageItemProps extends messageConfig{
     content: string

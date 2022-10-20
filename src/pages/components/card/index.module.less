@@ -1,0 +1,48 @@
+@import "src/assets/css/global";
+
+.song {
+  transition: .3s ease;
+  &:hover {
+    cursor: pointer;
+    transform-origin: center;
+    transform: scale(1.02);
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+  }
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .coverImg {
+    border-radius: @base-border-radius;
+    height: 48px;
+    width: 48px;
+  }
+
+  .right {
+    height: 48px;
+    display: flex;
+    margin-left: 8px;
+    flex-direction: column;
+    justify-content: space-between;
+    .name {
+      margin-left: 4px;
+      font-weight: bolder;
+    }
+
+    .bottom {
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(0,0,0,.3);
+    }
+  }
+
+}
+
+.lyric {
+  font-weight: bolder;
+  transition: .3s ease;
+}
+
+

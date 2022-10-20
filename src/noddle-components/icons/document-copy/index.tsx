@@ -3,7 +3,7 @@ import baseIconProps = _Icon.baseIconProps;
 import BASE_WIDTH = _Icon.BASE_WIDTH;
 import BASE_HEIGHT = _Icon.BASE_HEIGHT;
 import STYLE from './index.module.less'
-import {noddle_main_color} from "@/types";
+import {noddle_main_color} from "@/types/common";
 
 export default (props: baseIconProps) => {
     const {width, height, color, style} = props

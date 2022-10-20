@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
-import {codeBoxConfigPanelStyle, DataType} from "@/types";
+import {codeBoxConfigPanelStyle, DataType} from "@/types/common";
 import TableApi from "@/components/table-api";
 import {step} from "@/noddle-components/timeline/types";
 import ChangelogStep from "@/components/changelog-step";

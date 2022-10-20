@@ -36,6 +36,8 @@ export default {
         tag: 'Tag 标签',
         tabs: 'Tabs 标签页',
         badge: 'Badge 徽标数',
+        list: 'List 列表',
+        card: 'Card 卡片',
     },
     feedback: {
         '': '反馈',

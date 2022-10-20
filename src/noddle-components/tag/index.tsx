@@ -18,7 +18,7 @@ import tag from "@/pages/components/tag";
 import Button from "@/noddle-components/button";
 import message from "@/noddle-components/message";
 import notification from "@/noddle-components/notification";
-import {noddle_main_color} from "@/types";
+import {noddle_main_color} from "@/types/common";
 
 export default (props: tagProps) => {
     const {maxCount} = props

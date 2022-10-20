@@ -9,7 +9,7 @@ import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Table, {ColumnsType} from "@/noddle-components/table";
 import Text from "@/noddle-components/text";
-import {apiTableColumns, DataType} from "@/types";
+import {apiTableColumns, DataType} from "@/types/common";
 import TableApi from "@/components/table-api";
 import Divider from "@/noddle-components/divider";
 

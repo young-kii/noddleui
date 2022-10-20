@@ -1,5 +1,5 @@
 import {ReactNode} from "react";
-import {size, themeTypes} from "@/types";
+import {size, themeTypes} from "@/types/common";
 
 namespace _Tooltips {
     export interface tooltipsProps {

@@ -4,11 +4,12 @@ import STYLE from './index.module.less'
 import {CSSProperties, MutableRefObject, useEffect, useRef, useState} from "react";
 import Space from "@/noddle-components/space";
 import AlertCircle from "@/noddle-components/icons/alert-circle";
-import {getPropertyValue, noddle_theme_colors, themes_message_array, themeTypes} from "@/types";
+import { noddle_theme_colors, themes_message_array, themeTypes} from "@/types/common";
 import {messageConfig, messageItemProps} from "@/noddle-components/message/types";
 import InfoIcon from "@/noddle-components/icons/info-icon";
 import DismissCircle from "@/noddle-components/icons/dismiss-circle";
 import CheckMarkCircle from "@/noddle-components/icons/check-mark-circle";
+import {getPropertyValue} from "@/utils";
 
 namespace message {
 

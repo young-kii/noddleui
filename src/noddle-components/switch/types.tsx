@@ -1,4 +1,4 @@
-import {themeTypes} from "@/types";
+import {themeTypes} from "@/types/common";
 import {ReactNode} from "react";
 
 interface switchProps {

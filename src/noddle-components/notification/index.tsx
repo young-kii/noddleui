@@ -3,12 +3,13 @@ import ReactDOM from "react-dom";
 import STYLE from './index.module.less'
 import {CSSProperties, MutableRefObject, useEffect, useRef, useState} from "react";
 import AlertCircle from "@/noddle-components/icons/alert-circle";
-import {getPropertyValue, noddle_theme_colors, themes_message_array, themeTypes} from "@/types";
+import {noddle_theme_colors, themes_message_array, themeTypes} from "@/types/common";
 import {notificationConfig, notificationItemProps} from "@/noddle-components/notification/types";
 import InfoIcon from "@/noddle-components/icons/info-icon";
 import DismissCircle from "@/noddle-components/icons/dismiss-circle";
 import CheckMarkCircle from "@/noddle-components/icons/check-mark-circle";
 import DismissIcon from "@/noddle-components/icons/dismiss-icon";
+import {getPropertyValue} from "@/utils";
 
 namespace notification {
 

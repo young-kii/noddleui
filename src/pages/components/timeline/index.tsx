@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import Button from "@/noddle-components/button";
 import Space from "@/noddle-components/space";
 import Text from "@/noddle-components/text";
-import {DataType} from "@/types";
+import {DataType} from "@/types/common";
 import TableApi from "@/components/table-api";
 import {step} from "@/noddle-components/timeline/types";
 import ChangelogStep from "@/components/changelog-step";

@@ -2,7 +2,8 @@ import STYLE from './index.module.less'
 import _Tooltips from "@/noddle-components/tooltips/types";
 import {CSSProperties, forwardRef, MutableRefObject, useEffect, useRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import {getPropertyValue, size, sizes_Base, sizes_font, sizes_font_map, themes_array, themeTypes} from "@/types";
+import { size, sizes_Base, sizes_font, sizes_font_map, themes_array, themeTypes} from "@/types/common";
+import {getPropertyValue} from "@/utils";
 
 export default (props: _Tooltips.tooltipsProps) => {
     const {children, tips, theme, size, handleMouseEnter, handleMouseLeave} = props

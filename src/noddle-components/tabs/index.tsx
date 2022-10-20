@@ -3,9 +3,11 @@ import {tab, tabsProps} from "@/noddle-components/tabs/types";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import React, {CSSProperties, MouseEventHandler, MutableRefObject, useEffect, useRef, useState} from "react";
 import AddIcon from "@/noddle-components/icons/add-icon";
-import {cardTypes, getPropertyValue, getRandomString} from "@/types";
+import { getPropertyValue, getRandomString} from "@/utils";
+import {cardTypes} from "@/types/common";
 import tabs from "@/pages/components/tabs";
 import Switch from "@/noddle-components/switch";
+import Card from "@/pages/components/card";
 
 
 const defaultKey = 'default_KEY_@&^'
@@ -74,7 +76,7 @@ const CardType = (props: tabsProps) => {
         const newTabKey = `newTab${newTabIndex.current++}`
         newItems.push({
             label: `Tab ${newTabIndex.current + 3}`,
-            children: `newTab${newTabIndex.current}`,
+            children: <Card/>,
             key: newTabKey
         })
         setItems(newItems)
