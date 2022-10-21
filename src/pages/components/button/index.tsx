@@ -94,12 +94,12 @@ const Demo = (props: tabItemsProps) => {
                 <CodeBox code={'nothing here, you f**king idiot'}>
                     <Space direction={"vertical"}>
                         <Space>
-                            <Button>填充按钮</Button>
-                            <Button border={"solid"}>描边按钮</Button>
-                            <Button border={"dashed"}>虚框按钮</Button>
-                            <Button border={"text"}>文字按钮</Button>
-                            <Button border={"text"} backgroundStyle={"border"}>文字按钮</Button>
-                            <Button border={"text"} backgroundStyle={"none"}>文字按钮</Button>
+                            <Button type={'default'}>填充按钮</Button>
+                            <Button type={'default'} border={"solid"}>描边按钮</Button>
+                            <Button type={'default'} border={"dashed"}>虚框按钮</Button>
+                            <Button type={'default'} border={"text"}>文字按钮</Button>
+                            <Button type={'default'} border={"text"} backgroundStyle={"border"}>文字按钮</Button>
+                            <Button type={'default'} border={"text"} backgroundStyle={"none"}>文字按钮</Button>
                         </Space>
                         <Space>
                             <Button type={"success"}>填充按钮</Button>

@@ -4,15 +4,17 @@
   transition: .3s ease;
   &:hover {
     cursor: pointer;
-    transform-origin: center;
-    transform: scale(1.02);
-    box-shadow: 0 0 5px rgba(0,0,0,.1);
+    background-color: rgba(0,0,0,.02);
+  }
+  &:hover .coverImg {
+    transform: scale(1.05) ;
   }
   padding: 6px 12px;
   display: flex;
   align-items: center;
   position: relative;
   .coverImg {
+    transition: .3s ease;
     border-radius: @base-border-radius;
     height: 48px;
     width: 48px;

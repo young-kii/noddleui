@@ -3,20 +3,16 @@ import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {innerTagProps, tagProps} from "@/noddle-components/tag/types";
 import {
     ChangeEvent,
-    ChangeEventHandler,
     CSSProperties,
     KeyboardEventHandler,
     MutableRefObject, useEffect,
     useRef,
     useState
 } from "react";
-import AlertCircle from "@/noddle-components/icons/alert-circle";
 import AddIcon from "@/noddle-components/icons/add-icon";
 import DismissIcon from "@/noddle-components/icons/dismiss-icon";
 import Space from "@/noddle-components/space";
-import tag from "@/pages/components/tag";
 import Button from "@/noddle-components/button";
-import message from "@/noddle-components/message";
 import notification from "@/noddle-components/notification";
 import {noddle_main_color} from "@/types/common";
 
@@ -124,7 +120,7 @@ const Tag_ = (props: innerTagProps) => {
                 <div className={class_panel} style={{height: 0, visibility: "hidden"}} onClick={handleClick}>
                     {
                         !tagValue &&
-                        <AddIcon height={16} width={16} style={{marginRight: 8}}/>
+                        <AddIcon height={16} width={16} style={{marginRight: 4}}/>
                     }
                     {tagValue}
                 </div>

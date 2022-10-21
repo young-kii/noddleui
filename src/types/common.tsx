@@ -64,7 +64,7 @@ const apiTableColumns: ColumnsType<DataType> = [
             minWidth: 100,
             wordBreak: "break-word"
         },
-        render: value => typeof value === 'string' ? <Text type={"danger"} bolder pure>{value}</Text> : value
+        render: (value) => typeof value === 'string' ? <Text type={"danger"} bolder pure>{value}</Text> : value
     },
     {
         title: '默认值',

@@ -18,11 +18,13 @@ import Switch from "@/noddle-components/switch";
 import {useTranslation} from "@/noddle-components/globalConfig/Config";
 import Locales from "@/locales";
 import allLocales = Locales.allLocales;
+import {getLinksToDocument, linkTo} from "@/utils";
 
 export default () => {
     const translate = useTranslation()
     return <>
-        <PageBase title={translate('page.text.header.title')} description={translate('page.text.header.description')} Demo={Demo} Api={Api}
+        <PageBase title={translate('page.text.header.title')} description={translate('page.text.header.description')}
+                  Demo={Demo} Api={Api}
                   Changelog={Changelog}/>
     </>
 }
@@ -67,10 +69,10 @@ const CodeBox1 = () => {
         setColor('')
         setIsConfigChanged(false)
     }
-    useEffect(()=>{
-       if(color !== '')
-           setIsConfigChanged(type)
-    },[color])
+    useEffect(() => {
+        if (color !== '')
+            setIsConfigChanged(type)
+    }, [color])
     const ConfigPanel = () => {
         return (
             <div className={'noddle-configPanel'}>
@@ -78,7 +80,7 @@ const CodeBox1 = () => {
                 <Space style={codeBoxConfigPanelStyle} direction={'vertical'}>
                     <Space>
                         <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>{translate('common.theme')+'：'}</Text>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.theme') + '：'}</Text>
                             <Switch status={status1} type={"moreStatus"} extraContent={[
                                 {content: translate('common.theme.primary'), theme: 'primary'},
                                 {content: translate('common.theme.default'), default: true, theme: 'default'},
@@ -118,7 +120,7 @@ const CodeBox1 = () => {
                     </Space>
                     <Space>
                         <Space gap={0}>
-                            <Text pure color={'black'} fontSize={14}>{translate('common.bolder')+ '：'}</Text>
+                            <Text pure color={'black'} fontSize={14}>{translate('common.bolder') + '：'}</Text>
                             <Switch status={status2} onChange={result => {
                                 setStatus2(result)
                                 setBolder(result)
@@ -156,7 +158,8 @@ const CodeBox1 = () => {
 `
     return (
         <>
-            <CodeBox position={"center"} code={code} isConfigChanged={isConfigChanged} config={ConfigPanel()} onReset={onReset}>
+            <CodeBox position={"center"} code={code} isConfigChanged={isConfigChanged} config={ConfigPanel()}
+                     onReset={onReset}>
                 <Space>
                     <Text type={type}
                           color={color}
@@ -182,7 +185,8 @@ const Api = (props: tabItemsProps) => {
     const data: DataType[] = [
         {
             property: 'onCopy',
-            type: <><Text pure bolder type={"warning"}>boolean</Text><Text pure bolder type={"danger"}>{' | (value?: string) => any'}</Text></>,
+            type: <><Text pure bolder type={"warning"}>boolean</Text><Text pure bolder
+                                                                           type={"danger"}>{' | (value?: string) => any'}</Text></>,
             description: '用于复制文本内容',
             required: 'NO',
             defaultValue: <Text bolder type={"danger"}>false</Text>
@@ -201,55 +205,69 @@ const Api = (props: tabItemsProps) => {
             required: 'YES',
             defaultValue: '-'
         },
-        //todo
         {
-            property: 'border',
-            description: '按钮边框的样式',
-            type: 'default | solid | dashed | text',
+            property: 'type',
+            description: '文本的颜色主题类型',
+            type: 'default | danger | success | primary | warning',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },
         {
-            property: 'disabled',
-            description: '是否处于禁用状态',
+            property: 'pure',
+            description: '是否纯文本（无背景色）',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
             required: 'NO',
             defaultValue: <Text bolder type={"danger"}>false</Text>
         },
         {
-            property: 'backgroundStyle',
-            description: '是否填充/背景色是否透明',
-            type: 'default | none | border',
-            required: 'NO',
-            defaultValue: <Text bolder type={"default"}>default</Text>
-        },
-        {
-            property: 'block',
-            description: '使按钮宽度适合其父元素宽度',
+            property: 'bolder',
+            description: '文字加粗',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
             required: 'NO',
             defaultValue: <Text bolder type={"danger"}>false</Text>
         },
         {
-            property: 'widthFitsText',
-            description: '使按钮宽度适合文本宽度',
+            property: 'decoration',
+            description: '文字装饰的样式',
+            type: 'underline | through | overline | none',
+            required: 'NO',
+            defaultValue: 'none'
+        },
+        {
+            property: 'lineType',
+            description: <>装饰线条的类型,当<strong>decoration</strong>不为<Text bolder type={'danger'} pure>none</Text>时生效</>,
+            type: 'solid | dashed | dotted',
+            required: 'NO',
+            defaultValue: <Text bolder type={"danger"}>false</Text>
+        },
+        {
+            property: 'isButton',
+            description: '文本是否添加按钮效果',
             type: <Text pure bolder type={"warning"}>boolean</Text>,
+            required: 'NO',
+            defaultValue: <Text bolder type={"danger"}>false</Text>
+        },
+        {
+            property: 'onClick',
+            description: <>点击事件的回调，当<strong>isButton</strong>为<Text pure bolder type={'danger'}>true</Text>时生效</>,
+            type: '( Event ) => void',
             required: 'NO',
             defaultValue: <Text bolder type={"default"}>default</Text>
         },
         {
-            property: 'clickEffect',
-            description:
-                <>点击按钮之后的特效。特别地，
-                    <strong>border</strong>为
-                    <Text pure type={"danger"} bolder>text</Text>
-                    的按钮<strong>clickEffect</strong>
-                    只能为<Text pure type={"danger"} bolder>none</Text>
-                    或<Text pure type={"danger"} bolder>default</Text>
-                </>,
-            type: `currentColor | default | none`,
+            property: 'fontSize',
+            description: '字体大小',
+            type: 'number',
             required: 'NO',
-            defaultValue: <Text bolder type={"danger"}>false</Text>
+            defaultValue: 14
+        },
+        {
+            property: 'color',
+            description: '字体的颜色',
+            type: <Text isButton pure bolder type={'primary'} decoration={'underline'} lineType={'solid'}
+                        onClick={() => linkTo(getLinksToDocument('CSS', 'color'))}>COLOR</Text>,
+            required: 'NO',
+            defaultValue: '-'
         },
     ]
 
@@ -267,29 +285,30 @@ const Changelog = (props: tabItemsProps) => {
     const timeline = [
         ChangelogStep({
             version: '1.0.1',
-            time: '2022-10-5',
+            time: '2022-10-21',
             list: [{
                 type: "feat",
                 list: [{
                     title: '页面完成情况',
                     items: [
                         <>
-                            按钮Button组件页面初始化构建完成：
-                            <Text noWrap bolder type={"default"}>基础按钮</Text>
-                            <Text noWrap bolder type={"default"}>block按钮</Text>
-                            <Text noWrap bolder type={"default"}>颜色主题</Text>
+                            Text文本组件页面初始化构建完成：
+                            <Text noWrap bolder type={"default"}>基本用法</Text>
                         </>,
                         <>
-                            完成Button基本的Props：
-                            <Text noWrap bolder type={"danger"}>widthFitsText</Text>
-                            <Text bolder noWrap type={"danger"}>children</Text>
-                            <Text noWrap bolder type={"danger"}>onClick</Text>
+                            完成Text基本的Props：
+                            <Text noWrap bolder type={"danger"}>onCopy</Text>
+                            <Text bolder noWrap type={"danger"}>noWrap</Text>
+                            <Text noWrap bolder type={"danger"}>children</Text>
                             <Text noWrap bolder type={"danger"}>type</Text>
-                            <Text noWrap bolder type={"danger"}>border</Text>
-                            <Text noWrap bolder type={"danger"}>clickEffect</Text>
-                            <Text noWrap bolder type={"danger"}>block</Text>
-                            <Text noWrap bolder type={"danger"}>backgroundStyle</Text>
-                            <Text noWrap bolder type={"danger"}>disabled</Text>
+                            <Text noWrap bolder type={"danger"}>pure</Text>
+                            <Text noWrap bolder type={"danger"}>bolder</Text>
+                            <Text noWrap bolder type={"danger"}>decoration</Text>
+                            <Text noWrap bolder type={"danger"}>lineType</Text>
+                            <Text noWrap bolder type={"danger"}>isButton</Text>
+                            <Text noWrap bolder type={"danger"}>onClick</Text>
+                            <Text noWrap bolder type={"danger"}>fontSize</Text>
+                            <Text noWrap bolder type={"danger"}>color</Text>
                         </>
                     ]
                 }]

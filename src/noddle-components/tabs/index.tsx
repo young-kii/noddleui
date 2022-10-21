@@ -1,16 +1,16 @@
 import STYLE from './index.module.less'
-import {tab, tabsProps} from "@/noddle-components/tabs/types";
+import {tabsProps} from "@/noddle-components/tabs/types";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import React, {CSSProperties, MouseEventHandler, MutableRefObject, useEffect, useRef, useState} from "react";
+import React, {CSSProperties, MutableRefObject, useEffect, useRef, useState} from "react";
 import AddIcon from "@/noddle-components/icons/add-icon";
 import { getPropertyValue, getRandomString} from "@/utils";
 import {cardTypes} from "@/types/common";
-import tabs from "@/pages/components/tabs";
 import Switch from "@/noddle-components/switch";
 import Card from "@/pages/components/card";
 
 
 const defaultKey = 'default_KEY_@&^'
+
 
 export default (props: tabsProps) => {
     const {type} = props

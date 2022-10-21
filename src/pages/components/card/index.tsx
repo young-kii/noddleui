@@ -50,13 +50,11 @@ export default () => {
                     setCurrentSong(result.data.data.responseData)
                     if (item?.playUrl) {
                         const handleTimeUpdate:ReactEventHandler<HTMLAudioElement> = (e) => {
-                            console.log(e.currentTarget.currentTime)
                             for(let index = 0; index < currentLyricArray.length; index ++) {
                                 if(index + 1 === currentLyricArray.length && e.currentTarget.currentTime > 30)
                                 {
                                     if(currentLyricRef.current !== (currentLyricArray[index].lyric))
                                     {
-                                        notification.success({content: currentLyricArray[index].lyric, title: item.name})
                                         setTimeout(()=>{
                                             currentLyricRef.current = currentLyricArray[index].lyric
                                             setCurrentLyric(currentLyricArray[index].lyric)
@@ -67,7 +65,6 @@ export default () => {
                                 else if((e.currentTarget.currentTime * 1000 ) > currentLyricArray[index].time && (e.currentTarget.currentTime * 1000 ) < currentLyricArray[index + 1].time) {
                                     if(currentLyricRef.current !== (currentLyricArray[index].lyric))
                                     {
-                                        notification.success({content: currentLyricArray[index].lyric, title: item.name})
                                         setTimeout(()=> {
                                             currentLyricRef.current = currentLyricArray[index].lyric
                                             setCurrentLyric(currentLyricArray[index].lyric)
