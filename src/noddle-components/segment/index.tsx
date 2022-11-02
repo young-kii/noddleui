@@ -2,7 +2,6 @@ import STYLE from './index.module.less'
 import _Segment from "@/noddle-components/segment/types";
 import {MutableRefObject, useEffect, useRef, useState} from "react";
 import {__function} from "@/noddle-components/globalConfig/types";
-import {useNavigate} from "react-router-dom";
 import {LocaleConfig} from "@/noddle-components/globalConfig/Config";
 import getLocale = LocaleConfig.getLocale;
 
@@ -37,7 +36,6 @@ export default (props: _Segment.segmentProps) => {
 }
 
 const SegmentOption = (props: _Segment.segmentOptionProps) => {
-    const nav = useNavigate()
     const selectSpan = useRef() as MutableRefObject<any>
     const highlight = useRef() as MutableRefObject<any>
     const {tabs, selected, optionWidth, onChange, options} = props
@@ -68,7 +66,6 @@ const SegmentOption = (props: _Segment.segmentOptionProps) => {
         if (selectedTab)
         {
             onChange?.({tab: selectedTab,label: tabs[selectedId].label})
-            nav('?tab='+selectedTab)
         }
         if(options.length !== 0)
         {

@@ -1,11 +1,11 @@
 import {baseButtonProps, buttonProps} from "./types";
 import STYLE from './index.module.less'
-import {CSSProperties, forwardRef, useEffect, useRef, useState} from "react";
+import React, {CSSProperties, ForwardedRef, forwardRef, useEffect, useRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
-import { themes_array} from "@/types/common";
+import { themes_array } from "@/types/common";
 import {getPropertyValue} from "@/utils";
 
-export default forwardRef((props: buttonProps, ref: any) => {
+export default React.forwardRef((props: buttonProps, ref:ForwardedRef<HTMLElement>) => {
 
     const {children} = props
 
@@ -18,7 +18,7 @@ export default forwardRef((props: buttonProps, ref: any) => {
 
 const Button = forwardRef((props: baseButtonProps, ref: any) => {
 
-    const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block, clickEffect} = props
+    const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block} = props
     const [buttonWidth, setButtonWidth] = useState(0)
     const [click, setClick] = useState(false)
     const [onEffect_widthAndHeight, setOnEffect_widthAndHeight] = useState(false)
@@ -29,6 +29,8 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
     const getType = () => {
         return getPropertyValue(type, themes_array, 'primary')
     }
+    if (!ref)
+        ref = useRef()
 
     const style_container = styles({
         container: true,
@@ -77,16 +79,22 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
             }, 300)
         }, 300)
     }
-    if (!ref)
-        ref = useRef()
-    useEffect(() => {
+    const handleWindowResize = () => {
         setButtonWidth(ref?.current.offsetWidth)
-    }, [])
+    }
+    useEffect(()=>{
+        setButtonWidth(ref?.current.offsetWidth)
+        window.addEventListener('resize',handleWindowResize)
+        return () => {
+            window.addEventListener('resize',handleWindowResize)
+        }
+    },[])
+
     return (
         <div ref={ref} className={style_container} style={_style} onClick={handleClick}
              data-buttontype={getType() || 'primary'}
              data-bordertype={border || 'default'}
-             data-clickeffect={clickEffect || 'default'}
+             // data-clickeffect={clickEffect || 'default'}
              data-backgroundstyle={backgroundStyle || 'default'}
         >
             <span className={STYLE.effect} style={style_effect}/>

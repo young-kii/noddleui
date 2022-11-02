@@ -22,6 +22,10 @@ const RouteTable: SyncRoute.Routes[] = [
                 component: () => <Navigate to={SyncRoute.defaultPath}/>
             },
             {
+                path: 'test',
+                component: lazy(() => import('@/pages/test/test'))
+            },
+            {
                 path: 'getting-started',
                 component: lazy(() => import('@/pages/getting-started'))
             },

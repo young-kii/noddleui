@@ -10,7 +10,7 @@ import Space from "@/noddle-components/space";
 import BugIcon from "@/noddle-components/icons/bug-icon";
 import header from "@/layout/header";
 import Divider from "@/noddle-components/divider";
-import LaucherSetting from "@/noddle-components/icons/laucher-setting";
+import LauncherSetting from "@/noddle-components/icons/launcher-setting";
 import Tooltips from "@/noddle-components/tooltips";
 import {copy, getLinksToDocument, linkTo} from "@/utils";
 import ArrowHookUpLeft from "@/noddle-components/icons/arrow-hook-up-left";
@@ -219,7 +219,7 @@ export default (props: _CodeBox.codeBoxProps) => {
                                         : ''
                                 }
                                 <div className={STYLE.option_button} onClick={handleShowConfig}>
-                                    <LaucherSetting/>
+                                    <LauncherSetting/>
                                 </div>
                             </Space>
                             :

@@ -1,5 +1,5 @@
 import {badgeProps} from "@/noddle-components/badge/types";
-import STYLE from './index.module.less'
+import STYLE from './index.module.less';
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import {CSSProperties, useEffect, useState} from "react";
 
