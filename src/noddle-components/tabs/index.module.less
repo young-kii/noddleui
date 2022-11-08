@@ -10,15 +10,25 @@
   flex-direction: column;
   position: relative;
 
+  .centered {
+    justify-content: center;
+  }
+
   .header {
     position: relative;
     display: flex;
-    gap: 4px;
     user-select: none;
     height: max-content;
     overflow-x: scroll;
     overflow-y: visible;
     border-bottom: 1px solid @tab-default-header-bottom-border-color;
+
+    .tabs {
+      display: flex;
+      position: relative;
+      gap: 4px;
+    }
+
     .add {
       background-color: white;
       position: sticky;
@@ -50,11 +60,11 @@
       cursor: pointer;
       transition: .1s ease;
       font-size: 14px;
-      padding: 16px 16px;
+      padding: 12px;
       border-radius: @base-border-radius @base-border-radius 0 0;
     }
 
-    .tab:hover {
+    .tab:not([data-disabled=true]):hover {
       color: @noddle-main-color;
     }
 
@@ -63,6 +73,14 @@
       background-color: white;
     }
 
+    .tab[data-disabled=true] {
+      color: rgba(0, 0, 0, .2) !important;
+      background-color: white;
+    }
+
+    .tab[data-disabled=true]:hover {
+      cursor: not-allowed;
+    }
   }
 
   .content {
@@ -118,6 +136,7 @@
       background-color: white;
       border-bottom: 1px solid white;
     }
+
     .add {
       position: sticky;
       right: 0;
@@ -137,6 +156,25 @@
   }
 
 }
+
+
+.inputContainer {
+  .inputEditor {
+    font-size: 14px;
+    color: @noddle-main-color;
+    font-weight: bolder;
+    border: transparent;
+    outline: transparent;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hiddenLabel {
+    position: absolute;
+    opacity: 0;
+  }
+}
+
 
 
 

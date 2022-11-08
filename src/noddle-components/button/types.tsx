@@ -1,7 +1,7 @@
-import {CSSProperties} from "react";
 import {themeTypes} from "@/types/common";
+import React from "react";
 
-interface buttonProps {
+interface buttonProps extends Omit<React.HTMLAttributes<any>,'type' | 'onClick'>{
     widthFitsText?: boolean;
     children: any;
     onClick?: (value?: any) => any
@@ -13,8 +13,6 @@ interface buttonProps {
     clickEffect?: 'currentColor' | 'default' | 'none'
 }
 
-interface baseButtonProps extends buttonProps{
+export type { buttonProps }
 
-}
 
-export type { buttonProps, baseButtonProps }

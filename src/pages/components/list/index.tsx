@@ -1,6 +1,5 @@
 import STYLE from "./index.module.less"
 import List from "@/noddle-components/list";
-// @ts-ignore
 import {Message} from "noddle-ui";
 import 'noddle-ui/style'
 import React, {useRef} from "react";

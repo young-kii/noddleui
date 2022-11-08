@@ -45,7 +45,7 @@ export default (props: switchProps) => {
             { content: '初始状态', theme: 'primary'},
             { content: '告警状态', theme: 'warning'},
             { content: '危险状态' , theme: 'danger'},
-            { content: '关注', theme: 'success'},
+            { content: '成功状态', theme: 'success'},
         ] as moreStatusExtraContent[]
     } as any
 

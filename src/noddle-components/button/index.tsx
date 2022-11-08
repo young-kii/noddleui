@@ -1,11 +1,12 @@
-import {baseButtonProps, buttonProps} from "./types";
+import { buttonProps } from "./types";
 import STYLE from './index.module.less'
-import React, {CSSProperties, ForwardedRef, forwardRef, useEffect, useRef, useState} from "react";
+import React, {CSSProperties, useEffect, useRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import { themes_array } from "@/types/common";
 import {getPropertyValue} from "@/utils";
 
-export default React.forwardRef((props: buttonProps, ref:ForwardedRef<HTMLElement>) => {
+
+const Button_ =  React.forwardRef((props: buttonProps, ref:React.ForwardedRef<any>) => {
 
     const {children} = props
 
@@ -16,9 +17,11 @@ export default React.forwardRef((props: buttonProps, ref:ForwardedRef<HTMLElemen
     )
 })
 
-const Button = forwardRef((props: baseButtonProps, ref: any) => {
+export default Button_
 
-    const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block} = props
+const Button = React.forwardRef((props: buttonProps, ref: any) => {
+
+    const {children, onClick, type, border, disabled, backgroundStyle, widthFitsText, block, className, style} = props
     const [buttonWidth, setButtonWidth] = useState(0)
     const [click, setClick] = useState(false)
     const [onEffect_widthAndHeight, setOnEffect_widthAndHeight] = useState(false)
@@ -86,12 +89,13 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
         setButtonWidth(ref?.current.offsetWidth)
         window.addEventListener('resize',handleWindowResize)
         return () => {
-            window.addEventListener('resize',handleWindowResize)
+            window.removeEventListener('resize',handleWindowResize)
         }
     },[])
+    const newProps = getNewProps(props)
 
     return (
-        <div ref={ref} className={style_container} style={_style} onClick={handleClick}
+        <div {...newProps} ref={ref} className={style_container + ' ' + className} style={{..._style,...style}} onClick={handleClick}
              data-buttontype={getType() || 'primary'}
              data-bordertype={border || 'default'}
              // data-clickeffect={clickEffect || 'default'}
@@ -102,3 +106,14 @@ const Button = forwardRef((props: baseButtonProps, ref: any) => {
         </div>
     )
 })
+
+const getNewProps = (props: buttonProps) => {
+    /**
+     * 删除一些 ReactDom 识别不了的属性
+     */
+    const result = {...props} as any
+    const deleteItems = ['block', 'backgroundStyle', 'widthFitsText']
+    for(let item of deleteItems)
+        delete result[item]
+    return result
+}

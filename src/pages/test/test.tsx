@@ -15,7 +15,6 @@ import {
 import React, {CSSProperties, Fragment, useRef, useState} from "react";
 import 'noddle-ui/style'
 import {Space} from "noddle-ui";
-import {DataType} from "@/types/common";
 
 const {confirm} = Modal
 export type ColumnsType<T> = {
