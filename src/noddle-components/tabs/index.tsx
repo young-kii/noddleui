@@ -107,15 +107,14 @@ const CardType = (props: tabsProps) => {
 
     const addTab = () => {
         const newItems = [...items_]
-        const newTabKey = `newTab${newTabIndex.current++}`
         onEdit?.((newTab, callBack) => {
             newItems.push(newTab)
+            setActiveKey(newTab.key)
             callBack?.(newItems, items_)
         }, function () {
         }, function () {
         })
         setItems(newItems)
-        setActiveKey(newTabKey)
         setTimeout(() => headerRef.current.scrollTo({
             left: headerRef.current.scrollWidth - headerRef.current.offsetWidth,
             behavior: "smooth"

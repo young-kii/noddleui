@@ -39,6 +39,7 @@ export default {
         badge: 'Badge',
         list: 'List',
         card: 'Card',
+        image: 'Image'
     },
     feedback: {
         '': 'feedback',

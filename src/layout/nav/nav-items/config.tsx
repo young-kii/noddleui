@@ -59,6 +59,7 @@ const itemList: item[] = [
             {title: 'badge'},
             {title: 'list'},
             {title: 'card'},
+            {title: 'image'},
         ]
     },
     {

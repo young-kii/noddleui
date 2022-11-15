@@ -1,0 +1,1 @@
+import{j as n}from"./index.a45ea5cd.js";const o="_show_m11f5_1",t="_content_m11f5_50",e="_main_m11f5_61",c="_i_m11f5_65",i={"noddle-configPanel":"_noddle-configPanel_m11f5_12",show:o,content:t,main:e,i:c},a=()=>n("div",{children:n(s,{})}),s=()=>n("div",{className:i.container,children:"\u9009\u62E9\u5668"});export{a as default};

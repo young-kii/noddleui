@@ -1,5 +1,6 @@
 import {CSSProperties} from "react";
 import {link_target} from "@/types/common";
+import {buttonProps} from "@/noddle-components/button/types";
 
 interface getLinksToDocumentDataType {
     topic: 'CSS' | 'Javascript'
@@ -69,7 +70,17 @@ const getRandomString = (len?: number) => {
     return _str;
 }
 
-export {getPropertyValue, getRandomString}
+const getNewProps = (props: any, deleteItems: any[] = []) => {
+    /**
+     * 删除一些 ReactDom 识别不了的属性
+     */
+    const result = {...props} as any
+    for(let item of deleteItems)
+        delete result[item]
+    return result
+}
+
+export {getPropertyValue, getRandomString, getNewProps}
 
 export {getLinksToDocument, linkTo, copy}
 

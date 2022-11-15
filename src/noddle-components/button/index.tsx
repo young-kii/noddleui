@@ -3,7 +3,7 @@ import STYLE from './index.module.less'
 import React, {CSSProperties, useEffect, useRef, useState} from "react";
 import {ClassNameConfig} from "@/noddle-components/globalConfig/Config";
 import { themes_array } from "@/types/common";
-import {getPropertyValue} from "@/utils";
+import {getNewProps, getPropertyValue} from "@/utils";
 
 
 const Button_ =  React.forwardRef((props: buttonProps, ref:React.ForwardedRef<any>) => {
@@ -92,7 +92,8 @@ const Button = React.forwardRef((props: buttonProps, ref: any) => {
             window.removeEventListener('resize',handleWindowResize)
         }
     },[])
-    const newProps = getNewProps(props)
+    const deleteItems = ['block', 'backgroundStyle', 'widthFitsText']
+    const newProps = getNewProps(props, deleteItems)
 
     return (
         <div {...newProps} ref={ref} className={style_container + ' ' + className} style={{..._style,...style}} onClick={handleClick}
@@ -106,14 +107,3 @@ const Button = React.forwardRef((props: buttonProps, ref: any) => {
         </div>
     )
 })
-
-const getNewProps = (props: buttonProps) => {
-    /**
-     * 删除一些 ReactDom 识别不了的属性
-     */
-    const result = {...props} as any
-    const deleteItems = ['block', 'backgroundStyle', 'widthFitsText']
-    for(let item of deleteItems)
-        delete result[item]
-    return result
-}

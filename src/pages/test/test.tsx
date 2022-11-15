@@ -12,7 +12,7 @@ import {
     Tabs,
     Tag, Text, Timeline
 } from "noddle-ui";
-import React, {CSSProperties, Fragment, useRef, useState} from "react";
+import React, {CSSProperties, Fragment, useEffect, useRef, useState} from "react";
 import 'noddle-ui/style'
 import {Space} from "noddle-ui";
 
@@ -38,7 +38,6 @@ export default () => {
             content: "我成功了", title: "一则Notification通知"
         })
     }
-
 
     const handleOpenModal = () => {
         setOpen(true)
@@ -97,6 +96,7 @@ export default () => {
             title: "年龄"
         },
     ]
+
 
     return (
 

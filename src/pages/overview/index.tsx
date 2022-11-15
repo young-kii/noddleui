@@ -6,25 +6,14 @@ import Modal from "@/noddle-components/modal";
 
 import Drawer from "@/noddle-components/drawer";
 
-import {getAlbumDetailByAlbumId, getDetailBySongIdList, searchSongsByKeyword} from "@/services";
-import {
-    brLevelsMap,
-    searchResult_detail_responseData,
-    searchResult_songs,
-    searchResult_songs_record,
-    songs_detail_record
-} from "@/types/netease-music";
-import Tag from "@/noddle-components/tag";
 import Text from "@/noddle-components/text";
 import moment from "moment";
-import message from "@/noddle-components/message";
 
 const {confirm} = Modal
 export default () => {
     const [keyword, setKeyword] = useState('')
     const [albumId, setAlbumId] = useState('')
     const [songs, setSongs] = useState([]) as any
-
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const a = useRef(null) as any
@@ -54,21 +43,6 @@ export default () => {
     const showDrawer = () => {
         setIsDrawerOpen(true)
     }
-    const handleSearch = async () => {
-        const result = await searchSongsByKeyword(keyword) as searchResult_songs<searchResult_songs_record>
-        let list = []
-        for (let item of result.data.data.responseData.records) {
-            list.push(item.id)
-        }
-        const res = await getDetailBySongIdList(list) as searchResult_songs<searchResult_detail_responseData>
-        console.log(res.data.data.responseData)
-        setSongs(res.data.data.responseData)
-    }
-
-    const getAlbum = async () => {
-        const result = await getAlbumDetailByAlbumId(albumId)
-        console.log(result)
-    }
 
 
     return (
@@ -78,8 +52,6 @@ export default () => {
                 <Space>
                     <input placeholder={'关键词'} onChange={event => setKeyword(event.target.value)}/>
                     <input placeholder={'albumId'} onChange={event => setAlbumId(event.target.value)}/>
-                    <Button onClick={handleSearch}>关键词搜索</Button>
-                    <Button onClick={getAlbum}>专辑搜索</Button>
                 </Space>
                 <Space>
                     <Button onClick={() => {
@@ -108,22 +80,6 @@ export default () => {
                     })
                 }
             </Drawer>
-            <Space direction={"vertical"}>
-                {
-                    songs.map((item: songs_detail_record) => {
-                        return <div key={item?.id} style={{borderBottom: '1px solid black'}}>
-                            <div>歌名:{item?.name}</div>
-                            <div>歌手:{item?.artists[0]?.name}</div>
-                            <Text bolder fontSize={12} type={'danger'}>{item?.vipFlag ? 'VIP' : ''}</Text>
-                            <Text bolder fontSize={12} type={'danger'}>{brLevelsMap[item.maxBrLevel]?.tag ?? item.maxBrLevel}</Text>
-                            <div>时长:{moment(item?.duration + 60 * 60 * 1000 * 16).format('HH:mm:ss')}</div>
-                            专辑封面
-                            <img height={40} src={item?.coverImgUrl} alt={''}/>
-                        </div>
-                    })
-                }
-
-            </Space>
             {/*<div style={{backgroundColor: "red", marginTop: 100}}>*/}
             {/*    <div>overview</div>*/}
             {/*    <div>overview</div>*/}

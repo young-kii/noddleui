@@ -38,6 +38,7 @@ export default {
         badge: 'Badge 徽标数',
         list: 'List 列表',
         card: 'Card 卡片',
+        image: 'Image 图片'
     },
     feedback: {
         '': '反馈',

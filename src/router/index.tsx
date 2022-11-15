@@ -120,6 +120,10 @@ const RouteTable: SyncRoute.Routes[] = [
                     {
                         path: 'card',
                         component: lazy(() => import('@/pages/components/card'))
+                    },
+                    {
+                        path: 'image',
+                        component: lazy(() => import('@/pages/components/image'))
                     }
                 ]
             },

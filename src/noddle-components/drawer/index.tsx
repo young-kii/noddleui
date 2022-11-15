@@ -10,7 +10,7 @@ import React, {CSSProperties, MutableRefObject, useEffect, useRef} from "react";
 
 const Drawer = (props: drawerProps) => {
     const body = document.body;
-    return ReactDOM.createPortal(Drawer_(props), body)
+    return ReactDOM.createPortal(<Drawer_ {...props}/>, body)
 }
 
 const Drawer_ = (props: drawerProps) => {

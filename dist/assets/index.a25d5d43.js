@@ -1,0 +1,1 @@
+import{j as n,O as o}from"./index.a45ea5cd.js";const t="_show_1aydk_1",e="_content_1aydk_50",c="_container_1aydk_61",a={"noddle-configPanel":"_noddle-configPanel_1aydk_12",show:t,content:e,container:c},s=()=>n("div",{id:"noddle-components",className:a.container,children:n(o,{})});export{s as default};

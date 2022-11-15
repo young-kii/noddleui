@@ -1,8 +1,9 @@
 import React, {createContext, useContext, useState} from "react";
 import Select from "@/noddle-components/select";
-import {configProps, Locales, contextType, _object} from "@/noddle-components/globalConfig/types";
+import {_object, configProps, contextType, Locales} from "@/noddle-components/globalConfig/types";
 import STYLE from "./index.module.less";
 import BeachIcon from "@/noddle-components/icons/beach-icon";
+
 const localStorage_localeKey = 'noddle-locale'
 export const globalContext = createContext({})
 
@@ -24,6 +25,10 @@ const Config = ({children, Locales}: configProps) => {
 }
 
 export default Config
+
+export const useNoddleContext = () => {
+    return useContext(globalContext)
+}
 
 /**
  * @see useTranslation

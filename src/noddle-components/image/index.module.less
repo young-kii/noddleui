@@ -1,0 +1,100 @@
+@import "src/assets/css/global";
+
+.container {
+  display: flex;
+  height: max-content;
+  width: max-content;
+  position: relative;
+
+  .mask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    font-size: 14px;
+    font-weight: bolder;
+    height: 100%;
+    width: 100%;
+    transition: 0.3s ease;
+    background: rgba(255, 255, 255, .4);
+  }
+
+  .mask:hover {
+    opacity: 1;
+  }
+}
+
+.previewContainer {
+  position: fixed;
+  z-index: 8000;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, .6);
+  transition: .5s ease;
+  opacity: 0;
+
+  .img {
+    user-select: none;
+    width: 60%;
+    opacity: 0;
+    min-width: 300px;
+    transition: .5s @cubic-bezier3;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+  }
+
+  .toolbar {
+    user-select: none;
+    display: flex;
+    position: absolute;
+    bottom: 24px;
+    width: max-content;
+    padding: 8px;
+    border-radius: 6px;
+    background: white;
+    gap: 4px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    opacity: 0;
+    transform: translateY(100px);
+    transition: .5s ease;
+
+    .toolItem {
+      cursor: pointer;
+      display: flex;
+      padding: 8px;
+      transition: 300ms ease;
+      border-radius: @base-border-radius;
+    }
+
+    .toolItem:hover {
+      background: @base-hover-background-color;
+    }
+  }
+
+  .toolbar_show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .closeButton {
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border-radius: 6px;
+    background: white;
+    padding: 12px 16px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .1);
+  }
+}
+
+.previewContainer_show {
+  opacity: 1;
+}

@@ -11,23 +11,20 @@ export default ({list}: { list: item[] }) => {
             return a.title.localeCompare(b.title)
         })
     }
+
     return (
-        <>
-            {
-                list.map(item => {
-                    return <Fragment key={item.title}>
-                        <div className={STYLE.nav_title}>{translate(item.title)}</div>
-                        {
-                            sort(item.children).map(child => {
-                                return <div key={child.title} className={STYLE.nav_item}>
-                                    <NoddleLink
-                                        to={'/' + ((item.extra ? `${item.extra}/` : '') + (child.to ? child.to : child.title))}>{translate(item.title + '.' + child.title)}</NoddleLink>
-                                </div>
-                            })
-                        }
-                    </Fragment>
-                })
-            }
-        </>
+        list.map(item => {
+            return <Fragment key={item.title}>
+                <div className={STYLE.nav_title}>{translate(item.title)}</div>
+                {
+                    sort(item.children).map(child => {
+                        return <div key={child.title} className={STYLE.nav_item}>
+                            <NoddleLink
+                                to={'/' + ((item.extra ? `${item.extra}/` : '') + (child.to ? child.to : child.title))}>{translate(item.title + '.' + child.title)}</NoddleLink>
+                        </div>
+                    })
+                }
+            </Fragment>
+        })
     )
 }

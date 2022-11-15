@@ -60,9 +60,9 @@ export default (props: _Tooltips.tooltipsProps) => {
         setTipsWidth(tipsRef.current?.offsetWidth)
         setContainerWidth(containerRef.current?.offsetWidth)
         const element = containerRef.current.childNodes[1]
-        const elementStyle = element.style;
+        const elementStyle = element?.style;
         const computedStyle = window.getComputedStyle(element)
-        const display = computedStyle.display
+        const display = computedStyle?.display
         setChildrenDisplay(display)
         let elementStyles = {} as any
         for (let i of elementStyle) {
@@ -81,13 +81,11 @@ export default (props: _Tooltips.tooltipsProps) => {
         <div className={class_container} style={style_container} ref={containerRef} onMouseEnter={onMouseEnter}
              onMouseLeave={onMouseLeave}>
             {
-                tips ?
                     <div className={class_tips} ref={tipsRef} style={style_tips}>
                         {
-                            tips
+                            tips || 'Default'
                         }
                     </div>
-                    : <></>
             }
             {children}
         </div>
