@@ -36,7 +36,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, .6);
+  background: rgba(255, 255, 255, .7);
   transition: .5s ease;
   opacity: 0;
 
@@ -50,6 +50,7 @@
   }
 
   .toolbar {
+    z-index: 2;
     user-select: none;
     display: flex;
     position: absolute;
@@ -82,16 +83,120 @@
     transform: translateY(0);
   }
 
+  .imageList {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 48px;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, .7);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s ease transform ,.2s ease opacity;
+    opacity: 0;
+    transform: translateY(-64px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+
+    .images {
+      position: relative;
+      display: flex;
+      padding: 0 12px;
+      align-items: center;
+      height: 100%;
+      border-radius: 6px;
+      gap: 12px;
+      width: 50%;
+      overflow: scroll;
+
+      .emptySpace {
+        background-color: transparent;
+        height: 30px;
+        flex-shrink: 0;
+      }
+
+      .listItem {
+        width: 60px;
+        height: 34px;
+        object-fit: cover;
+        transition: .2s ease;
+        border-radius: 3px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+      }
+
+      .listItem:hover {
+        box-shadow: 0 0 0 1px @noddle-main-color;
+      }
+    }
+
+    .images::-webkit-scrollbar {
+      display: none;
+    }
+
+    .imageCount {
+      position: absolute;
+      bottom: -48px;
+      font-size: 12px;
+      color: white;
+      padding: 4px 8px;
+      border-radius: @base-border-radius;
+      background-color: rgba(0,0,0,.5);
+      font-weight: bolder;
+    }
+  }
+
+  .imageList_show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .closeButton {
     cursor: pointer;
     display: flex;
     position: absolute;
     right: 24px;
-    top: 24px;
+    top: 72px;
     border-radius: 6px;
     background: white;
     padding: 12px 16px;
     box-shadow: 0 0 12px rgba(0, 0, 0, .1);
+  }
+
+  .preButton {
+    cursor: pointer;
+    transition: 0.3s ease;
+    opacity: 0.5;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    user-select: none;
+    display: flex;
+    position: absolute;
+    left: 24px;
+  }
+
+  .nextButton {
+    cursor: pointer;
+    transition: 0.3s ease;
+    opacity: 0.5;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    user-select: none;
+    display: flex;
+    right: 24px;
+    position: absolute;
+  }
+
+  .preButton:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .nextButton:hover {
+    opacity: 1;
+    transform: scale(1.1);
   }
 }
 

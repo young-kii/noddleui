@@ -2,23 +2,21 @@ import React, {CSSProperties} from "react";
 
 interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     size?: CSSProperties["objectFit"]
-    preview?: boolean | previewOptions
+    preview?: boolean | previewProps
     onClick?: () => void
     src: React.ImgHTMLAttributes<HTMLImageElement>['src']
 }
 
-interface previewOptions {
+interface previewProps {
+    type: 'single' | 'multiple'
     visible?: boolean
-    src?: ImageProps['src']
-    onVisibleChange?: (values: boolean) => any
+    src?: ImageProps['src'] | ImageProps['src'][]
+    onVisibleChange?: (visible: boolean) => any
+    current?: number
 }
 
 interface MaskProps {
     content?: React.ReactNode
 }
 
-type PreviewProps = Required<Pick<ImageProps, 'src'>> & Pick<ImageProps, 'preview'> & {
-    onVisibleChange?: (visible: boolean) => void
-}
-
-export type {ImageProps, MaskProps, PreviewProps}
+export type {ImageProps, MaskProps, previewProps}
